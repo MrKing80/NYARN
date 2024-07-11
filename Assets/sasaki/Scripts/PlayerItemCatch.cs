@@ -13,7 +13,7 @@ public class PlayerItemCatch : MonoBehaviour
 
     private int zero = 0;   //リストの０番目を指す
 
-    private List<GameObject> items = new List<GameObject>();    //アイテムのリスト
+    [SerializeField] private List<GameObject> items = new List<GameObject>();    //アイテムのリスト
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +25,7 @@ public class PlayerItemCatch : MonoBehaviour
     void Update()
     {
         //アイテム取得
-        if(isItemTouch && Input.GetKeyDown("joystick button 0"))
+        if(isItemTouch && (Input.GetKeyDown("joystick button 0") || Input.GetKeyDown(KeyCode.Mouse0)))
         {
             items.Add(item);                //リスト追加
             items[i].SetActive(false);      //アイテムを非表示
@@ -34,7 +34,7 @@ public class PlayerItemCatch : MonoBehaviour
         }
 
         //アイテム捨てる
-        if (!isDoNotThrow && Input.GetKeyDown("joystick button 1"))
+        if (!isDoNotThrow && (Input.GetKeyDown("joystick button 1") || Input.GetKeyDown(KeyCode.Mouse2)))
         {
             if (items[zero] != null)
             {
