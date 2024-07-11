@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+    [Header("プレイヤーの速度調節するとこだよ～")]
     [SerializeField] private float speed = default;     //プレイヤーのスピード
 
     private Rigidbody2D rig = default;                  //Rigidbody2Dを保存する変数
-    private Vector3 wallPos = default;                  
+    private Vector3 wallPos = default;       
+    
     private float inputX = 0f;      //横方向のインプットされた値を保持する変数
     private float inputY = 0f;      //縦方向のインプットされた値を保持する変数
 

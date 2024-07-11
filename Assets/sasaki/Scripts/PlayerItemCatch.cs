@@ -11,7 +11,7 @@ public class PlayerItemCatch : MonoBehaviour
     
     private int i = 0;      //リストの添え字
 
-    private int zero = 0;   //リストの０番目を指す
+    private const int zero = 0;   //リストの０番目を指す
 
     [SerializeField] private List<GameObject> items = new List<GameObject>();    //アイテムのリスト
 
@@ -46,9 +46,9 @@ public class PlayerItemCatch : MonoBehaviour
         }
 
         //添え字がマイナスになるとき0にする
-        if (i < 0)
+        if (i < zero)
         {
-            i = 0;
+            i = zero;
         }
     }
 
