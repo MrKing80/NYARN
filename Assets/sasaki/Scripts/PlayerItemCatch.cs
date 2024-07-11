@@ -11,7 +11,7 @@ public class PlayerItemCatch : MonoBehaviour
     
     private int i = 0;      //リストの添え字
 
-    private int zero = 0;   //0
+    private int zero = 0;   //リストの０番目を指す
 
     private List<GameObject> items = new List<GameObject>();    //アイテムのリスト
 
@@ -43,6 +43,11 @@ public class PlayerItemCatch : MonoBehaviour
                 items.Remove(items[zero]);          //リストから削除
                 i--;                                //デクリメント
             }
+        }
+
+        if (i < 0)
+        {
+            i = 0;
         }
     }
 
