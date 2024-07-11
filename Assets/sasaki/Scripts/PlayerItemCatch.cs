@@ -34,7 +34,7 @@ public class PlayerItemCatch : MonoBehaviour
         }
 
         //アイテム捨てる
-        if (!isDoNotThrow && (Input.GetKeyDown("joystick button 1") || Input.GetKeyDown(KeyCode.Mouse2)))
+        if (!isDoNotThrow && (Input.GetKeyDown("joystick button 1") || Input.GetKeyDown(KeyCode.Mouse1)))
         {
             if (items[zero] != null)
             {
@@ -45,6 +45,7 @@ public class PlayerItemCatch : MonoBehaviour
             }
         }
 
+        //添え字がマイナスになるとき0にする
         if (i < 0)
         {
             i = 0;
