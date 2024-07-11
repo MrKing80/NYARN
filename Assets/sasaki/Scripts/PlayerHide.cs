@@ -18,7 +18,7 @@ public class PlayerHide : MonoBehaviour
     void Update()
     {
         //隠れたり出たりする処理
-        if ((isCanHide || isHiding) && Input.GetKeyDown("joystick button 0"))
+        if ((isCanHide || isHiding) && (Input.GetKeyDown("joystick button 0") || Input.GetKeyDown(KeyCode.Mouse0)))
         {
             //隠れている場合
             if (isHiding)
@@ -26,6 +26,7 @@ public class PlayerHide : MonoBehaviour
                 player.SetActive(true);     //プレイヤー表示
                 player.transform.position = this.transform.position;    //ハイドポイントの位置にプレイヤーを戻す
                 isHiding = false;           //ロッカーから出たよ
+                player = null;
             }
 
             //隠れていない場合
@@ -34,12 +35,6 @@ public class PlayerHide : MonoBehaviour
                 player.SetActive(false);    //ぷれいやーを非表示
                 isHiding = true;            //ロッカーに隠れたよ
             }
-        }
-
-        //ロッカーのそばにいないとき変数を初期化
-        if(!isCanHide)
-        {
-            player = null;
         }
 
     }
