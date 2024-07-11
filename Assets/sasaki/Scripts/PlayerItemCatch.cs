@@ -4,46 +4,48 @@ using UnityEngine;
 
 public class PlayerItemCatch : MonoBehaviour
 {
+    private GameObject item = default;      //ƒAƒCƒeƒ€‚ğŠi”[‚·‚é•Ï”
 
-    private GameObject item = default;      //ã‚¢ã‚¤ãƒ†ãƒ ã‚’æ ¼ç´ã™ã‚‹å¤‰æ•°
+    private bool isItemTouch = false;       //ƒAƒCƒeƒ€‚ªE‚¦‚é‚©‚Ç‚¤‚©
+    private bool isDoNotThrow = false;      //ƒAƒCƒeƒ€‚ªÌ‚Ä‚ç‚ê‚é‚©‚Ç‚¤‚©
+    
+    private int i = 0;      //ƒŠƒXƒg‚Ì“Y‚¦š
 
-    private bool isItemTouch = false;       //ã‚¢ã‚¤ãƒ†ãƒ ãŒæ‹¾ãˆã‚‹ã‹ã©ã†ã‹
-    private bool isDoNotThrow = false;      //ã‚¢ã‚¤ãƒ†ãƒ ãŒæ¨ã¦ã‚‰ã‚Œã‚‹ã‹ã©ã†ã‹
+    private int zero = 0;   //ƒŠƒXƒg‚Ì‚O”Ô–Ú‚ğw‚·
 
-    private int i = 0;      //ãƒªã‚¹ãƒˆã®æ·»ãˆå­— 
-
-    private int zero = 0;   //ãƒªã‚¹ãƒˆã®ï¼ç•ªç›®ã‚’æŒ‡ã™
-
-    [SerializeField] private List<GameObject> items = new List<GameObject>();    //ã‚¢ã‚¤ãƒ†ãƒ ã®ãƒªã‚¹ãƒˆ
+    [SerializeField] private List<GameObject> items = new List<GameObject>();    //ƒAƒCƒeƒ€‚ÌƒŠƒXƒg
 
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
-    private void Update()
+    void Update()
     {
-        //ã‚¢ã‚¤ãƒ†ãƒ å–å¾—
-        if (isItemTouch && (Input.GetKeyDown("joystick button 0") || !isDoNotThrow && Input.GetMouseButtonDown(0)))
+        //ƒAƒCƒeƒ€æ“¾
+        if(isItemTouch && (Input.GetKeyDown("joystick button 0") || Input.GetKeyDown(KeyCode.Mouse0)))
         {
-            items.Add(item);                //ãƒªã‚¹ãƒˆè¿½åŠ 
-            items[i].SetActive(false);      //ã‚¢ã‚¤ãƒ†ãƒ ã‚’éè¡¨ç¤º
-            i++;                            //ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
-            print("ã¨ã£ãŸï¼");
+            items.Add(item);                //ƒŠƒXƒg’Ç‰Á
+            items[i].SetActive(false);      //ƒAƒCƒeƒ€‚ğ”ñ•\¦
+            i++;                            //ƒCƒ“ƒNƒŠƒƒ“ƒg
+            print("‚Æ‚Á‚½I");
         }
 
-        //ã‚¢ã‚¤ãƒ†ãƒ æ¨ã¦
-        if (!isDoNotThrow && (Input.GetKeyDown("joystick button 1") || !isDoNotThrow && Input.GetMouseButtonDown(1)))
+        //ƒAƒCƒeƒ€Ì‚Ä‚é
+        if (!isDoNotThrow && (Input.GetKeyDown("joystick button 1") || Input.GetKeyDown(KeyCode.Mouse1)))
+        {
             if (items[zero] != null)
             {
-                items[zero].SetActive(true);        //ã‚¢ã‚¤ãƒ†ãƒ è¡¨ç¤º
-                items[zero].transform.position = this.transform.position;   //è‡ªåˆ†ã®è¶³å…ƒã¸è½ã¨ã™
-                items.Remove(items[zero]);          //ãƒªã‚¹ãƒˆã‹ã‚‰å‰Šé™¤
-                i--;                                //ãƒ‡ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
+                items[zero].SetActive(true);        //ƒAƒCƒeƒ€•\¦
+                items[zero].transform.position = this.transform.position;   //©•ª‚Ì‘«Œ³‚Ö—‚Æ‚·
+                items.Remove(items[zero]);          //ƒŠƒXƒg‚©‚çíœ
+                i--;                                //ƒfƒNƒŠƒƒ“ƒg
             }
+        }
 
+        //“Y‚¦š‚ªƒ}ƒCƒiƒX‚É‚È‚é‚Æ‚«0‚É‚·‚é
         if (i < 0)
         {
             i = 0;
@@ -52,28 +54,28 @@ public class PlayerItemCatch : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Item"))
+        if(collision.gameObject.CompareTag("Item"))
         {
-            item = collision.gameObject;    //è§¦ã‚ŒãŸã‚¢ã‚¤ãƒ†ãƒ ã®æƒ…å ±å–å¾—
+            item = collision.gameObject;    //G‚ê‚½ƒAƒCƒeƒ€‚Ìî•ñæ“¾
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Item"))
+        if(collision.gameObject.CompareTag("Item"))
         {
-            isItemTouch = true;         //è§¦ã‚Œã¦ã„ã‚‹çŠ¶æ…‹ã«ã™ã‚‹
-            isDoNotThrow = true;        //ã‚¢ã‚¤ãƒ†ãƒ ã‚’è½ã¨ã›ãªã„ã‚ˆã†ã«ã™ã‚‹
-            print("ã‚¢ã‚¤ãƒ†ãƒ ï¼");
+            isItemTouch = true;         //G‚ê‚Ä‚¢‚éó‘Ô‚É‚·‚é
+            isDoNotThrow = true;        //ƒAƒCƒeƒ€‚ğ—‚Æ‚¹‚È‚¢‚æ‚¤‚É‚·‚é
+            print("ƒAƒCƒeƒ€I");
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Item"))
+        if(collision.gameObject.CompareTag("Item"))
         {
-            isItemTouch = false;        //è§¦ã‚Œã¦ã„ãªã„çŠ¶æ…‹ã«ã™ã‚‹
-            isDoNotThrow = false;       //ã‚¢ã‚¤ãƒ†ãƒ ã‚’è½ã¨ã›ãªã„ã‚ˆã†ã«ã™ã‚‹
-            print("ã‚¢ã‚¤ãƒ†ãƒ ....");
+            isItemTouch = false;        //G‚ê‚Ä‚¢‚È‚¢ó‘Ô‚É‚·‚é
+            isDoNotThrow = false;       //ƒAƒCƒeƒ€‚ğ—‚Æ‚¹‚È‚¢‚æ‚¤‚É‚·‚é
+            print("ƒAƒCƒeƒ€....");
         }
     }
 }
