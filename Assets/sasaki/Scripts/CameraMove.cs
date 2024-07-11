@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
+    [Header ("ƒvƒŒƒCƒ„[‚ğ“ü‚ê‚é‚Æ‚±‚¾‚æ`")]
     [SerializeField] private GameObject player = default;
     // Start is called before the first frame update
     void Start()
