@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class PlayerItemCatch : MonoBehaviour
 {
+    [SerializeField] private ItemDataBase itemLists;
+    [SerializeField] private int itemID = default; // ID
+
+    //    [SerializeField] private float weight = default; // 重さ
 
     private GameObject item = default;      //アイテムを格納する変数
 
     private bool isItemTouch = false;       //アイテムが拾えるかどうか
     private bool isDoNotThrow = false;      //アイテムが捨てられるかどうか
-    
-    private int i = 0;      //リストの添え字 
+
+    private int i = 0;      //リストの添え字
 
     private int zero = 0;   //リストの０番目を指す
 
@@ -19,23 +23,25 @@ public class PlayerItemCatch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
-    private void Update()
+    void Update()
     {
         //アイテム取得
-        if(isItemTouch && Input.GetKeyDown("joystick button 0") || !isDoNotThrow && Input.GetMouseButtonDown(0))
+        if (isItemTouch && (Input.GetKeyDown("joystick button 0") || Input.GetKeyDown(KeyCode.Mouse0)))
         {
             items.Add(item);                //リスト追加
             items[i].SetActive(false);      //アイテムを非表示
             i++;                            //インクリメント
+//            print(itemLists.GetItemLists());
             print("とった！");
         }
 
-        //アイテム捨て
-        if (!isDoNotThrow && Input.GetKeyDown("joystick button 1") || !isDoNotThrow && Input.GetMouseButtonDown(1))
+        //アイテム捨てる
+        if (!isDoNotThrow && (Input.GetKeyDown("joystick button 1") || Input.GetKeyDown(KeyCode.Mouse1)))
+        {
             if (items[zero] != null)
             {
                 items[zero].SetActive(true);        //アイテム表示
@@ -53,14 +59,14 @@ public class PlayerItemCatch : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Item"))
+        if (collision.gameObject.CompareTag("Item"))
         {
             item = collision.gameObject;    //触れたアイテムの情報取得
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Item"))
+        if (collision.gameObject.CompareTag("Item"))
         {
             isItemTouch = true;         //触れている状態にする
             isDoNotThrow = true;        //アイテムを落とせないようにする
@@ -70,7 +76,7 @@ public class PlayerItemCatch : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Item"))
+        if (collision.gameObject.CompareTag("Item"))
         {
             isItemTouch = false;        //触れていない状態にする
             isDoNotThrow = false;       //アイテムを落とせないようにする
