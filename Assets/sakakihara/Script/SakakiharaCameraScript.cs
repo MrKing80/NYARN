@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SakakiharaCameraScript : MonoBehaviour
 {
+    //カメラにつけるスクリプト
     //仮でつけたカメラ移動スクリプト
 
     [SerializeField] GameObject player;
