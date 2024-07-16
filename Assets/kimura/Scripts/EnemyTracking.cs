@@ -10,12 +10,14 @@ public class EnemyTracking : MonoBehaviour
     RaycastHit2D ObstacleRay;
     private Vector2 PlayerVec;//プレイヤーの位置を取得する
     private Vector2 MyVector;
+    private float _obstacleDistance;
+    private float _rayAngle;
     [SerializeField] private float _trackingTime = 0;//追跡時間
     [SerializeField] private float _alertTime = 0;//警戒時間
     [Header("プレイヤーと自分の距離")]
-    [SerializeField] private float _distance;//プレイヤーと自分の距離
+    [SerializeField] private float _playerDistance;//プレイヤーと自分の距離
     [Header("自分の初期位置")]
-  　[SerializeField]private Vector2 InitialPosition;//自分の初期位置  
+  　[SerializeField] private Vector2 InitialPosition;//自分の初期位置  
     [Header("レイの距離  ")]
     [SerializeField] private float _rayDistance = 5f;
     [Header("プレイヤーのレイヤー")]
@@ -28,23 +30,22 @@ public class EnemyTracking : MonoBehaviour
     [SerializeField] private float _moveSpeed = 5;//敵のスピード
     [Header("追跡フラグ")]
     [SerializeField] private bool TrackingFlag = false;//追跡フラグ
-    private int Hit;
     Transform MyTrans;//自分の位置
     void Start()
     {
         Rig2D = this.GetComponent<Rigidbody2D>();
         MyTrans = this.GetComponent<Transform>();//自分のTransformを取得
-        InitialPosition = MyTrans.position;
-        
+        InitialPosition = MyTrans.position;//自分の初期位置を取得       
     }
 
     // Update is called once per frame
     void Update()
     {
+        //_rayAngle = Mathf.Atan2(PlayerVec.y, PlayerVec.x) * Mathf.Rad2Deg;
         MyVector = MyTrans.position;//自分の向きを取得
         //ローテーションをヴェクターに突っ込めばいいかもしれない
         GetRay = Physics2D.Raycast(MyTrans.position, MyTrans.right, _rayDistance, TargetLayer);//レイキャストを実行（向きは仮）
-        ObstacleRay = Physics2D.Raycast(MyTrans.position, MyTrans.right, _rayDistance, ObstacleLayer);
+        ObstacleRay = Physics2D.Raycast(MyTrans.position, MyTrans.right, _rayDistance, ObstacleLayer);//障害物を識別するレイキャストを実行
         Debug.DrawRay(MyTrans.position, MyTrans.right * _rayDistance, Color.red);//レイを可視化
 
         if (GetRay)//プレイヤーがレイに触れたら
@@ -61,7 +62,8 @@ public class EnemyTracking : MonoBehaviour
             _trackingTime += Time.deltaTime;          
         }
 
-        if (_trackingTime >= 10 && _distance >= 20)//プレイヤーを見失ったら  場合によってはorにする
+
+        if (_trackingTime >= 10 && _playerDistance >= 20)//プレイヤーを見失ったら  場合によってはorにする
         {
             TrackingFlag = false;          
             _alertTime += Time.deltaTime;
@@ -74,11 +76,22 @@ public class EnemyTracking : MonoBehaviour
             }
         }
 
+
+        //if (ObstacleRay)//レイの距離のテスト
+        //{
+        //    print("ぶつかった");
+        //    _obstacleDistance = Vector2.Distance(ObstacleRay.collider.gameObject.transform.position, MyVector);
+        //    _rayDistance -= _obstacleDistance;
+        //}
+
+       
+
+
         if (TrackingFlag)//追跡フラグがオンだったら
         {
-            _distance = Vector2.Distance(PlayerVec, MyVector);
+            _playerDistance = Vector2.Distance(PlayerVec, MyVector);
             PlayerVec = TargetPos.position;//プレイヤーの位置を取得
-            print("距離は" + _distance);
+            print("距離は" + _playerDistance);
             //プレイヤーを追い掛け回す
             MyTrans.position = Vector2.MoveTowards(MyTrans.position, new Vector2(TargetPos.position.x, TargetPos.position. y), _moveSpeed * Time.deltaTime);
         }
