@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerItemCatch : MonoBehaviour
-{
+{ 
     private GameObject item = default;      //アイテムを格納する変数
 
     private bool isItemTouch = false;       //アイテムが拾えるかどうか
@@ -13,12 +13,14 @@ public class PlayerItemCatch : MonoBehaviour
 
     private const int zero = 0;   //リストの０番目を指す
 
+    [SerializeField] private GameObject aButton = default;
+
     [SerializeField] private List<GameObject> items = new List<GameObject>();    //アイテムのリスト
 
     // Start is called before the first frame update
     void Start()
     {
-
+        aButton.SetActive(false);
     }
 
     // Update is called once per frame
@@ -67,6 +69,8 @@ public class PlayerItemCatch : MonoBehaviour
         {
             isItemTouch = true;         //触れている状態にする
             isDoNotThrow = true;        //アイテムを落とせないようにする
+            aButton.transform.position = collision.transform.position;
+            aButton.SetActive(true);
             print("アイテム！");
         }
     }
@@ -77,6 +81,7 @@ public class PlayerItemCatch : MonoBehaviour
         {
             isItemTouch = false;        //触れていない状態にする
             isDoNotThrow = false;       //アイテムを落とせないようにする
+            aButton.SetActive(false);
             print("アイテム....");
         }
     }
