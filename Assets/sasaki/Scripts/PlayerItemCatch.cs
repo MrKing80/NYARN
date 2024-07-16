@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class PlayerItemCatch : MonoBehaviour
 {
-    [SerializeField] private ItemDataBase itemLists;
-    [SerializeField] private int itemID = default; // ID
-
-    //    [SerializeField] private float weight = default; // 重さ
+    // アイテムリスト情報
+    [SerializeField] private ItemDataBase itemData;
+    // 落ちてるアイテム情報   
+    [SerializeField] private ItemCreate itemCreate;
+    // 拾ったアイテム情報
+    public int catchItemID = default;
+    // 重さ
+    [SerializeField] private float catchItemWeight = default;
 
     private GameObject item = default;      //アイテムを格納する変数
 
@@ -18,35 +22,33 @@ public class PlayerItemCatch : MonoBehaviour
 
     private int zero = 0;   //リストの０番目を指す
 
-    [SerializeField] private List<GameObject> items = new List<GameObject>();    //アイテムのリスト
+    public List<GameObject> itemLists = new List<GameObject>();    //アイテムのリスト
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         //アイテム取得
         if (isItemTouch && (Input.GetKeyDown("joystick button 0") || Input.GetKeyDown(KeyCode.Mouse0)))
         {
-            items.Add(item);                //リスト追加
-            items[i].SetActive(false);      //アイテムを非表示
+            itemLists.Add(item);                //リスト追加
+            itemLists[i].SetActive(false);      //アイテムを非表示
             i++;                            //インクリメント
-//            print(itemLists.GetItemLists());
+
+            catchItemID = item.GetComponent<ItemCreate>().itemID;
+            Debug.Log(itemData.GetItemLists()[catchItemID].ItemID + " : " + itemData.GetItemLists()[catchItemID].Name
+                       + " : " + itemData.GetItemLists()[catchItemID].Price + " : " + itemData.GetItemLists()[catchItemID].Weight
+                            + " : " + itemData.GetItemLists()[catchItemID].Explanation);
+            
             print("とった！");
         }
 
         //アイテム捨てる
         if (!isDoNotThrow && (Input.GetKeyDown("joystick button 1") || Input.GetKeyDown(KeyCode.Mouse1)))
         {
-            if (items[zero] != null)
+            if (itemLists[zero] != null)
             {
-                items[zero].SetActive(true);        //アイテム表示
-                items[zero].transform.position = this.transform.position;   //自分の足元へ落とす
-                items.Remove(items[zero]);          //リストから削除
+                itemLists[zero].SetActive(true);        //アイテム表示
+                itemLists[zero].transform.position = this.transform.position;   //自分の足元へ落とす
+                itemLists.Remove(itemLists[zero]);          //リストから削除
                 i--;                                //デクリメント
             }
         }
@@ -62,6 +64,7 @@ public class PlayerItemCatch : MonoBehaviour
         if (collision.gameObject.CompareTag("Item"))
         {
             item = collision.gameObject;    //触れたアイテムの情報取得
+
         }
     }
     private void OnTriggerStay2D(Collider2D collision)

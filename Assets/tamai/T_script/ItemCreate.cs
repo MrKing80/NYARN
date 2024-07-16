@@ -6,7 +6,7 @@ public class ItemCreate : MonoBehaviour
 {
     [SerializeField] private ItemDataBase itemLists;
     //    [SerializeField] private GameObject itemObject;
-    [SerializeField] [Range(0, 1)] private int itemID;
+    [Range(0, 9)] public int itemID;
 
     void Start()
     {
@@ -16,7 +16,7 @@ public class ItemCreate : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(itemLists.GetItemLists()[itemID].ItemID + " : " + itemLists.GetItemLists()[itemID].Name +
-                itemLists.GetItemLists()[itemID].Price + itemLists.GetItemLists()[itemID].Weight);
+//        Debug.Log(itemLists.GetItemLists()[itemID].ItemID + " : " + itemLists.GetItemLists()[itemID].Name +
+//                itemLists.GetItemLists()[itemID].Price + itemLists.GetItemLists()[itemID].Weight);
     }
 }
