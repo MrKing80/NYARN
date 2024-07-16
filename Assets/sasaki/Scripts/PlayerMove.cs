@@ -7,17 +7,23 @@ public class PlayerMove : MonoBehaviour
     [Header("プレイヤーの速度調節するとこだよ～")]
     [SerializeField] private float speed = default;     //プレイヤーのスピード
 
+    private PlayerItemCatch itemCatch = default;
+
     private Rigidbody2D rig = default;                  //Rigidbody2Dを保存する変数
     private Vector3 wallPos = default;       
     
     private float inputX = 0f;      //横方向のインプットされた値を保持する変数
     private float inputY = 0f;      //縦方向のインプットされた値を保持する変数
 
+    private const float MAX_WEIGHT = 100f;
+    private float weight = 0f;
+    private float ratio = 0f;
     private bool isWallTouch = false;   //壁に触れているか
     // Start is called before the first frame update
     void Start()
     {
         rig = this.GetComponent<Rigidbody2D>();
+        itemCatch = this.GetComponent<PlayerItemCatch>();
     }
 
     // Update is called once per frame
@@ -26,6 +32,11 @@ public class PlayerMove : MonoBehaviour
         inputX = Input.GetAxisRaw("Horizontal") * speed;    //プレイヤーの横方向の移動速度を格納
         inputY = Input.GetAxisRaw("Vertical") * speed;      //プレイヤーの縦方向の移動速度を格納
 
+        weight = itemCatch.WeightProperty;
+
+        ratio = weight / MAX_WEIGHT;
+
+        speed *= 1 - ratio;
         //rig.velocity = new Vector2(inputX, inputY) * Time.deltaTime;
         #region//プレイヤーのオブジェクトが手に入ったら調整必須
         

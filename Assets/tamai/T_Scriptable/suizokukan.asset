@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 738cabcb46a1bf94990721ab1914be2a, type: 3}
   m_Name: suizokukan
   m_EditorClassIdentifier: 
-  type: 2
+  type: 0
   itemSprite: {fileID: 1501765630822735837, guid: fa06850dc44e22f4f8424f8ee24571c9, type: 3}
-  ID: 2
+  ID: 8
   artName: "\u6C34\u65CF\u9928"
   gameObject: {fileID: 2021980476885195191, guid: 05c3fa2f4b8abf34baa28b63189540e2, type: 3}
   explanation: "\u6C34\u65CF\u9928\u306E\u7D75\u3002\u7BB1\u5EAD\u306B\u9B45\u5165\u3089\u308C\u305F\u5B50\u4F9B\u304C\u63CF\u304B\u308C\u3066\u3044\u308B\u3002"

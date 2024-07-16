@@ -13,6 +13,10 @@ public class PlayerItemCatch : MonoBehaviour
     // 重さ
     [SerializeField] private float catchItemWeight = default;
 
+    private const float MAX_CARRYING_WEIGHT = 100f;
+
+    private float carryingWeight = default;
+
     private GameObject item = default;      //アイテムを格納する変数
 
     private bool isItemTouch = false;       //アイテムが拾えるかどうか
@@ -24,8 +28,15 @@ public class PlayerItemCatch : MonoBehaviour
 
     public List<GameObject> itemLists = new List<GameObject>();    //アイテムのリスト
 
+    public float WeightProperty
+    {
+        get { return carryingWeight; }
+        set { carryingWeight = value; }
+    }
+
     void Update()
     {
+
         //アイテム取得
         if (isItemTouch && (Input.GetKeyDown("joystick button 0") || Input.GetKeyDown(KeyCode.Mouse0)))
         {
@@ -34,6 +45,14 @@ public class PlayerItemCatch : MonoBehaviour
             i++;                            //インクリメント
 
             catchItemID = item.GetComponent<ItemCreate>().itemID;
+
+            carryingWeight += itemData.GetItemLists()[catchItemID].Weight;
+
+            if (carryingWeight <= MAX_CARRYING_WEIGHT)
+            {
+                WeightProperty = carryingWeight;
+            }
+
             Debug.Log(itemData.GetItemLists()[catchItemID].ItemID + " : " + itemData.GetItemLists()[catchItemID].Name
                        + " : " + itemData.GetItemLists()[catchItemID].Price + " : " + itemData.GetItemLists()[catchItemID].Weight
                             + " : " + itemData.GetItemLists()[catchItemID].Explanation);
@@ -44,19 +63,24 @@ public class PlayerItemCatch : MonoBehaviour
         //アイテム捨てる
         if (!isDoNotThrow && (Input.GetKeyDown("joystick button 1") || Input.GetKeyDown(KeyCode.Mouse1)))
         {
-            if (itemLists[zero] != null)
+            if (itemLists.Count <= 0)
             {
-                itemLists[zero].SetActive(true);        //アイテム表示
-                itemLists[zero].transform.position = this.transform.position;   //自分の足元へ落とす
-                itemLists.Remove(itemLists[zero]);          //リストから削除
-                i--;                                //デクリメント
+                return;
             }
+
+            itemLists[zero].SetActive(true);        //アイテム表示
+            itemLists[zero].transform.position = this.transform.position;   //自分の足元へ落とす
+            itemLists.Remove(itemLists
+                [zero]);          //リストから削除
+            i--;                                //デクリメント
         }
 
-        if (i < 0)
+        //添え字がマイナスになるとき0にする
+        if (i < zero)
         {
-            i = 0;
+            i = zero;
         }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
