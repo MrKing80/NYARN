@@ -47,4 +47,6 @@ public class PlayerMove : MonoBehaviour
 
         this.transform.position += (new Vector3(inputX, inputY) * Time.deltaTime);
     }
+
+   
 }

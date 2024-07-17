@@ -568,6 +568,7 @@ GameObject:
   - component: {fileID: 1989631149}
   - component: {fileID: 1989631148}
   - component: {fileID: 1989631152}
+  - component: {fileID: 1989631153}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -590,7 +591,6 @@ MonoBehaviour:
   _trackingTime: 0
   _alertTime: 0
   _playerDistance: 0
-  InitialPosition: {x: 0, y: 0}
   _rayDistance: 5
   TargetLayer:
     serializedVersion: 2
@@ -599,7 +599,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   TargetPos: {fileID: 877229156}
-  _moveSpeed: 5
+  _trackingSpeed: 5
   TrackingFlag: 0
 --- !u!61 &1989631149
 BoxCollider2D:
@@ -741,6 +741,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1989631153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989631147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 404f05b50751568448fbc133b8685396, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyTrans: {fileID: 1989631151}
+  MyVector: {x: 0, y: 0}
+  InitialPosition: {x: 0, y: 0}
+  _moveSpeed: 3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

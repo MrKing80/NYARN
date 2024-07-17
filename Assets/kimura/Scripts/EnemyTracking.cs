@@ -6,18 +6,18 @@ public class EnemyTracking : MonoBehaviour
 {
     // Start is called before the first frame update
     Rigidbody2D Rig2D;
-    RaycastHit2D GetRay;
+    RaycastHit2D GetRay;//自分の視線
     RaycastHit2D ObstacleRay;
     private Vector2 PlayerVec;//プレイヤーの位置を取得する
-    private Vector2 MyVector;
+    private Vector2 MyVector;//自分の向き
     private float _obstacleDistance;
     private float _rayAngle;
+    [Header("追跡時間")]
     [SerializeField] private float _trackingTime = 0;//追跡時間
+    [Header("警戒時間")]
     [SerializeField] private float _alertTime = 0;//警戒時間
     [Header("プレイヤーと自分の距離")]
-    [SerializeField] private float _playerDistance;//プレイヤーと自分の距離
-    [Header("自分の初期位置")]
-  　[SerializeField] private Vector2 InitialPosition;//自分の初期位置  
+    [SerializeField] private float _playerDistance;//プレイヤーと自分の距離 
     [Header("レイの距離  ")]
     [SerializeField] private float _rayDistance = 5f;
     [Header("プレイヤーのレイヤー")]
@@ -26,25 +26,27 @@ public class EnemyTracking : MonoBehaviour
     [SerializeField] private LayerMask ObstacleLayer;    
     [Header("プレイヤーの位置")]
     [SerializeField] Transform TargetPos;//プレイヤーの位置
-    [Header("自分のスピード")]
-    [SerializeField] private float _moveSpeed = 5;//敵のスピード
+    [Header("自分の追跡速度")]
+    [SerializeField] private float _trackingSpeed = 5;//敵のスピード
     [Header("追跡フラグ")]
     [SerializeField] private bool TrackingFlag = false;//追跡フラグ
     Transform MyTrans;//自分の位置
+    EnemyMove GetMove;
     void Start()
     {
         Rig2D = this.GetComponent<Rigidbody2D>();
-        MyTrans = this.GetComponent<Transform>();//自分のTransformを取得
-        InitialPosition = MyTrans.position;//自分の初期位置を取得       
+        GetMove = this.GetComponent<EnemyMove>();//自分の動きを取得
+        MyTrans = GetMove.MyTrans;//自分のTransformを取得
     }
 
     // Update is called once per frame
     void Update()
     {
         //_rayAngle = Mathf.Atan2(PlayerVec.y, PlayerVec.x) * Mathf.Rad2Deg;
-        MyVector = MyTrans.position;//自分の向きを取得
+        //_rayAngle = MyTrans.eulerAngles.z * Mathf.Deg2Rad;
+        MyVector = GetMove.MyTrans.position;//自分の向きを取得
         //ローテーションをヴェクターに突っ込めばいいかもしれない
-        GetRay = Physics2D.Raycast(MyTrans.position, MyTrans.right, _rayDistance, TargetLayer);//レイキャストを実行（向きは仮）
+        GetRay = Physics2D.Raycast(MyTrans.position, GetMove.MoveDirection, _rayDistance, TargetLayer);//レイキャストを実行（向きは仮）
         ObstacleRay = Physics2D.Raycast(MyTrans.position, MyTrans.right, _rayDistance, ObstacleLayer);//障害物を識別するレイキャストを実行
         Debug.DrawRay(MyTrans.position, MyTrans.right * _rayDistance, Color.red);//レイを可視化
 
@@ -71,7 +73,7 @@ public class EnemyTracking : MonoBehaviour
             if (_alertTime >= 10)
             {
                 //初期位置に戻る
-                MyTrans.position = Vector2.MoveTowards(MyTrans.position, InitialPosition, _moveSpeed * Time.deltaTime);
+                MyTrans.position = Vector2.MoveTowards(MyTrans.position, GetMove.InitialPosition, _trackingSpeed * Time.deltaTime);
                 print("つかれた");
             }
         }
@@ -89,21 +91,21 @@ public class EnemyTracking : MonoBehaviour
 
         if (TrackingFlag)//追跡フラグがオンだったら
         {
-            _playerDistance = Vector2.Distance(PlayerVec, MyVector);
+            _playerDistance = Vector2.Distance(PlayerVec, MyVector);//自分とプレイヤーの距離を計算
+            print("黙って帰るよくない！！！");
             PlayerVec = TargetPos.position;//プレイヤーの位置を取得
             print("距離は" + _playerDistance);
-            //プレイヤーを追い掛け回す
-            MyTrans.position = Vector2.MoveTowards(MyTrans.position, new Vector2(TargetPos.position.x, TargetPos.position. y), _moveSpeed * Time.deltaTime);
+            MyTrans.position = Vector2.MoveTowards(MyTrans.position, new Vector2(TargetPos.position.x, TargetPos.position. y), _trackingSpeed * Time.deltaTime); //プレイヤーを追い掛け回す
+            //GetRay = Physics2D.Raycast(MyTrans.position,new Vector2(Mathf.Cos(_rayAngle),Mathf.Sin(_rayAngle)), _rayDistance, TargetLayer);
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))//プレイヤーと追突したら追跡開始
         {
             TrackingFlag = true;
+            GetMove.MoveDirection = (TargetPos.position - MyTrans.position).normalized;
         }
     }
-
-
 }
