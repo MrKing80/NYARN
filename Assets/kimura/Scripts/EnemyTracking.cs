@@ -32,11 +32,13 @@ public class EnemyTracking : MonoBehaviour
     [SerializeField] private bool TrackingFlag = false;//追跡フラグ
     Transform MyTrans;//自分の位置
     EnemyMove GetMove;
+    EnemyVisionScript GetEnemyVision;
     void Start()
     {
         Rig2D = this.GetComponent<Rigidbody2D>();
         GetMove = this.GetComponent<EnemyMove>();//自分の動きを取得
         MyTrans = GetMove.MyTrans;//自分のTransformを取得
+        GetEnemyVision = GetComponentInChildren<EnemyVisionScript>();
     }
 
     // Update is called once per frame
@@ -46,9 +48,9 @@ public class EnemyTracking : MonoBehaviour
         //_rayAngle = MyTrans.eulerAngles.z * Mathf.Deg2Rad;
         MyVector = GetMove.MyTrans.position;//自分の向きを取得
         //ローテーションをヴェクターに突っ込めばいいかもしれない
-        GetRay = Physics2D.Raycast(MyTrans.position, GetMove.MoveDirection, _rayDistance, TargetLayer);//レイキャストを実行（向きは仮）
+        GetRay = Physics2D.Raycast(MyTrans.position, GetEnemyVision.VisionVec, _rayDistance, TargetLayer);//レイキャストを実行（向きは仮）
         ObstacleRay = Physics2D.Raycast(MyTrans.position, MyTrans.right, _rayDistance, ObstacleLayer);//障害物を識別するレイキャストを実行
-        Debug.DrawRay(MyTrans.position, MyTrans.right * _rayDistance, Color.red);//レイを可視化
+        Debug.DrawRay(MyTrans.position, GetEnemyVision.VisionVec * _rayDistance, Color.red);//レイを可視化
 
         if (GetRay)//プレイヤーがレイに触れたら
         {

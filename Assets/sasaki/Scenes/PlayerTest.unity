@@ -629,8 +629,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _trackingTime: 0
   _alertTime: 0
-  PlayerPos: {fileID: 638250561}
-  _distance: 0
+  _playerDistance: 0
   InitialPosition: {x: 0, y: 0}
   _rayDistance: 5
   TargetLayer:
@@ -638,7 +637,7 @@ MonoBehaviour:
     m_Bits: 8
   ObstacleLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 64
   TargetPos: {fileID: 638250561}
   _moveSpeed: 6
   TrackingFlag: 0
