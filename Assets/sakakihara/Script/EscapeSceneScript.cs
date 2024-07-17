@@ -12,7 +12,7 @@ public class EscapeSceneScript : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            SceneManager.LoadScene("TestMap");
+            SceneManager.LoadScene("TestMap");//‚·‚®‚ÉƒV[ƒ“‘JˆÚ‚·‚é‚¼
         }
     }
 }

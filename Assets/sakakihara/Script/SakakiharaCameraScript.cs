@@ -5,7 +5,9 @@ using UnityEngine;
 public class SakakiharaCameraScript : MonoBehaviour
 {
     //カメラにつけるスクリプト
-    //仮でつけたカメラ移動スクリプト
+    //メインカメラに仮でつけてるカメラ移動スクリプト
+    //MapCameraにつけるスクリプト
+
 
     [SerializeField] GameObject player;
 
@@ -13,8 +15,8 @@ public class SakakiharaCameraScript : MonoBehaviour
     {
         Vector3 playerPos = this.player.transform.position;
 
-            transform.position = new Vector3(
-                playerPos.x, playerPos.y, transform.position.z);//プレイヤーのについてくぞ☆
+        transform.position = new Vector3(
+            playerPos.x, playerPos.y, transform.position.z);//プレイヤーのについてくぞ☆
 
     }
 }
