@@ -9,31 +9,38 @@ public class PlayerItemCatch : MonoBehaviour
     // 落ちてるアイテム情報   
     [SerializeField] private ItemCreate itemCreate;
     // 拾ったアイテム情報
-    public int catchItemID = default;
+    private int catchItemID = default;
+    ////移動関係のスクリプト
+    //private PlayerMove move = default;
+    //Rigidbody2D
+    private Rigidbody2D rig = default;
     // 重さ
     [SerializeField] private float catchItemWeight = default;
 
+    //最大所持重量
     private const float MAX_CARRYING_WEIGHT = 100f;
-
+    //現在所持重量
     private float carryingWeight = default;
+    //拾ったアイテムを格納する変数
+    private GameObject item = default;
+    //捨てたアイテムを格納する変数
+    private GameObject removeItem = default;
+    //アイテムが拾えるかどうか
+    private bool isItemTouch = false;
+    //アイテムが捨てられるかどうか
+    private bool isDoNotThrow = false;
+    //リストの添え字
+    private int i = 0;
+    //リストの０番目を指す
+    private int zero = 0;
+    //アイテムのリスト
+    public List<GameObject> itemLists = new List<GameObject>();    
 
-    private GameObject item = default;      //アイテムを格納する変数
-
-    private bool isItemTouch = false;       //アイテムが拾えるかどうか
-    private bool isDoNotThrow = false;      //アイテムが捨てられるかどうか
-
-    private int i = 0;      //リストの添え字
-
-    private int zero = 0;   //リストの０番目を指す
-
-    public List<GameObject> itemLists = new List<GameObject>();    //アイテムのリスト
-
-    public float WeightProperty
+    private void Start()
     {
-        get { return carryingWeight; }
-        set { carryingWeight = value; }
+        rig = this.GetComponent<Rigidbody2D>();
+        //move = this.GetComponent<PlayerMove>();
     }
-
     void Update()
     {
 
@@ -41,22 +48,25 @@ public class PlayerItemCatch : MonoBehaviour
         if (isItemTouch && (Input.GetKeyDown("joystick button 0") || Input.GetKeyDown(KeyCode.Mouse0)))
         {
             itemLists.Add(item);                //リスト追加
+    
             itemLists[i].SetActive(false);      //アイテムを非表示
+    
             i++;                            //インクリメント
 
-            catchItemID = item.GetComponent<ItemCreate>().itemID;
+            catchItemID = item.GetComponent<ItemCreate>().itemID;  //拾ったアイテムのID取得
+            
+            carryingWeight += itemData.GetItemLists()[catchItemID].Weight;  //重量を加算
 
-            carryingWeight += itemData.GetItemLists()[catchItemID].Weight;
-
-            if (carryingWeight <= MAX_CARRYING_WEIGHT)
+            //Rigidbodyの重さが最大所持重量よりも下の場合
+            if (rig.drag <= MAX_CARRYING_WEIGHT)
             {
-                WeightProperty = carryingWeight;
+                rig.drag = carryingWeight;  //重さ変更
             }
 
-            Debug.Log(itemData.GetItemLists()[catchItemID].ItemID + " : " + itemData.GetItemLists()[catchItemID].Name
-                       + " : " + itemData.GetItemLists()[catchItemID].Price + " : " + itemData.GetItemLists()[catchItemID].Weight
-                            + " : " + itemData.GetItemLists()[catchItemID].Explanation);
-            
+            print(itemData.GetItemLists()[catchItemID].ItemID + " : " + itemData.GetItemLists()[catchItemID].Name
+                   + " : " + itemData.GetItemLists()[catchItemID].Price + " : " + itemData.GetItemLists()[catchItemID].Weight
+                        + " : " + itemData.GetItemLists()[catchItemID].Explanation);
+
             print("とった！");
         }
 
@@ -68,10 +78,17 @@ public class PlayerItemCatch : MonoBehaviour
                 return;
             }
 
+            removeItem = itemLists[zero];   //捨てたアイテムの情報保持
+
+            catchItemID = removeItem.GetComponent<ItemCreate>().itemID; //捨てたアイテムのID取得
+
+            carryingWeight -= itemData.GetItemLists()[catchItemID].Weight;  //重量を減算
+
+            rig.drag = carryingWeight;  //重さ変更
+
             itemLists[zero].SetActive(true);        //アイテム表示
             itemLists[zero].transform.position = this.transform.position;   //自分の足元へ落とす
-            itemLists.Remove(itemLists
-                [zero]);          //リストから削除
+            itemLists.Remove(itemLists[zero]);          //リストから削除
             i--;                                //デクリメント
         }
 

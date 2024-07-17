@@ -273,7 +273,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &656084680
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -414,7 +414,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 01ce962ec5e697a4f99bdfae05602cec, type: 2}
   itemCreate: {fileID: 0}
-  catchItemID: 0
   catchItemWeight: 0
   itemLists: []
 --- !u!1 &827427913
