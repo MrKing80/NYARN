@@ -3,75 +3,118 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerItemCatch : MonoBehaviour
-{ 
-    private GameObject item = default;      //ƒAƒCƒeƒ€‚ğŠi”[‚·‚é•Ï”
+{
+    // ã‚¢ã‚¤ãƒ†ãƒ ãƒªã‚¹ãƒˆæƒ…å ±
+    [SerializeField] private ItemDataBase itemData;
+    // è½ã¡ã¦ã‚‹ã‚¢ã‚¤ãƒ†ãƒ æƒ…å ±   
+    [SerializeField] private ItemCreate itemCreate;
+    // æ‹¾ã£ãŸã‚¢ã‚¤ãƒ†ãƒ æƒ…å ±
+    private int catchItemID = default;
+    ////ç§»å‹•é–¢ä¿‚ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
+    //private PlayerMove move = default;
+    //Rigidbody2D
+    private Rigidbody2D rig = default;
+    // é‡ã•
+    [SerializeField] private float catchItemWeight = default;
 
-    private bool isItemTouch = false;       //ƒAƒCƒeƒ€‚ªE‚¦‚é‚©‚Ç‚¤‚©
-    private bool isDoNotThrow = false;      //ƒAƒCƒeƒ€‚ªÌ‚Ä‚ç‚ê‚é‚©‚Ç‚¤‚©
+    //æœ€å¤§æ‰€æŒé‡é‡
+    private const float MAX_CARRYING_WEIGHT = 100f;
+    //ç¾åœ¨æ‰€æŒé‡é‡
+    private float carryingWeight = default;
+    //æ‹¾ã£ãŸã‚¢ã‚¤ãƒ†ãƒ ã‚’æ ¼ç´ã™ã‚‹å¤‰æ•°
+    private GameObject item = default;
+    //æ¨ã¦ãŸã‚¢ã‚¤ãƒ†ãƒ ã‚’æ ¼ç´ã™ã‚‹å¤‰æ•°
+    private GameObject removeItem = default;
+    //ã‚¢ã‚¤ãƒ†ãƒ ãŒæ‹¾ãˆã‚‹ã‹ã©ã†ã‹
+    private bool isItemTouch = false;
+    //ã‚¢ã‚¤ãƒ†ãƒ ãŒæ¨ã¦ã‚‰ã‚Œã‚‹ã‹ã©ã†ã‹
+    private bool isDoNotThrow = false;
+    //ãƒªã‚¹ãƒˆã®æ·»ãˆå­—
+    private int i = 0;
+    //ãƒªã‚¹ãƒˆã®ï¼ç•ªç›®ã‚’æŒ‡ã™
+    private int zero = 0;
+    //ã‚¢ã‚¤ãƒ†ãƒ ã®ãƒªã‚¹ãƒˆ
+    public List<GameObject> itemLists = new List<GameObject>();    
 
-    private int i = 0;      //ƒŠƒXƒg‚Ì“Y‚¦š
-
-    private const int zero = 0;   //ƒŠƒXƒg‚Ì‚O”Ô–Ú‚ğw‚·
-
-    [SerializeField] private GameObject aButton = default;
-
-    [SerializeField] private List<GameObject> items = new List<GameObject>();    //ƒAƒCƒeƒ€‚ÌƒŠƒXƒg
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        aButton.SetActive(false);
+        rig = this.GetComponent<Rigidbody2D>();
+        //move = this.GetComponent<PlayerMove>();
     }
-
-    // Update is called once per frame
     void Update()
     {
-        //ƒAƒCƒeƒ€æ“¾
+
+        //ã‚¢ã‚¤ãƒ†ãƒ å–å¾—
         if (isItemTouch && (Input.GetKeyDown("joystick button 0") || Input.GetKeyDown(KeyCode.Mouse0)))
         {
-            items.Add(item);                //ƒŠƒXƒg’Ç‰Á
-            items[i].SetActive(false);      //ƒAƒCƒeƒ€‚ğ”ñ•\¦
-            i++;                            //ƒCƒ“ƒNƒŠƒƒ“ƒg
-            print("‚Æ‚Á‚½I");
+            itemLists.Add(item);                //ãƒªã‚¹ãƒˆè¿½åŠ 
+    
+            itemLists[i].SetActive(false);      //ã‚¢ã‚¤ãƒ†ãƒ ã‚’éè¡¨ç¤º
+    
+            i++;                            //ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
+
+            catchItemID = item.GetComponent<ItemCreate>().itemID;  //æ‹¾ã£ãŸã‚¢ã‚¤ãƒ†ãƒ ã®IDå–å¾—
+            
+            carryingWeight += itemData.GetItemLists()[catchItemID].Weight;  //é‡é‡ã‚’åŠ ç®—
+
+            //Rigidbodyã®é‡ã•ãŒæœ€å¤§æ‰€æŒé‡é‡ã‚ˆã‚Šã‚‚ä¸‹ã®å ´åˆ
+            if (rig.drag <= MAX_CARRYING_WEIGHT)
+            {
+                rig.drag = carryingWeight;  //é‡ã•å¤‰æ›´
+            }
+
+            print(itemData.GetItemLists()[catchItemID].ItemID + " : " + itemData.GetItemLists()[catchItemID].Name
+                   + " : " + itemData.GetItemLists()[catchItemID].Price + " : " + itemData.GetItemLists()[catchItemID].Weight
+                        + " : " + itemData.GetItemLists()[catchItemID].Explanation);
+
+            print("ã¨ã£ãŸï¼");
         }
 
-        //ƒAƒCƒeƒ€Ì‚Ä‚é
+        //ã‚¢ã‚¤ãƒ†ãƒ æ¨ã¦ã‚‹
         if (!isDoNotThrow && (Input.GetKeyDown("joystick button 1") || Input.GetKeyDown(KeyCode.Mouse1)))
         {
-            if (items.Count <= 0)
+            if (itemLists.Count <= 0)
             {
                 return;
             }
 
-            items[zero].SetActive(true);        //ƒAƒCƒeƒ€•\¦
-            items[zero].transform.position = this.transform.position;   //©•ª‚Ì‘«Œ³‚Ö—‚Æ‚·
-            items.Remove(items[zero]);          //ƒŠƒXƒg‚©‚çíœ
-            i--;                                //ƒfƒNƒŠƒƒ“ƒg
+            removeItem = itemLists[zero];   //æ¨ã¦ãŸã‚¢ã‚¤ãƒ†ãƒ ã®æƒ…å ±ä¿æŒ
+
+            catchItemID = removeItem.GetComponent<ItemCreate>().itemID; //æ¨ã¦ãŸã‚¢ã‚¤ãƒ†ãƒ ã®IDå–å¾—
+
+            carryingWeight -= itemData.GetItemLists()[catchItemID].Weight;  //é‡é‡ã‚’æ¸›ç®—
+
+            rig.drag = carryingWeight;  //é‡ã•å¤‰æ›´
+
+            itemLists[zero].SetActive(true);        //ã‚¢ã‚¤ãƒ†ãƒ è¡¨ç¤º
+            itemLists[zero].transform.position = this.transform.position;   //è‡ªåˆ†ã®è¶³å…ƒã¸è½ã¨ã™
+            itemLists.Remove(itemLists[zero]);          //ãƒªã‚¹ãƒˆã‹ã‚‰å‰Šé™¤
+            i--;                                //ãƒ‡ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
         }
 
-        //“Y‚¦š‚ªƒ}ƒCƒiƒX‚É‚È‚é‚Æ‚«0‚É‚·‚é
+        //æ·»ãˆå­—ãŒãƒã‚¤ãƒŠã‚¹ã«ãªã‚‹ã¨ã0ã«ã™ã‚‹
         if (i < zero)
         {
             i = zero;
         }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Item"))
         {
-            item = collision.gameObject;    //G‚ê‚½ƒAƒCƒeƒ€‚Ìî•ñæ“¾
+            item = collision.gameObject;    //è§¦ã‚ŒãŸã‚¢ã‚¤ãƒ†ãƒ ã®æƒ…å ±å–å¾—
+
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Item"))
         {
-            isItemTouch = true;         //G‚ê‚Ä‚¢‚éó‘Ô‚É‚·‚é
-            isDoNotThrow = true;        //ƒAƒCƒeƒ€‚ğ—‚Æ‚¹‚È‚¢‚æ‚¤‚É‚·‚é
-            aButton.transform.position = collision.transform.position;
-            aButton.SetActive(true);
-            print("ƒAƒCƒeƒ€I");
+            isItemTouch = true;         //è§¦ã‚Œã¦ã„ã‚‹çŠ¶æ…‹ã«ã™ã‚‹
+            isDoNotThrow = true;        //ã‚¢ã‚¤ãƒ†ãƒ ã‚’è½ã¨ã›ãªã„ã‚ˆã†ã«ã™ã‚‹
+            print("ã‚¢ã‚¤ãƒ†ãƒ ï¼");
         }
     }
 
@@ -79,10 +122,9 @@ public class PlayerItemCatch : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Item"))
         {
-            isItemTouch = false;        //G‚ê‚Ä‚¢‚È‚¢ó‘Ô‚É‚·‚é
-            isDoNotThrow = false;       //ƒAƒCƒeƒ€‚ğ—‚Æ‚¹‚È‚¢‚æ‚¤‚É‚·‚é
-            aButton.SetActive(false);
-            print("ƒAƒCƒeƒ€....");
+            isItemTouch = false;        //è§¦ã‚Œã¦ã„ãªã„çŠ¶æ…‹ã«ã™ã‚‹
+            isDoNotThrow = false;       //ã‚¢ã‚¤ãƒ†ãƒ ã‚’è½ã¨ã›ãªã„ã‚ˆã†ã«ã™ã‚‹
+            print("ã‚¢ã‚¤ãƒ†ãƒ ....");
         }
     }
 }

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 738cabcb46a1bf94990721ab1914be2a, type: 3}
+  m_Name: sakana2
+  m_EditorClassIdentifier: 
+  type: 0
+  itemSprite: {fileID: -5428689855175383585, guid: e6a85200bc13e874b869f0fc4e29f4a3, type: 3}
+  ID: 7
+  artName: "\u304A\u3055\u304B\u306A\u5730\u7344"
+  gameObject: {fileID: 8020067085286343930, guid: 19fe90c1ce934f24f91a229475989166, type: 3}
+  explanation: "\u304B\u306E\u6709\u540D\u306A\u300C\u304A\u3055\u304B\u306A\u5730\u7344\u300D\u306E\u540D\u753B\u3002\u5BFE\u306E\u300C\u304A\u3055\u304B\u306A\u5929\u56FD\u300D\u3088\u308A\u3082\u4EBA\u6C17\u304C\u306A\u3044\u3002"
+  price: 2000000
+  weight: 2
+  dead: 0
