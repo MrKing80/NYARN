@@ -13,7 +13,7 @@ public class EnemyMove : MonoBehaviour
     public Vector2 InitialPosition;//自分の初期位置  
     [Header("自分のスピード")]
     [SerializeField] private float _moveSpeed = 4f;
-    public Vector2 MoveDirection;
+    
     
     void Start()
     {
@@ -33,7 +33,7 @@ public class EnemyMove : MonoBehaviour
     }
     void SetDirection()
     {
-        MoveDirection = MyTrans.right;//向きは仮です
+        
     }
 
 }

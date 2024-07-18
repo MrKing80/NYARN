@@ -10,6 +10,7 @@ public class EnemyTracking : MonoBehaviour
     RaycastHit2D ObstacleRay;
     private Vector2 PlayerVec;//プレイヤーの位置を取得する
     private Vector2 MyVector;//自分の向き
+    private Vector2 MoveDirection;
     private float _obstacleDistance;
     private float _rayAngle;
     [Header("追跡時間")]
@@ -25,7 +26,7 @@ public class EnemyTracking : MonoBehaviour
     [Header("障害物のレイヤー")]
     [SerializeField] private LayerMask ObstacleLayer;    
     [Header("プレイヤーの位置")]
-    [SerializeField] Transform TargetPos;//プレイヤーの位置
+    [SerializeField] Transform TargetTrans;//プレイヤーの位置
     [Header("自分の追跡速度")]
     [SerializeField] private float _trackingSpeed = 5;//敵のスピード
     [Header("追跡フラグ")]
@@ -62,7 +63,6 @@ public class EnemyTracking : MonoBehaviour
         else if (!GetRay && TrackingFlag)//レイにヒットしていないが、追いかけてる最中だったら
         {
             print("のがすな");
-            print("自分の位置は"+MyVector);
             _trackingTime += Time.deltaTime;          
         }
 
@@ -95,10 +95,12 @@ public class EnemyTracking : MonoBehaviour
         {
             _playerDistance = Vector2.Distance(PlayerVec, MyVector);//自分とプレイヤーの距離を計算
             print("黙って帰るよくない！！！");
-            PlayerVec = TargetPos.position;//プレイヤーの位置を取得
-            print("距離は" + _playerDistance);
-            MyTrans.position = Vector2.MoveTowards(MyTrans.position, new Vector2(TargetPos.position.x, TargetPos.position. y), _trackingSpeed * Time.deltaTime); //プレイヤーを追い掛け回す
-            //GetRay = Physics2D.Raycast(MyTrans.position,new Vector2(Mathf.Cos(_rayAngle),Mathf.Sin(_rayAngle)), _rayDistance, TargetLayer);
+            PlayerVec = TargetTrans.position;//プレイヤーの位置を取得
+            MyTrans.position = Vector2.MoveTowards(MyTrans.position, new Vector2(TargetTrans.position.x, TargetTrans.position. y), _trackingSpeed * Time.deltaTime); //プレイヤーを追い掛け回す
+            //GetRay = Physics2D.Raycast(MyTrans.position, new Vector2(Mathf.Cos(_rayAngle), Mathf.Sin(_rayAngle)), _rayDistance, TargetLayer);
+            MoveDirection = TargetTrans.position - MyTrans.position;
+            _rayAngle = Mathf.Atan2(MoveDirection.y, MoveDirection.x) * Mathf.Rad2Deg;
+            GetEnemyVision.VisionTrans.rotation = Quaternion.Euler(new Vector3(0, 0, _rayAngle));
         }
     }
 
@@ -107,7 +109,7 @@ public class EnemyTracking : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))//プレイヤーと追突したら追跡開始
         {
             TrackingFlag = true;
-            GetMove.MoveDirection = (TargetPos.position - MyTrans.position).normalized;
+           
         }
     }
 }
