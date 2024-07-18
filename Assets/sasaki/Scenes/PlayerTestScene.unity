@@ -120,6 +120,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+
 --- !u!1 &588581477
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,8 +226,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f9a4d21fe4952744b359bb75b788823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 656084678}
---- !u!1 &656084678
+  player: {fileID: 0}
+--- !u!1 &635853227 stripped
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1249,6 +1250,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+
 --- !u!212 &1886618642
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1677,3 +1679,4 @@ SceneRoots:
   - {fileID: 1580249835}
   - {fileID: 1441336935}
   - {fileID: 1538247812}
+  - {fileID: 1429153673}
