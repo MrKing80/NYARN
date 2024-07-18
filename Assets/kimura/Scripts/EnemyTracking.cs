@@ -74,8 +74,9 @@ public class EnemyTracking : MonoBehaviour
             print("どこ？");
             if (_alertTime >= 10)
             {
-                //初期位置に戻る
+                //初期位置に戻るMoveTowards廃止した方がいいかも
                 MyTrans.position = Vector2.MoveTowards(MyTrans.position, GetMove.InitialPosition, _trackingSpeed * Time.deltaTime);
+                GetEnemyVision.isPatrol = true;
                 print("つかれた");
             }
         }
@@ -97,10 +98,11 @@ public class EnemyTracking : MonoBehaviour
             print("黙って帰るよくない！！！");
             PlayerVec = TargetTrans.position;//プレイヤーの位置を取得
             MyTrans.position = Vector2.MoveTowards(MyTrans.position, new Vector2(TargetTrans.position.x, TargetTrans.position. y), _trackingSpeed * Time.deltaTime); //プレイヤーを追い掛け回す
-            //GetRay = Physics2D.Raycast(MyTrans.position, new Vector2(Mathf.Cos(_rayAngle), Mathf.Sin(_rayAngle)), _rayDistance, TargetLayer);
-            MoveDirection = TargetTrans.position - MyTrans.position;
-            _rayAngle = Mathf.Atan2(MoveDirection.y, MoveDirection.x) * Mathf.Rad2Deg;
-            GetEnemyVision.VisionTrans.rotation = Quaternion.Euler(new Vector3(0, 0, _rayAngle));
+            GetEnemyVision.isPatrol = false;
+            GetEnemyVision.VisionVec = (TargetTrans.position - MyTrans.position).normalized;
+            //MoveDirection = TargetTrans.position - MyTrans.position;
+            //_rayAngle = Mathf.Atan2(MoveDirection.y, MoveDirection.x) * Mathf.Rad2Deg;
+            //GetEnemyVision.VisionTrans.rotation = Quaternion.Euler(new Vector3(0, 0, _rayAngle));
         }
     }
 
@@ -108,8 +110,7 @@ public class EnemyTracking : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))//プレイヤーと追突したら追跡開始
         {
-            TrackingFlag = true;
-           
+            TrackingFlag = true;          
         }
     }
 }
