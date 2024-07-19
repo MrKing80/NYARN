@@ -52,8 +52,15 @@ public class EnemyTracking : MonoBehaviour
         MyVector = GetMove.MyTrans.position;//自分の向きを取得
         //ローテーションをヴェクターに突っ込めばいいかもしれない
         GetRay = Physics2D.Raycast(MyTrans.position, GetEnemyVision.VisionVec, _rayDistance, TargetLayer);//レイキャストを実行（向きは仮）
-        ObstacleRay = Physics2D.Raycast(MyTrans.position, MyTrans.right, _rayDistance, ObstacleLayer);//障害物を識別するレイキャストを実行
+        ObstacleRay = Physics2D.Raycast(MyTrans.position,GetEnemyVision.VisionVec, _rayDistance, ObstacleLayer);//障害物を識別するレイキャストを実行
         Debug.DrawRay(MyTrans.position, GetEnemyVision.VisionVec * _rayDistance, Color.red);//レイを可視化
+
+        if (ObstacleRay&&GetEnemyVision.isPatrol)
+        {
+            GetEnemyVision._myRotation += 90;
+            print("あたった");
+        }
+
 
         if (GetRay)//プレイヤーがレイに触れたら
         {

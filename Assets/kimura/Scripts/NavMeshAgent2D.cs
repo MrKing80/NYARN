@@ -5,9 +5,9 @@ using UnityEngine.AI;
 
 public class NavMeshAgent2D : MonoBehaviour
 {
-    [Header("Steering")]
-    public float speed = 6.5f;
-    public float stoppingDistance = 0;
+    [Header("速度")]
+    [SerializeField] private float speed = 6.5f;
+    [SerializeField] private float stoppingDistance = 0;
 
     [HideInInspector]//常にUnityエディタから非表示
     private Vector2 trace_area = Vector2.zero;
