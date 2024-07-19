@@ -25,7 +25,7 @@ public class ItemData : ScriptableObject
     [Header("名前")] [SerializeField] private string artName = default; // 名前
     [Header("プレハブ")] [SerializeField] private GameObject gameObject = default; // プレハブ
     [Header("説明")] [TextArea] [SerializeField] private string explanation = default; // 説明
-    [Header("値段")] [SerializeField] private float price = default; // 値段
+    [Header("値段")] [SerializeField] private int price = default; // 値段
     [Header("重さ")] [SerializeField] private float weight = default; // 重さ
     [Header("持っているか")] [SerializeField] private bool dead = default; // 持っているか
 
@@ -36,7 +36,7 @@ public class ItemData : ScriptableObject
     public string Name { get => artName; }
     public GameObject ItemObject { get => gameObject; }
     public string Explanation { get => explanation; }
-    public float Price { get => price; }
+    public int Price { get => price; }
     public float Weight { get => weight; }
     public bool Dead { get => dead; }
 }
