@@ -5,24 +5,30 @@ using UnityEngine;
 public class MinMapCameraScript : MonoBehaviour
 {
     //MapCameraにつけるスクリプト
+    //ミニマップと大きいマップ両方に表示する場合はレイヤーを「MinMap」にしてください
+    //大きいマップに表示したくないものはレイヤーを「NotBegMap」にしてください
+
 
     [SerializeField] GameObject player;//追いかける対象
 
     [SerializeField] GameObject bigMapObject;//大きいマップ
+    [SerializeField] GameObject minMapObject;//みにマップ
+    [SerializeField] GameObject mapObject;//マップ
 
     private Camera cameraComponent;//カメラコンポーネント
     private float bigCameraSize = -47;//大きいマップのカメラ表示範囲
     private float minCameraSize = -15;//ミニマップのカメラ表示範囲
+    Vector3 mapTransform;//マップの位置取得
 
-    private float bigMapPg_x = 11.5f;//大きいマップ時のカメラ位置X
-    private float bigMapPg_y = 25.6f;//大きいマップ時のカメラ位置Y
+    private bool isBigMap = false;//大きいマップ表示してるか
+    private bool isBigMapFrag = false;//同じボタンで切り替えるためのフラグ
 
-    private bool isBigMap = false;
 
     private void Start()
     {
-        cameraComponent = this.gameObject.GetComponent<Camera>();
-        bigMapObject.SetActive(false);
+        cameraComponent = this.gameObject.GetComponent<Camera>();//カメラのカメラ取得
+        bigMapObject.SetActive(false);//大きいマップ表示しない
+        mapTransform = mapObject.transform.position;//map位置取得
     }
     void Update()
     {
@@ -33,22 +39,42 @@ public class MinMapCameraScript : MonoBehaviour
 
         if (Input.GetKey(KeyCode.X))
         {
-            isBigMap = true;//大きいマップ表示してる判定
-            bigMapObject.SetActive(true);//大きいマップ表示
-            cameraComponent.orthographicSize = bigCameraSize;//カメラの表示範囲を大きくする
-            transform.position = new Vector3(bigMapPg_x, bigMapPg_y, transform.position.z);//カメラ固定
-        }
+            if (!isBigMapFrag)
+            {
+                isBigMap = true;//大きいマップ表示してる判定
 
-        if (Input.GetKey(KeyCode.C))
+                cameraComponent.orthographicSize = bigCameraSize;//カメラの表示範囲を大きくする
+                transform.position = new Vector3(mapTransform.x, mapTransform.y, transform.position.z);//カメラ固定
+                cameraComponent.LayerCullingHide("NotBegMap"); // 指定したレイヤーを非表示
+
+                minMapObject.SetActive(false);//みにマップ非表示
+                bigMapObject.SetActive(true);//大きいマップ表示
+            }
+
+            if (isBigMapFrag)
+            {
+                isBigMap = false;//大きいマップ消してる判定
+
+                cameraComponent.orthographicSize = minCameraSize;//カメラの表示範囲を戻す
+                cameraComponent.LayerCullingShow("NotBegMap"); // 指定したレイヤーを表示
+
+                bigMapObject.SetActive(false); //大きいマップ非表示
+                minMapObject.SetActive(true);//みにマップ表示
+            }
+        }
+       if (Input.GetKeyUp(KeyCode.X))
         {
-            isBigMap = false;//大きいマップ消してる判定
-            bigMapObject.SetActive(false); //大きいマップ消す
-            cameraComponent.orthographicSize = minCameraSize;//カメラの表示範囲を戻す
+            if (!isBigMap)
+            {
+                isBigMapFrag = false;//マップを表示するためのフラグ
+            }
+             if (isBigMap)
+            {
+                isBigMapFrag = true;//マップを消すためのフラグ
+            }
         }
 
-
-
-
+       
     }
     void CameraMove()//プレイヤー追尾
     {
