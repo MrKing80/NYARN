@@ -6,39 +6,55 @@ public class PlayerItemCatch : MonoBehaviour
 {
     // アイテムリスト情報
     [SerializeField] private ItemDataBase itemData;
+    
     // 落ちてるアイテム情報   
     [SerializeField] private ItemCreate itemCreate;
-    // 拾ったアイテム情報
-    private int catchItemID = default;
+
     ////移動関係のスクリプト
     //private PlayerMove move = default;
+
+
+    private MoneyManager moneyMgr = default;
+
     //Rigidbody2D
     private Rigidbody2D rig = default;
-    // 重さ
-    [SerializeField] private float catchItemWeight = default;
-
+    
     //最大所持重量
     private const float MAX_CARRYING_WEIGHT = 100f;
+    
     //現在所持重量
     private float carryingWeight = default;
+    
     //拾ったアイテムを格納する変数
     private GameObject item = default;
+    
     //捨てたアイテムを格納する変数
     private GameObject removeItem = default;
+
+    // 拾ったアイテム情報
+    private int catchItemID = default;
+
+    private int carryMoney = default;
+    
     //アイテムが拾えるかどうか
     private bool isItemTouch = false;
+    
     //アイテムが捨てられるかどうか
     private bool isDoNotThrow = false;
+    
     //リストの添え字
     private int i = 0;
+    
     //リストの０番目を指す
     private int zero = 0;
+    
     //アイテムのリスト
     public List<GameObject> itemLists = new List<GameObject>();    
 
     private void Start()
     {
         rig = this.GetComponent<Rigidbody2D>();
+        moneyMgr = GameObject.Find("NowMoneyManager").GetComponent<MoneyManager>();
         //move = this.GetComponent<PlayerMove>();
     }
     void Update()
@@ -56,6 +72,10 @@ public class PlayerItemCatch : MonoBehaviour
             catchItemID = item.GetComponent<ItemCreate>().itemID;  //拾ったアイテムのID取得
             
             carryingWeight += itemData.GetItemLists()[catchItemID].Weight;  //重量を加算
+            
+            carryMoney += itemData.GetItemLists()[catchItemID].Price;  //金額を加算
+
+            moneyMgr.NowHaveMoneyProperty = carryMoney;
 
             //Rigidbodyの重さが最大所持重量よりも下の場合
             if (rig.drag <= MAX_CARRYING_WEIGHT)
@@ -83,6 +103,10 @@ public class PlayerItemCatch : MonoBehaviour
             catchItemID = removeItem.GetComponent<ItemCreate>().itemID; //捨てたアイテムのID取得
 
             carryingWeight -= itemData.GetItemLists()[catchItemID].Weight;  //重量を減算
+
+            carryMoney -= itemData.GetItemLists()[catchItemID].Price;  //金額を加算
+
+            moneyMgr.NowHaveMoneyProperty = carryMoney;
 
             rig.drag = carryingWeight;  //重さ変更
 
