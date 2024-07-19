@@ -39417,7 +39417,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u76EE\u6A19\u91D1\u984D\uFF1A100,000,000,000"
+  m_text: "\u76EE\u6A19\u91D1\u984D:100,000,000,000"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f03d668427ab6eb468ba0cbb9ce37ede, type: 2}
   m_sharedMaterial: {fileID: -8680568183509943837, guid: f03d668427ab6eb468ba0cbb9ce37ede, type: 2}
@@ -39897,8 +39897,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -309.3, y: -214}
-  m_SizeDelta: {x: 495.4464, y: 85.0933}
+  m_AnchoredPosition: {x: -331.03345, y: -214}
+  m_SizeDelta: {x: 555.5134, y: 85.0933}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1449828347
 MonoBehaviour:
@@ -40031,7 +40031,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -648.14185, y: -42.54663}
+  m_AnchoredPosition: {x: -646, y: -42.54663}
   m_SizeDelta: {x: 334.4083, y: 85.0933}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1607439071
@@ -40054,7 +40054,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u6240\u6301\u91D1\u984D\uFF1A"
+  m_text: "\u6240\u6301\u91D1\u984D:"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f03d668427ab6eb468ba0cbb9ce37ede, type: 2}
   m_sharedMaterial: {fileID: -8680568183509943837, guid: f03d668427ab6eb468ba0cbb9ce37ede, type: 2}
