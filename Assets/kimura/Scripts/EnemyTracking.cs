@@ -34,10 +34,12 @@ public class EnemyTracking : MonoBehaviour
     Transform MyTrans;//自分の位置
     EnemyMove GetMove;
     EnemyVisionScript GetEnemyVision;
+    NavMeshAgent2D GetAgent2D;
     void Start()
     {
         Rig2D = this.GetComponent<Rigidbody2D>();
         GetMove = this.GetComponent<EnemyMove>();//自分の動きを取得
+        GetAgent2D = this.GetComponent<NavMeshAgent2D>();
         MyTrans = GetMove.MyTrans;//自分のTransformを取得
         GetEnemyVision = GetComponentInChildren<EnemyVisionScript>();
     }
@@ -94,10 +96,11 @@ public class EnemyTracking : MonoBehaviour
 
         if (TrackingFlag)//追跡フラグがオンだったら
         {
+            print("みいつけた！！");
             _playerDistance = Vector2.Distance(PlayerVec, MyVector);//自分とプレイヤーの距離を計算
-            print("黙って帰るよくない！！！");
             PlayerVec = TargetTrans.position;//プレイヤーの位置を取得
-            MyTrans.position = Vector2.MoveTowards(MyTrans.position, new Vector2(TargetTrans.position.x, TargetTrans.position. y), _trackingSpeed * Time.deltaTime); //プレイヤーを追い掛け回す
+            GetAgent2D.SetDestination(TargetTrans.position);//プレイヤーを追い掛け回す
+            //MyTrans.position = Vector2.MoveTowards(MyTrans.position, new Vector2(TargetTrans.position.x, TargetTrans.position. y), _trackingSpeed * Time.deltaTime); //プレイヤーを追い掛け回す
             GetEnemyVision.isPatrol = false;
             GetEnemyVision.VisionVec = (TargetTrans.position - MyTrans.position).normalized;
             //MoveDirection = TargetTrans.position - MyTrans.position;

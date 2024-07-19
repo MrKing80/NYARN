@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyMove : MonoBehaviour
 {
     // Start is called before the first frame update
-    EnemyTracking GetTracking;
+    //EnemyTracking GetTracking;
     EnemyVisionScript GetVison;
     public Transform MyTrans;
     public Vector2 MyVector;
@@ -17,7 +17,7 @@ public class EnemyMove : MonoBehaviour
     
     void Start()
     {
-        GetTracking = this.GetComponent<EnemyTracking>();
+        //GetTracking = this.GetComponent<EnemyTracking>();
         MyTrans = this.GetComponent<Transform>();//©•ª‚ÌTransform‚ğæ“¾
         InitialPosition = MyTrans.position;//©•ª‚Ì‰ŠúˆÊ’u‚ğæ“¾
         SetDirection();
