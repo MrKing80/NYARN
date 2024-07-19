@@ -13,7 +13,7 @@ public class PlayerItemCatch : MonoBehaviour
     ////移動関係のスクリプト
     //private PlayerMove move = default;
 
-
+    //お金のUI管理スクリプト
     private MoneyManager moneyMgr = default;
 
     //Rigidbody2D
@@ -34,6 +34,7 @@ public class PlayerItemCatch : MonoBehaviour
     // 拾ったアイテム情報
     private int catchItemID = default;
 
+    //所持しているお金
     private int carryMoney = default;
     
     //アイテムが拾えるかどうか
@@ -75,7 +76,7 @@ public class PlayerItemCatch : MonoBehaviour
             
             carryMoney += itemData.GetItemLists()[catchItemID].Price;  //金額を加算
 
-            moneyMgr.NowHaveMoneyProperty = carryMoney;
+            moneyMgr.NowHaveMoneyProperty = carryMoney;     //UIのほうへ受け渡す
 
             //Rigidbodyの重さが最大所持重量よりも下の場合
             if (rig.drag <= MAX_CARRYING_WEIGHT)
@@ -104,9 +105,9 @@ public class PlayerItemCatch : MonoBehaviour
 
             carryingWeight -= itemData.GetItemLists()[catchItemID].Weight;  //重量を減算
 
-            carryMoney -= itemData.GetItemLists()[catchItemID].Price;  //金額を加算
+            carryMoney -= itemData.GetItemLists()[catchItemID].Price;  //金額を減算
 
-            moneyMgr.NowHaveMoneyProperty = carryMoney;
+            moneyMgr.NowHaveMoneyProperty = carryMoney;     //UIのほうへ受け渡す
 
             rig.drag = carryingWeight;  //重さ変更
 
