@@ -12,17 +12,20 @@ public class EnemyTest : MonoBehaviour
     void Start()
     {
         GetAgent = GetComponent<NavMeshAgent>();
-       
+        GetAgent.updateRotation = false;
+        GetAgent.updateUpAxis = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(GetAgent.pathStatus!= NavMeshPathStatus.PathInvalid)
-        {
-            GetAgent.SetDestination(Player.transform.position);
+        //if(GetAgent.pathStatus!= NavMeshPathStatus.PathInvalid)
+        //{
+           
             
-        }
-        
+        //}
+
+        GetAgent.SetDestination(Player.transform.position);
+
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyTracking : MonoBehaviour
 {
@@ -35,13 +36,17 @@ public class EnemyTracking : MonoBehaviour
     EnemyMove GetMove;
     EnemyVisionScript GetEnemyVision;
     NavMeshAgent2D GetAgent2D;
+    NavMeshAgent GetAgent;
     void Start()
     {
         Rig2D = this.GetComponent<Rigidbody2D>();
         GetMove = this.GetComponent<EnemyMove>();//自分の動きを取得
-        GetAgent2D = this.GetComponent<NavMeshAgent2D>();
+        //GetAgent2D = this.GetComponent<NavMeshAgent2D>();     
         MyTrans = GetMove.MyTrans;//自分のTransformを取得
         GetEnemyVision = GetComponentInChildren<EnemyVisionScript>();
+        GetAgent = this.GetComponent<NavMeshAgent>();
+        GetAgent.updateRotation = false;
+        GetAgent.updateUpAxis = false;
     }
 
     // Update is called once per frame
@@ -106,10 +111,11 @@ public class EnemyTracking : MonoBehaviour
             print("みいつけた！！");
             _playerDistance = Vector2.Distance(PlayerVec, MyVector);//自分とプレイヤーの距離を計算
             PlayerVec = TargetTrans.position;//プレイヤーの位置を取得
-            GetAgent2D.SetDestination(TargetTrans.position);//プレイヤーを追い掛け回す
+            //GetAgent2D.SetDestination(TargetTrans.position);//プレイヤーを追い掛け回す
             //MyTrans.position = Vector2.MoveTowards(MyTrans.position, new Vector2(TargetTrans.position.x, TargetTrans.position. y), _trackingSpeed * Time.deltaTime); //プレイヤーを追い掛け回す
             GetEnemyVision.isPatrol = false;
             GetEnemyVision.VisionVec = (TargetTrans.position - MyTrans.position).normalized;
+            GetAgent.SetDestination(TargetTrans.position);
             //MoveDirection = TargetTrans.position - MyTrans.position;
             //_rayAngle = Mathf.Atan2(MoveDirection.y, MoveDirection.x) * Mathf.Rad2Deg;
             //GetEnemyVision.VisionTrans.rotation = Quaternion.Euler(new Vector3(0, 0, _rayAngle));
