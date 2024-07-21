@@ -6,13 +6,20 @@ using UnityEngine.AI;
 public class EnemyTracking : MonoBehaviour
 {
     // Start is called before the first frame update
-    Rigidbody2D Rig2D;
+    public enum ChangeAngle
+    {
+        One = 90,
+        Two = 180,
+        Tree = 270
+    }
+    [Header("巡回時の角度調節")]
+    [SerializeField] private ChangeAngle GetAngle = ChangeAngle.One;//デフォルトは９０度回転させる
     RaycastHit2D GetRay;//自分の視線
-    RaycastHit2D ObstacleRay;
+    RaycastHit2D ObstacleRay;//障害物を見分ける視線
     private Vector2 PlayerVec;//プレイヤーの位置を取得する
     private Vector2 MyVector;//自分の向き
     private Vector2 MoveDirection;
-    private float _obstacleDistance;
+    private float _initialPosDistance;//初期位置と自分の距離
     private float _rayAngle;
     [Header("追跡時間")]
     [SerializeField] private float _trackingTime = 0;//追跡時間
@@ -33,20 +40,19 @@ public class EnemyTracking : MonoBehaviour
     [Header("追跡フラグ")]
     [SerializeField] private bool TrackingFlag = false;//追跡フラグ
     Transform MyTrans;//自分の位置
-    EnemyMove GetMove;
-    EnemyVisionScript GetEnemyVision;
+    EnemyMove GetMove;//自分の動きを取得する
+    EnemyVisionScript GetEnemyVision;//自分の視線を取得   
     NavMeshAgent2D GetAgent2D;
-    NavMeshAgent GetAgent;
     void Start()
     {
-        Rig2D = this.GetComponent<Rigidbody2D>();
+       
         GetMove = this.GetComponent<EnemyMove>();//自分の動きを取得
-        //GetAgent2D = this.GetComponent<NavMeshAgent2D>();     
+        GetAgent2D = this.GetComponent<NavMeshAgent2D>();//じぶんのNavMeshAgent2Dを取得
         MyTrans = GetMove.MyTrans;//自分のTransformを取得
-        GetEnemyVision = GetComponentInChildren<EnemyVisionScript>();
-        GetAgent = this.GetComponent<NavMeshAgent>();
-        GetAgent.updateRotation = false;
-        GetAgent.updateUpAxis = false;
+        GetEnemyVision = GetComponentInChildren<EnemyVisionScript>();//子オブジェクトからEnemyVisionScriptを取得
+        //GetAgent = this.GetComponent<NavMeshAgent>();
+        //GetAgent.updateRotation = false;
+        //GetAgent.updateUpAxis = false;
     }
 
     // Update is called once per frame
@@ -56,14 +62,13 @@ public class EnemyTracking : MonoBehaviour
         //_rayAngle = MyTrans.eulerAngles.z * Mathf.Deg2Rad;
         MyVector = GetMove.MyTrans.position;//自分の向きを取得
         //ローテーションをヴェクターに突っ込めばいいかもしれない
-        GetRay = Physics2D.Raycast(MyTrans.position, GetEnemyVision.VisionVec, _rayDistance, TargetLayer);//レイキャストを実行（向きは仮）
+        GetRay = Physics2D.Raycast(MyTrans.position, GetEnemyVision.VisionVec, _rayDistance, TargetLayer);//レイキャストを実行
         ObstacleRay = Physics2D.Raycast(MyTrans.position,GetEnemyVision.VisionVec, _rayDistance, ObstacleLayer);//障害物を識別するレイキャストを実行
         Debug.DrawRay(MyTrans.position, GetEnemyVision.VisionVec * _rayDistance, Color.red);//レイを可視化
 
-        if (ObstacleRay&&GetEnemyVision.isPatrol)
+        if (ObstacleRay&&GetEnemyVision.isPatrol)//巡回時、障害物に当たったら
         {
-            GetEnemyVision._myRotation += 90;
-            print("あたった");
+            GetEnemyVision._myRotation += (int)GetAngle;//視線をGetAngleで指定した角度に傾かせる
         }
 
 
@@ -88,37 +93,27 @@ public class EnemyTracking : MonoBehaviour
             print("どこ？");
             if (_alertTime >= 10)
             {
-                //初期位置に戻るMoveTowards廃止した方がいいかも
-                MyTrans.position = Vector2.MoveTowards(MyTrans.position, GetMove.InitialPosition, _trackingSpeed * Time.deltaTime);
-                GetEnemyVision.isPatrol = true;
+                GetAgent2D.SetDestination(GetMove.InitialPosition);
+                _initialPosDistance = Vector2.Distance(MyVector, GetMove.InitialPosition);
+                if (_initialPosDistance <= 0.01f)
+                {
+                    GetEnemyVision.isPatrol = true;
+                    print("警備再開");
+                }
+               
                 print("つかれた");
             }
         }
-
-
-        //if (ObstacleRay)//レイの距離のテスト
-        //{
-        //    print("ぶつかった");
-        //    _obstacleDistance = Vector2.Distance(ObstacleRay.collider.gameObject.transform.position, MyVector);
-        //    _rayDistance -= _obstacleDistance;
-        //}
-
-       
-
 
         if (TrackingFlag)//追跡フラグがオンだったら
         {
             print("みいつけた！！");
             _playerDistance = Vector2.Distance(PlayerVec, MyVector);//自分とプレイヤーの距離を計算
             PlayerVec = TargetTrans.position;//プレイヤーの位置を取得
-            //GetAgent2D.SetDestination(TargetTrans.position);//プレイヤーを追い掛け回す
+            GetAgent2D.SetDestination(TargetTrans.position);//プレイヤーを追い掛け回す
             //MyTrans.position = Vector2.MoveTowards(MyTrans.position, new Vector2(TargetTrans.position.x, TargetTrans.position. y), _trackingSpeed * Time.deltaTime); //プレイヤーを追い掛け回す
             GetEnemyVision.isPatrol = false;
             GetEnemyVision.VisionVec = (TargetTrans.position - MyTrans.position).normalized;
-            GetAgent.SetDestination(TargetTrans.position);
-            //MoveDirection = TargetTrans.position - MyTrans.position;
-            //_rayAngle = Mathf.Atan2(MoveDirection.y, MoveDirection.x) * Mathf.Rad2Deg;
-            //GetEnemyVision.VisionTrans.rotation = Quaternion.Euler(new Vector3(0, 0, _rayAngle));
         }
     }
 
