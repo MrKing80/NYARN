@@ -134,11 +134,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8894057723587429159, guid: cea9b138dd0392243ba2ecc5ded07b11, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.4
+      value: -1.8
       objectReference: {fileID: 0}
     - target: {fileID: 8894057723587429159, guid: cea9b138dd0392243ba2ecc5ded07b11, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.7
+      value: 3.2
       objectReference: {fileID: 0}
     - target: {fileID: 8894057723587429159, guid: cea9b138dd0392243ba2ecc5ded07b11, type: 3}
       propertyPath: m_LocalPosition.z
@@ -43837,11 +43837,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2021789544146920626, guid: 10237f9d6c9a70740ace3baf204694c8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.82
+      value: -1.97
       objectReference: {fileID: 0}
     - target: {fileID: 2021789544146920626, guid: 10237f9d6c9a70740ace3baf204694c8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.55
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2021789544146920626, guid: 10237f9d6c9a70740ace3baf204694c8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -43881,7 +43881,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4313383615994212098, guid: 10237f9d6c9a70740ace3baf204694c8, type: 3}
       propertyPath: GetAngle
-      value: 180
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 4313383615994212098, guid: 10237f9d6c9a70740ace3baf204694c8, type: 3}
       propertyPath: isPatrol
@@ -43893,12 +43893,16 @@ PrefabInstance:
       objectReference: {fileID: 427620294}
     - target: {fileID: 4313383615994212098, guid: 10237f9d6c9a70740ace3baf204694c8, type: 3}
       propertyPath: _direction
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4313383615994212098, guid: 10237f9d6c9a70740ace3baf204694c8, type: 3}
       propertyPath: VisionTrans
       value: 
       objectReference: {fileID: 427620301}
+    - target: {fileID: 4313383615994212098, guid: 10237f9d6c9a70740ace3baf204694c8, type: 3}
+      propertyPath: _rayDistance
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4313383615994212098, guid: 10237f9d6c9a70740ace3baf204694c8, type: 3}
       propertyPath: ObstacleLayer.m_Bits
       value: 64
