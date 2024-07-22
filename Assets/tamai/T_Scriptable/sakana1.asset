@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: sakana1
   m_EditorClassIdentifier: 
   type: 3
-  itemSprite: {fileID: 8237642963825624937, guid: f84ee911872b5d84db624b31b56aa41c, type: 3}
+  sprite: {fileID: 8237642963825624937, guid: f84ee911872b5d84db624b31b56aa41c, type: 3}
+  image: {fileID: 8237642963825624937, guid: f84ee911872b5d84db624b31b56aa41c, type: 3}
   ID: 0
-  artName: "\u304A\u3055\u304B\u306A\u5929\u56FD"
-  gameObject: {fileID: 1307041824285009108, guid: ce6be55bbca72804da29a1c616765b55, type: 3}
-  explanation: "\u304B\u306E\u6709\u540D\u306A\u300C\u304A\u3055\u304B\u306A\u5929\u56FD\u300D\u306E\u540D\u753B\u3002\u3053\u308C\u3092\u624B\u306B\u5165\u308C\u3089\u308C\u308C\u3070\u3001\u4E00\u652B\u5343\u91D1\u3082\u5922\u3067\u306F\u306A\u3044\u3002"
-  price: 5000000
-  weight: 2.5
-  dead: 0
+  itemArtName: "\u9B5A\u306E\u540D\u753B"
+  itemExplanation: "\u540D\u753B"
+  itemPrice: 5000000
+  itemWeight: 2
+  stackable: 0

@@ -8,15 +8,17 @@ public class PlayerItemCatch : MonoBehaviour
     [SerializeField] private ItemDataBase itemData;
     // 落ちてるアイテム情報   
     [SerializeField] private ItemCreate itemCreate;
+    // インベントリ情報
+    [SerializeField] private InventoryManager inventoryManager;
     // 拾ったアイテム情報
     public int catchItemID = default;
-    // 重さ
-    [SerializeField] private float catchItemWeight = default;
+    public Sprite catchItemSprite = default;
 
-    private GameObject item = default;      //アイテムを格納する変数
+    public GameObject item = default;      //アイテムを格納する変数
+    public ItemData[] items;
 
-    private bool isItemTouch = false;       //アイテムが拾えるかどうか
-    private bool isDoNotThrow = false;      //アイテムが捨てられるかどうか
+    public bool isItemTouch = false;       //アイテムが拾えるかどうか
+    public bool isDoNotThrow = false;      //アイテムが捨てられるかどうか
 
     private int i = 0;      //リストの添え字
 
@@ -31,12 +33,18 @@ public class PlayerItemCatch : MonoBehaviour
         {
             itemLists.Add(item);                //リスト追加
             itemLists[i].SetActive(false);      //アイテムを非表示
-            i++;                            //インクリメント
+            i++;                                //インクリメント
 
+            // アイテムIDを取得
             catchItemID = item.GetComponent<ItemCreate>().itemID;
-            Debug.Log(itemData.GetItemLists()[catchItemID].ItemID + " : " + itemData.GetItemLists()[catchItemID].Name
-                       + " : " + itemData.GetItemLists()[catchItemID].Price + " : " + itemData.GetItemLists()[catchItemID].Weight
-                            + " : " + itemData.GetItemLists()[catchItemID].Explanation);
+            catchItemSprite = itemData.GetItemLists()[catchItemID].itemImage;
+
+            inventoryManager.AddItem(items[catchItemID]);
+
+            // アイテム情報を拾えているか確認
+            Debug.Log(itemData.GetItemLists()[catchItemID].itemID + " : " + itemData.GetItemLists()[catchItemID].artName
+                       + " : " + itemData.GetItemLists()[catchItemID].price + " : " + itemData.GetItemLists()[catchItemID].weight
+                            + " : " + itemData.GetItemLists()[catchItemID].explanation);
             
             print("とった！");
         }
@@ -64,7 +72,6 @@ public class PlayerItemCatch : MonoBehaviour
         if (collision.gameObject.CompareTag("Item"))
         {
             item = collision.gameObject;    //触れたアイテムの情報取得
-
         }
     }
     private void OnTriggerStay2D(Collider2D collision)

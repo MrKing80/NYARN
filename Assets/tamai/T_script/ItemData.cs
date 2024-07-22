@@ -20,23 +20,23 @@ public class ItemData : ScriptableObject
     }
 
     [Header("ジャンル")] [SerializeField] private ArtWork type;
-    [Header("画像")] [SerializeField] private Sprite itemSprite; // 画像
+    [Header("数字画像")] [SerializeField] private Sprite sprite; // 数字画像
+    [Header("画像")] [SerializeField] private Sprite image; // 画像
     [Header("ID")] [SerializeField] private int ID = default; // ID
-    [Header("名前")] [SerializeField] private string artName = default; // 名前
-    [Header("プレハブ")] [SerializeField] private GameObject gameObject = default; // プレハブ
-    [Header("説明")] [TextArea] [SerializeField] private string explanation = default; // 説明
-    [Header("値段")] [SerializeField] private float price = default; // 値段
-    [Header("重さ")] [SerializeField] private float weight = default; // 重さ
-    [Header("持っているか")] [SerializeField] private bool dead = default; // 持っているか
+    [Header("名前")] [SerializeField] private string itemArtName = default; // 名前
+    [Header("説明")] [TextArea] [SerializeField] private string itemExplanation = default; // 説明
+    [Header("値段")] [SerializeField] private float itemPrice = default; // 値段
+    [Header("重さ")] [SerializeField] private float itemWeight = default; // 重さ
+    [Header("スタックの有無")] [SerializeField] private bool stackable = true; // スタックできるか
 
     // パブリックで渡すことで編集可能にする
-    public ArtWork _Type => type;
-    public Sprite ItemSprite => itemSprite;
-    public int ItemID { get => ID; }
-    public string Name { get => artName; }
-    public GameObject ItemObject { get => gameObject; }
-    public string Explanation { get => explanation; }
-    public float Price { get => price; }
-    public float Weight { get => weight; }
-    public bool Dead { get => dead; }
+    public ArtWork artType => type;
+    public Sprite itemSprite => sprite;
+    public Sprite itemImage => image;
+    public int itemID { get => ID; }
+    public string artName { get => itemArtName; }
+    public string explanation { get => itemExplanation; }
+    public float price { get => itemPrice; }
+    public float weight { get => itemWeight; }
+    public bool stack { get => stackable; }
 }

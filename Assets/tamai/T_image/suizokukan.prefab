@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8704843289528517692}
   - component: {fileID: 7026129159601092440}
   - component: {fileID: 3950827317918196161}
-  - component: {fileID: 952715907655388761}
   m_Layer: 0
   m_Name: suizokukan
   m_TagString: Item
@@ -75,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1501765630822735837, guid: fa06850dc44e22f4f8424f8ee24571c9, type: 3}
+  m_Sprite: {fileID: 546546443115654394, guid: fab4c6c92255a86498b85e599cab701f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -124,7 +123,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 40.931713, y: 28.94}
+    oldSize: {x: 4, y: 2.82}
     newSize: {x: 40.931713, y: 28.94}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -132,17 +131,3 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 40.931713, y: 28.94}
   m_EdgeRadius: 0
---- !u!114 &952715907655388761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2021980476885195191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac40788852afe644c95047d8efd03ce1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemLists: {fileID: 0}
-  itemID: 2
