@@ -1,0 +1,21 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SakakiharaMapLevelScript : MonoBehaviour
+{
+    //âºÇ≈çÏÇ¡ÇΩÉåÉxÉã
+
+   [SerializeField] private int mapLevel;
+    public static int MAPLevel;
+
+    private void Awake()
+    {
+        mapLevel = 0;
+
+    }
+    void Update()
+    {
+        MAPLevel = mapLevel;
+    }
+}
