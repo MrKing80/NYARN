@@ -70,7 +70,7 @@ public class EnemyTracking : MonoBehaviour
         }
 
 
-        if (_trackingTime >= 10 && _playerDistance >= 20)//プレイヤーを見失ったら  場合によってはorにする
+        if (_trackingTime >= 10 || _playerDistance >= 20)//プレイヤーを見失ったら  場合によってはorにする
         {
             TrackingFlag = false;          
             _alertTime += Time.deltaTime;
