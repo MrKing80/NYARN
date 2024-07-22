@@ -6,16 +6,8 @@ using UnityEngine.AI;
 public class EnemyTracking : MonoBehaviour
 {
     // Start is called before the first frame update
-    public enum ChangeAngle
-    {
-        One = 90,
-        Two = 180,
-        Tree = 270
-    }
-    [Header("巡回時の角度調節")]
-    [SerializeField] private ChangeAngle GetAngle = ChangeAngle.One;//デフォルトは９０度回転させる
+   
     RaycastHit2D GetRay;//自分の視線
-    RaycastHit2D ObstacleRay;//障害物を見分ける視線
     private Vector2 PlayerVec;//プレイヤーの位置を取得する
     private Vector2 MyVector;//自分の向き
     private Vector2 MoveDirection;
@@ -31,8 +23,6 @@ public class EnemyTracking : MonoBehaviour
     [SerializeField] private float _rayDistance = 5f;
     [Header("プレイヤーのレイヤー")]
     [SerializeField] private LayerMask TargetLayer;
-    [Header("障害物のレイヤー")]
-    [SerializeField] private LayerMask ObstacleLayer;    
     [Header("プレイヤーの位置")]
     [SerializeField] Transform TargetTrans;//プレイヤーの位置
     [Header("自分の追跡速度")]
@@ -63,14 +53,8 @@ public class EnemyTracking : MonoBehaviour
         MyVector = GetMove.MyTrans.position;//自分の向きを取得
         //ローテーションをヴェクターに突っ込めばいいかもしれない
         GetRay = Physics2D.Raycast(MyTrans.position, GetEnemyVision.VisionVec, _rayDistance, TargetLayer);//レイキャストを実行
-        ObstacleRay = Physics2D.Raycast(MyTrans.position,GetEnemyVision.VisionVec, _rayDistance, ObstacleLayer);//障害物を識別するレイキャストを実行
+      
         Debug.DrawRay(MyTrans.position, GetEnemyVision.VisionVec * _rayDistance, Color.red);//レイを可視化
-
-        if (ObstacleRay&&GetEnemyVision.isPatrol)//巡回時、障害物に当たったら
-        {
-            GetEnemyVision._myRotation += (int)GetAngle;//視線をGetAngleで指定した角度に傾かせる
-        }
-
 
         if (GetRay)//プレイヤーがレイに触れたら
         {

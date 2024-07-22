@@ -45,6 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _direction: 3
+  GetAngle: 90
+  ObstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  _rayDistance: 5
   VisionVec: {x: 0, y: 0}
   _myRotation: 0
   VisionTrans: {fileID: 0}
@@ -158,9 +163,6 @@ MonoBehaviour:
   TargetLayer:
     serializedVersion: 2
     m_Bits: 8
-  ObstacleLayer:
-    serializedVersion: 2
-    m_Bits: 64
   TargetTrans: {fileID: 0}
   _trackingSpeed: 5
   TrackingFlag: 0
