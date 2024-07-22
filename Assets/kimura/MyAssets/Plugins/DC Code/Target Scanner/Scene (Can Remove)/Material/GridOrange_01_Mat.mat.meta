@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4db86c1471a050a498226855e9af7a8b
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 223356
+  packageName: Target Scanner
+  packageVersion: 1.0
+  assetPath: Assets/Plugins/DC Code/Target Scanner/Scene (Can Remove)/Material/GridOrange_01_Mat.mat
+  uploadId: 582670

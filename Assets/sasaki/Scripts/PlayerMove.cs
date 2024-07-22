@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    [Header("プレイヤーの速度調節するとこだよ～")]
+    [Header("プレイヤーの速度調節するとこだよ～\\(^o^)/")]
     [SerializeField] private float speed = default;     //プレイヤーのスピード
 
     //private PlayerItemCatch itemCatch = default;

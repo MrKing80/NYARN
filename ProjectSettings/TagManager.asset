@@ -4,17 +4,17 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Wall
   - Item
+  - Wall
   - Obstacle
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - MinMap
+  - Player
   - Water
   - UI
-  - 
+  - Obstacle
   - 
   - 
   - 
