@@ -59,32 +59,35 @@ public class EnemyTracking : MonoBehaviour
         if (GetRay)//プレイヤーがレイに触れたら
         {
             TrackingFlag = true;
+            TargetTrans = GetRay.collider.gameObject.transform;
             _trackingTime = 0;
             _alertTime = 0;
         }
-
         else if (!GetRay && TrackingFlag)//レイにヒットしていないが、追いかけてる最中だったら
         {
             print("のがすな");
             _trackingTime += Time.deltaTime;          
         }
 
-
-        if (_trackingTime >= 10 && _playerDistance >= 20)//プレイヤーを見失ったら  場合によってはorにする
+        if (_trackingTime >= 5 || _playerDistance >= 20)//プレイヤーを見失ったら  場合によってはorにする
         {
             TrackingFlag = false;          
             _alertTime += Time.deltaTime;
             print("どこ？");
-            if (_alertTime >= 10)
+            if (_alertTime >= 5)
             {
                 GetAgent2D.SetDestination(GetMove.InitialPosition);
                 _initialPosDistance = Vector2.Distance(MyVector, GetMove.InitialPosition);
+
                 if (_initialPosDistance <= 0.01f)
                 {
                     GetEnemyVision.isPatrol = true;
+                    _alertTime = 0f;
+                    _trackingTime = 0f;
+                    _playerDistance = 0;
                     print("警備再開");
                 }
-               
+
                 print("つかれた");
             }
         }
@@ -92,8 +95,8 @@ public class EnemyTracking : MonoBehaviour
         if (TrackingFlag)//追跡フラグがオンだったら
         {
             print("みいつけた！！");
-            _playerDistance = Vector2.Distance(PlayerVec, MyVector);//自分とプレイヤーの距離を計算
             PlayerVec = TargetTrans.position;//プレイヤーの位置を取得
+            _playerDistance = Vector2.Distance(MyVector,PlayerVec);//自分とプレイヤーの距離を計算
             GetAgent2D.SetDestination(TargetTrans.position);//プレイヤーを追い掛け回す
             //MyTrans.position = Vector2.MoveTowards(MyTrans.position, new Vector2(TargetTrans.position.x, TargetTrans.position. y), _trackingSpeed * Time.deltaTime); //プレイヤーを追い掛け回す
             GetEnemyVision.isPatrol = false;

@@ -48,7 +48,7 @@ MonoBehaviour:
   GetAngle: 90
   ObstacleLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   _rayDistance: 5
   VisionVec: {x: 0, y: 0}
   _myRotation: 0
@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 3370009793405757842}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -19,5 +19,5 @@ MonoBehaviour:
   gameObject: {fileID: 61339967902623507, guid: 74eb315a41396714b9ce9829210b091e, type: 3}
   explanation: "\u30C6\u30B9\u30C8\u7528\u30A2\u30A4\u30C6\u30E00"
   price: 100000
-  weight: 5
+  weight: 0.5
   dead: 0
