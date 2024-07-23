@@ -63,15 +63,13 @@ public class EnemyTracking : MonoBehaviour
             _trackingTime = 0;
             _alertTime = 0;
         }
-
         else if (!GetRay && TrackingFlag)//レイにヒットしていないが、追いかけてる最中だったら
         {
             print("のがすな");
             _trackingTime += Time.deltaTime;          
         }
 
-
-        if (_trackingTime >= 10 || _playerDistance >= 20)//プレイヤーを見失ったら  場合によってはorにする
+        if (_trackingTime >= 5 || _playerDistance >= 20)//プレイヤーを見失ったら  場合によってはorにする
         {
             TrackingFlag = false;          
             _alertTime += Time.deltaTime;

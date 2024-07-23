@@ -36,6 +36,6 @@ public class MoneyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        nowMoneyTextObj.SetText(NowHaveMoneyProperty.ToString());   //Œ»İ‚ÌŠ‹àŠz‚ğ•\¦
+        nowMoneyTextObj.SetText(NowHaveMoneyProperty.ToString("N0"));   //Œ»İ‚ÌŠ‹àŠz‚ğ•\¦
     }
 }
