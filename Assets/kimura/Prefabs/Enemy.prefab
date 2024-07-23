@@ -163,7 +163,7 @@ MonoBehaviour:
   TargetLayer:
     serializedVersion: 2
     m_Bits: 8
-  TargetTrans: {fileID: 8894057723587429159, guid: cea9b138dd0392243ba2ecc5ded07b11, type: 3}
+  TargetTrans: {fileID: 0}
   _trackingSpeed: 5
   TrackingFlag: 0
 --- !u!114 &6051563206678261081
