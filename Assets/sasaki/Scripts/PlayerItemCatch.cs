@@ -130,7 +130,6 @@ public class PlayerItemCatch : MonoBehaviour
         if (collision.gameObject.CompareTag("Item"))
         {
             item = collision.gameObject;    //触れたアイテムの情報取得
-
         }
     }
     private void OnTriggerStay2D(Collider2D collision)

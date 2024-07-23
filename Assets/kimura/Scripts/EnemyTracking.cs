@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class EnemyTracking : MonoBehaviour
 {
     // Start is called before the first frame update
-   
+
     RaycastHit2D GetRay;//自分の視線
     private Vector2 PlayerVec;//プレイヤーの位置を取得する
     private Vector2 MyVector;//自分の向き
@@ -35,7 +35,7 @@ public class EnemyTracking : MonoBehaviour
     NavMeshAgent2D GetAgent2D;
     void Start()
     {
-       
+
         GetMove = this.GetComponent<EnemyMove>();//自分の動きを取得
         GetAgent2D = this.GetComponent<NavMeshAgent2D>();//じぶんのNavMeshAgent2Dを取得
         MyTrans = GetMove.MyTrans;//自分のTransformを取得
@@ -53,7 +53,7 @@ public class EnemyTracking : MonoBehaviour
         MyVector = GetMove.MyTrans.position;//自分の向きを取得
         //ローテーションをヴェクターに突っ込めばいいかもしれない
         GetRay = Physics2D.Raycast(MyTrans.position, GetEnemyVision.VisionVec, _rayDistance, TargetLayer);//レイキャストを実行
-      
+
         Debug.DrawRay(MyTrans.position, GetEnemyVision.VisionVec * _rayDistance, Color.red);//レイを可視化
 
         if (GetRay)//プレイヤーがレイに触れたら
@@ -66,12 +66,12 @@ public class EnemyTracking : MonoBehaviour
         else if (!GetRay && TrackingFlag)//レイにヒットしていないが、追いかけてる最中だったら
         {
             print("のがすな");
-            _trackingTime += Time.deltaTime;          
+            _trackingTime += Time.deltaTime;
         }
 
         if (_trackingTime >= 5 || _playerDistance >= 20)//プレイヤーを見失ったら  場合によってはorにする
         {
-            TrackingFlag = false;          
+            TrackingFlag = false;
             _alertTime += Time.deltaTime;
             print("どこ？");
             if (_alertTime >= 5)
@@ -95,8 +95,15 @@ public class EnemyTracking : MonoBehaviour
         if (TrackingFlag)//追跡フラグがオンだったら
         {
             print("みいつけた！！");
-            PlayerVec = TargetTrans.position;//プレイヤーの位置を取得
-            _playerDistance = Vector2.Distance(MyVector,PlayerVec);//自分とプレイヤーの距離を計算
+            if (TargetTrans)
+            {
+                PlayerVec = TargetTrans.position;//プレイヤーの位置を取得
+            }
+            else if(!TargetTrans)
+            {
+                _trackingTime = 5;
+            }
+            _playerDistance = Vector2.Distance(MyVector, PlayerVec);//自分とプレイヤーの距離を計算
             GetAgent2D.SetDestination(TargetTrans.position);//プレイヤーを追い掛け回す
             //MyTrans.position = Vector2.MoveTowards(MyTrans.position, new Vector2(TargetTrans.position.x, TargetTrans.position. y), _trackingSpeed * Time.deltaTime); //プレイヤーを追い掛け回す
             GetEnemyVision.isPatrol = false;
@@ -108,7 +115,7 @@ public class EnemyTracking : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))//プレイヤーと追突したら追跡開始
         {
-            TrackingFlag = true;          
+            TrackingFlag = true;
         }
     }
 }

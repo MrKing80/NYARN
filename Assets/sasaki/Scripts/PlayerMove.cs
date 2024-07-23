@@ -16,11 +16,11 @@ public class PlayerMove : MonoBehaviour
 
     private bool isWallTouch = false;   //•Ç‚ÉG‚ê‚Ä‚¢‚é‚©
 
-    //public float SpeedProperty
-    //{
-    //    get { return speed; }
-    //    set { speed = value; }
-    //}
+    public float SpeedProperty
+    {
+        get { return speed; }
+        set { speed = value; }
+    }
 
     void Start()
     {
@@ -31,7 +31,7 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //speed = SpeedProperty;
+        speed = SpeedProperty;
 
         inputX = Input.GetAxisRaw("Horizontal") * speed;    //ƒvƒŒƒCƒ„[‚Ì‰¡•ûŒü‚ÌˆÚ“®‘¬“x‚ğŠi”[
         inputY = Input.GetAxisRaw("Vertical") * speed;      //ƒvƒŒƒCƒ„[‚Ìc•ûŒü‚ÌˆÚ“®‘¬“x‚ğŠi”[
