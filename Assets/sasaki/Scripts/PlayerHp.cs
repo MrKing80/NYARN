@@ -25,6 +25,7 @@ public class PlayerHP : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             playerHp--;
+            print("HIT");
         }
     }
 }
