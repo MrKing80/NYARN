@@ -9,6 +9,7 @@ TagManager:
   - Obstacle
   - MapCamera
   - Enemy
+  - BuffItems
   layers:
   - Default
   - TransparentFX
