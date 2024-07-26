@@ -20,6 +20,8 @@ public class PlayerItemCatch : MonoBehaviour
     public bool isItemTouch = false;       //アイテムが拾えるかどうか
     public bool isDoNotThrow = false;      //アイテムが捨てられるかどうか
 
+    private bool result = default;      //リストの添え字
+
     private int i = 0;      //リストの添え字
 
     private int zero = 0;   //リストの０番目を指す
@@ -39,12 +41,20 @@ public class PlayerItemCatch : MonoBehaviour
             catchItemID = item.GetComponent<ItemCreate>().itemID;
             catchItemSprite = itemData.GetItemLists()[catchItemID].itemImage;
 
-            inventoryManager.AddItem(items[catchItemID]);
-
+            result = inventoryManager.AddItem(items[catchItemID]);
+            if(result == true)
+            {
+                Debug.Log("AddItem");
+            }
+            else
+            {
+                Debug.Log("NotAddItem");
+            }
+            /*
             // アイテム情報を拾えているか確認
             Debug.Log(itemData.GetItemLists()[catchItemID].itemID + " : " + itemData.GetItemLists()[catchItemID].artName
                        + " : " + itemData.GetItemLists()[catchItemID].price + " : " + itemData.GetItemLists()[catchItemID].weight
-                            + " : " + itemData.GetItemLists()[catchItemID].explanation);
+                            + " : " + itemData.GetItemLists()[catchItemID].explanation);*/
             
             print("とった！");
         }

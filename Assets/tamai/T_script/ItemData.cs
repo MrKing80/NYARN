@@ -27,7 +27,7 @@ public class ItemData : ScriptableObject
     [Header("説明")] [TextArea] [SerializeField] private string itemExplanation = default; // 説明
     [Header("値段")] [SerializeField] private float itemPrice = default; // 値段
     [Header("重さ")] [SerializeField] private float itemWeight = default; // 重さ
-    [Header("スタックの有無")] [SerializeField] private bool stackable = true; // スタックできるか
+    [Header("スタックの有無")] [SerializeField] private bool itemStackable = true; // スタックできるか
 
     // パブリックで渡すことで編集可能にする
     public ArtWork artType => type;
@@ -38,5 +38,5 @@ public class ItemData : ScriptableObject
     public string explanation { get => itemExplanation; }
     public float price { get => itemPrice; }
     public float weight { get => itemWeight; }
-    public bool stack { get => stackable; }
+    public bool stackable { get => itemStackable; }
 }

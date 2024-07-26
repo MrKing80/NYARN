@@ -6,9 +6,13 @@ using UnityEngine.EventSystems;
 
 public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    [SerializeField] private ItemData itemData;
-    [SerializeField] private int itemNum;
-    [Header("UI")] [SerializeField] private Image image;
+    [Header("UI")]
+    [SerializeField] private Image image;
+    [SerializeField] private Text countText;
+
+    public ItemData itemData;
+    public int count = 1;
+    [SerializeField] private bool textActive;
     [HideInInspector] public Transform parentAfterDrag;
 
 
@@ -16,6 +20,14 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         itemData = newItem;
         image.sprite = newItem.itemImage;
+        RefreshCount();
+    }
+
+    public void RefreshCount()
+    {
+        countText.text = count.ToString();
+        textActive = count > 1;
+        countText.gameObject.SetActive(textActive);
     }
 
     /// <summary>

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8704843289528517692}
   - component: {fileID: 7026129159601092440}
   - component: {fileID: 3950827317918196161}
+  - component: {fileID: 625765060803634386}
   m_Layer: 0
   m_Name: suizokukan
   m_TagString: Item
@@ -28,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -129,5 +130,19 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 40.931713, y: 28.94}
+  m_Size: {x: 4, y: 3}
   m_EdgeRadius: 0
+--- !u!114 &625765060803634386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2021980476885195191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac40788852afe644c95047d8efd03ce1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData: {fileID: 11400000, guid: 01ce962ec5e697a4f99bdfae05602cec, type: 2}
+  itemID: 2
