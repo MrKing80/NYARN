@@ -7,7 +7,7 @@ public class SpeedUpItem : MonoBehaviour
     private PlayerMove move = default;
     private GameObject player = default;
     private float buffTime = 3f;
-    private float magnification = 3.9f;
+    [SerializeField] private float magnification = 3.9f;
     private float tmpSpeed = 0;
     private float initialSpeed = default;
     private bool isTouch = false;
