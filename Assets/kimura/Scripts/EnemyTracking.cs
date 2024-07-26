@@ -115,6 +115,7 @@ public class EnemyTracking : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))//プレイヤーと追突したら追跡開始
         {
+            TargetTrans = collision.gameObject.transform;
             TrackingFlag = true;
         }
     }
