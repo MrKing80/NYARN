@@ -31,6 +31,11 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Time.timeScale == 0)
+        {
+            return;
+        }
+
         speed = SpeedProperty;
 
         inputX = Input.GetAxisRaw("Horizontal") * speed;    //プレイヤーの横方向の移動速度を格納

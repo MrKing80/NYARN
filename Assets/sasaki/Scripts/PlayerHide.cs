@@ -17,6 +17,11 @@ public class PlayerHide : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Time.timeScale == 0)
+        {
+            return;
+        }
+
         //‰B‚ê‚½‚èo‚½‚è‚·‚éˆ—
         if ((isCanHide || isHiding) && (Input.GetKeyDown("joystick button 0") || Input.GetKeyDown(KeyCode.Mouse0)))
         {

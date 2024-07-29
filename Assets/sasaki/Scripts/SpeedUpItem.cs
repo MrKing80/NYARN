@@ -21,7 +21,12 @@ public class SpeedUpItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isTouch && (Input.GetKeyDown("joystick button 0") || Input.GetKeyDown(KeyCode.Mouse0)))
+        if (Time.timeScale == 0)
+        {
+            return;
+        }
+
+        if (isTouch && (Input.GetKeyDown("joystick button 0") || Input.GetKeyDown(KeyCode.Mouse0)))
         {
             move = player.GetComponent<PlayerMove>();
             initialSpeed = move.SpeedProperty;

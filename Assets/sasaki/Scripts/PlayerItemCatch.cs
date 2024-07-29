@@ -60,6 +60,10 @@ public class PlayerItemCatch : MonoBehaviour
     }
     void Update()
     {
+        if (Time.timeScale == 0)
+        {
+            return;
+        }
 
         //アイテム取得
         if (isItemTouch && (Input.GetKeyDown("joystick button 0") || Input.GetKeyDown(KeyCode.Mouse0)))
