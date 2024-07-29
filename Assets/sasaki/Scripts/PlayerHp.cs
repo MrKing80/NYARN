@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class PlayerHP : MonoBehaviour
 {
-    [SerializeField] private int playerHp;
+    [SerializeField,Header("HP‚ğ“ü‚ê‚é‚Æ‚±‚ë‚¾‚æ`")] private int playerHp;
+
+    //–³“G‚©‚Ç‚¤‚©
     private bool isInvincible = false;
+    
+    //Ø‚è‘Ö‚¦ŠÔ
     private float flgChangeTime = 0.5f;
+    
+    //ƒJƒEƒ“ƒgŠÔ
     private float countTime = 0f;
     // Start is called before the first frame update
     void Start()
@@ -17,7 +23,7 @@ public class PlayerHP : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(isInvincible);
+        //–³“Gó‘Ô‚Ìê‡
         if (isInvincible)
         {
             countTime += Time.deltaTime;
@@ -37,6 +43,7 @@ public class PlayerHP : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //“G‚ÉG‚ê‚½‚Æ‚«
         if (collision.gameObject.CompareTag("Enemy"))
         {
             if (isInvincible)

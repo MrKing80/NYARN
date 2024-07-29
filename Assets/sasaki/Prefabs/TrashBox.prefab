@@ -143,6 +143,7 @@ GameObject:
   - component: {fileID: 5159140143501279028}
   - component: {fileID: 7100712605049570000}
   - component: {fileID: 4329008183456809704}
+  - component: {fileID: 73525028873955000}
   m_Layer: 0
   m_Name: HidePoint
   m_TagString: Untagged
@@ -221,5 +222,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a907f987d81fbc47819ed659b71b9b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &73525028873955000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7068941627704733879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0de96faaf88c2b46b2cf49f50f27c04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
