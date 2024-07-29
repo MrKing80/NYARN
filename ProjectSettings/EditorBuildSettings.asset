@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/sasaki/Scenes/TitleScene.unity
+    guid: 7fb2b4aa79576c3469f4dc28f32ba15c
+  - enabled: 1
     path: Assets/sasaki/Scenes/MainGameScene.unity
     guid: e6689163bf7f8a845b2b294460623af3
   m_configObjects: {}
