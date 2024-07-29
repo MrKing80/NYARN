@@ -14,9 +14,9 @@ public class EnemyTracking : MonoBehaviour
     private float _initialPosDistance;//初期位置と自分の距離
     private float _rayAngle;
     [Header("追跡時間")]
-    [SerializeField] private float _trackingTime = 0;//追跡時間
+    [SerializeField] private float _trackingTime = 10;//追跡時間
     [Header("警戒時間")]
-    [SerializeField] private float _alertTime = 0;//警戒時間
+    [SerializeField] private float _alertTime = 5;//警戒時間
     [Header("プレイヤーと自分の距離")]
     [SerializeField] private float _playerDistance;//プレイヤーと自分の距離 
     [Header("レイの距離  ")]
@@ -28,7 +28,7 @@ public class EnemyTracking : MonoBehaviour
     [Header("自分の追跡速度")]
     [SerializeField] private float _trackingSpeed = 5;//敵のスピード
     [Header("追跡フラグ")]
-    [SerializeField] private bool TrackingFlag = false;//追跡フラグ
+    [SerializeField] private bool isTracking = false;//追跡フラグ
     Transform MyTrans;//自分の位置
     EnemyMove GetMove;//自分の動きを取得する
     EnemyVisionScript GetEnemyVision;//自分の視線を取得   
@@ -58,30 +58,32 @@ public class EnemyTracking : MonoBehaviour
 
         if (GetRay)//プレイヤーがレイに触れたら
         {
-            TrackingFlag = true;
-            _trackingTime = 0;
-            _alertTime = 0;
+            isTracking = true;
+            _trackingTime = 10;
+            _alertTime = 5;
         }
 
-        else if (!GetRay && TrackingFlag)//レイにヒットしていないが、追いかけてる最中だったら
+        else if (!GetRay && isTracking)//レイにヒットしていないが、追いかけてる最中だったら
         {
             print("のがすな");
-            _trackingTime += Time.deltaTime;          
+            _trackingTime -= Time.deltaTime;          
         }
 
 
-        if (_trackingTime >= 10 && _playerDistance >= 20)//プレイヤーを見失ったら  場合によってはorにする
+        if (_trackingTime <= 0 &&_playerDistance >= 10)//プレイヤーを見失ったら  場合によってはorにする
         {
-            TrackingFlag = false;          
-            _alertTime += Time.deltaTime;
+            isTracking = false;          
+            _alertTime -= Time.deltaTime;
             print("どこ？");
-            if (_alertTime >= 10)
+            if (_alertTime <= 0)//完全に見失ったら
             {
                 GetAgent2D.SetDestination(GetMove.InitialPosition);
                 _initialPosDistance = Vector2.Distance(MyVector, GetMove.InitialPosition);
-                if (_initialPosDistance <= 0.01f)
+                if (MyVector==GetMove.InitialPosition)//初期位置に戻ったら
                 {
-                    GetEnemyVision.isPatrol = true;
+                    GetAgent2D.enabled = false;
+                    GetEnemyVision.isPatrol = true;//警備再開させる
+                    print(GetEnemyVision.isPatrol);
                     print("警備再開");
                 }
                
@@ -89,7 +91,7 @@ public class EnemyTracking : MonoBehaviour
             }
         }
 
-        if (TrackingFlag)//追跡フラグがオンだったら
+        if (isTracking)//追跡フラグがオンだったら
         {
             print("みいつけた！！");
             _playerDistance = Vector2.Distance(PlayerVec, MyVector);//自分とプレイヤーの距離を計算
@@ -97,6 +99,7 @@ public class EnemyTracking : MonoBehaviour
             GetAgent2D.SetDestination(TargetTrans.position);//プレイヤーを追い掛け回す
             //MyTrans.position = Vector2.MoveTowards(MyTrans.position, new Vector2(TargetTrans.position.x, TargetTrans.position. y), _trackingSpeed * Time.deltaTime); //プレイヤーを追い掛け回す
             GetEnemyVision.isPatrol = false;
+            GetAgent2D.enabled = true;
             GetEnemyVision.VisionVec = (TargetTrans.position - MyTrans.position).normalized;
         }
     }
@@ -105,7 +108,7 @@ public class EnemyTracking : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))//プレイヤーと追突したら追跡開始
         {
-            TrackingFlag = true;          
+            isTracking = true;          
         }
     }
 }

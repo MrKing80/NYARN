@@ -26,7 +26,7 @@ public class EnemyVisionScript : MonoBehaviour
     [SerializeField] private LayerMask ObstacleLayer;
     [Header("レイの距離  ")]
     [SerializeField] private float _rayDistance = 5f;
-     private GameObject ParentObject;//親オブジェクトを格納する場所
+    private GameObject ParentObject;//親オブジェクトを格納する場所
     public Vector2 VisionVec;//視線の向き
     public float _myRotation;//視線の角度
     public Transform VisionTrans;//自分の位置
@@ -38,11 +38,11 @@ public class EnemyVisionScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ParentObject = transform.parent.gameObject;
+        ParentObject = transform.parent.gameObject;//テスト用に親オブジェクトを取得        
         print(ParentObject.name);
         VisionTrans = this.GetComponent<Transform>();
         _myRotation = VisionTrans.rotation.z;//視線の角度を取得
-        if (isPatrol)
+        if (isPatrol)//警備中だったらEnemyMoveスクリプトで移動させる
         {
             switch (_direction)//最初に移動する方向
             {
@@ -57,8 +57,7 @@ public class EnemyVisionScript : MonoBehaviour
                     break;
                 case MoveDirection.Left:
                     _myRotation += 180;
-                    break;
-              
+                    break;           
             }
         }
     }

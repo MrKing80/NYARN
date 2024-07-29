@@ -26,7 +26,7 @@ public class EnemyMove : MonoBehaviour
         Agent2D=this.GetComponent<NavMeshAgent2D>();
         InitialPosition = MyTrans.position;//自分の初期位置を取得
         SetDirection();
-        GetVison = GetComponentInChildren<EnemyVisionScript>();
+        GetVison = GetComponentInChildren<EnemyVisionScript>();//子オブジェクトの視点を取得
     }
 
     // Update is called once per frame
@@ -34,21 +34,11 @@ public class EnemyMove : MonoBehaviour
     {
         _initialDistance = Vector2.Distance(InitialPosition, MyVector);
         MyVector = MyTrans.position;//自分の向きを取得 
-        if (GetVison.isPatrol)
+        if (GetVison.isPatrol)//警備中だったら
         {
             MyTrans.Translate(GetVison.VisionVec * Time.deltaTime);//巡回させる
         }
-       
-        //if (GetVison.isPatrol && _initialDistance >= 5)
-        //{
-        //    GetVison.VisionVec = (InitialPosition - MyVector).normalized;
-        //    print("巡回"); 
-        //}
-
-        //else if(GetVison.isPatrol&&_initialDistance <= 0.01f)
-        //{
-        //    //GetVison.VisionVec =
-        //}
+      
     }
     void SetDirection()
     {
