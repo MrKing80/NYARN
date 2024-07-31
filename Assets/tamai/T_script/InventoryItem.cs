@@ -45,7 +45,10 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     /// </summary>
     public void OnDrag(PointerEventData eventData)
     {
-        transform.position = Input.mousePosition;
+        Vector3 cameraPosition = Input.mousePosition;
+        cameraPosition.z = 10.0f; //ZÀ•W‚ğ‘ã“ü‚µ‚È‚¢‚Æ‹““®‚ª‚¨‚©‚µ‚­‚È‚é
+        Vector2 pos = Camera.main.ScreenToWorldPoint(cameraPosition);
+        this.transform.position = pos;
     }
 
     /// <summary>

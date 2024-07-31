@@ -7,6 +7,9 @@ TagManager:
   - Wall
   - Item
   - InventoryItem
+  - InventorySlot
+  - MainInventory
+  - MainInventoryBotton
   layers:
   - Default
   - TransparentFX

@@ -20,7 +20,7 @@ public class PlayerItemCatch : MonoBehaviour
     public bool isItemTouch = false;       //アイテムが拾えるかどうか
     public bool isDoNotThrow = false;      //アイテムが捨てられるかどうか
 
-    private bool result = default;      //リストの添え字
+    private bool result = default;
 
     private int i = 0;      //リストの添え字
 
@@ -31,11 +31,13 @@ public class PlayerItemCatch : MonoBehaviour
     void Update()
     {
         //アイテム取得
-        if (isItemTouch && (Input.GetKeyDown("joystick button 0") || Input.GetKeyDown(KeyCode.Mouse0)))
-        {
+        if (isItemTouch && (Input.GetKeyDown("joystick button 0") || Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Z)))
+        {/*
             itemLists.Add(item);                //リスト追加
             itemLists[i].SetActive(false);      //アイテムを非表示
             i++;                                //インクリメント
+            */
+            item.SetActive(false);      //アイテムを非表示
 
             // アイテムIDを取得
             catchItemID = item.GetComponent<ItemCreate>().itemID;
@@ -60,15 +62,17 @@ public class PlayerItemCatch : MonoBehaviour
         }
 
         //アイテム捨てる
-        if (!isDoNotThrow && (Input.GetKeyDown("joystick button 1") || Input.GetKeyDown(KeyCode.Mouse1)))
-        {
+        if (!isDoNotThrow && (Input.GetKeyDown("joystick button 1") || Input.GetKeyDown(KeyCode.Mouse1) || Input.GetKeyDown(KeyCode.X)))
+        {/*
             if (itemLists[zero] != null)
             {
                 itemLists[zero].SetActive(true);        //アイテム表示
                 itemLists[zero].transform.position = this.transform.position;   //自分の足元へ落とす
                 itemLists.Remove(itemLists[zero]);          //リストから削除
                 i--;                                //デクリメント
-            }
+            }*/
+
+            InventoryManager.instance.GetSelectedItem(true);
         }
 
         if (i < 0)

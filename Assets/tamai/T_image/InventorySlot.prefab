@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6089349150410337308}
   m_Layer: 5
   m_Name: InventorySlot
-  m_TagString: Untagged
+  m_TagString: InventorySlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,3 +113,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23104b24cfe3005418e88894788adf73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  image: {fileID: 291628343036033482}
+  selectedColor: {r: 1, g: 0.6412313, b: 0.5415094, a: 1}
+  notSelectedColor: {r: 1, g: 0.99757195, b: 0.9, a: 1}
