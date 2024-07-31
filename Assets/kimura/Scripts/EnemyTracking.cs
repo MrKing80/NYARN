@@ -31,7 +31,7 @@ public class EnemyTracking : MonoBehaviour
     [SerializeField] private bool isTracking = false;//’ÇÕƒtƒ‰ƒO
     Transform MyTrans;//©•ª‚ÌˆÊ’u
     EnemyMove GetMove;//©•ª‚Ì“®‚«‚ğæ“¾‚·‚é
-    EnemyVisionScript GetEnemyVision;//©•ª‚Ì‹ü‚ğæ“¾   
+    EnemyVisionScript GetEnemyVision;//©•ª‚Ì‹ü‚ğæ“¾
     NavMeshAgent2D GetAgent2D;
     void Start()
     {

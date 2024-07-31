@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class MoneyManager : MonoBehaviour
+public class MainGameMoneyManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text goalMoneyTextObj = default;
     [SerializeField] private TMP_Text nowMoneyTextObj = default;
