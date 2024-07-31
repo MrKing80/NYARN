@@ -10,11 +10,21 @@ public class EnemyMove : MonoBehaviour
 
     EnemyVisionScript GetVison;
     NavMeshAgent2D Agent2D;
-    public Transform MyTrans;
-    public Vector2 MyVector;
+    private Transform MyTrans;
+    public Transform GetMyTrans//MyTransのプロパティ
+    {
+        get { return MyTrans; }
+        set { MyTrans = value; }
+    }
+    private Vector2 MyVector;
     private float _initialDistance;
     [Header("自分の初期位置")]
-    public Vector2 InitialPosition;//自分の初期位置  
+    private Vector2 InitialPosition;//自分の初期位置  
+    public Vector2 GetInitialPos//InitialPositioのプロパティ
+    {
+        get { return InitialPosition; }
+        set { InitialPosition = value; }
+    }
     [Header("自分のスピード")]
     [SerializeField] private float _moveSpeed = 4f;
     
@@ -25,8 +35,9 @@ public class EnemyMove : MonoBehaviour
         MyTrans = this.GetComponent<Transform>();//自分のTransformを取得
         Agent2D=this.GetComponent<NavMeshAgent2D>();
         InitialPosition = MyTrans.position;//自分の初期位置を取得
+        GetVison = GetComponentInChildren<EnemyVisionScript>();//子オブジェクトからEnemyVisionスクリプトを取得
         SetDirection();
-        GetVison = GetComponentInChildren<EnemyVisionScript>();//子オブジェクトの視点を取得
+        
     }
 
     // Update is called once per frame
@@ -34,10 +45,12 @@ public class EnemyMove : MonoBehaviour
     {
         _initialDistance = Vector2.Distance(InitialPosition, MyVector);
         MyVector = MyTrans.position;//自分の向きを取得 
-        if (GetVison.isPatrol)//警備中だったら
+        if (GetVison.existIsPatrol)//警備中だったら
         {
-            MyTrans.Translate(GetVison.VisionVec * Time.deltaTime);//巡回させる
+            MyTrans.Translate(GetVison.GetVisonVec * Time.deltaTime);//巡回させる
         }
+
+       
       
     }
     void SetDirection()

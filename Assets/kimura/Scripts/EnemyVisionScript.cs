@@ -19,7 +19,7 @@ public class EnemyVisionScript : MonoBehaviour
         Tree = 270
     }
     [Header("巡回時の移動方向")]
-    [SerializeField] private MoveDirection _direction = MoveDirection.Right;
+    [SerializeField] private MoveDirection _direction = MoveDirection.Right;//デフォルトは右向き
     [Header("巡回時の角度調節")]
     [SerializeField] private ChangeAngle GetAngle = ChangeAngle.One;//デフォルトは９０度回転させる
     [Header("障害物のレイヤー")]
@@ -27,11 +27,21 @@ public class EnemyVisionScript : MonoBehaviour
     [Header("レイの距離  ")]
     [SerializeField] private float _rayDistance = 5f;
     private GameObject ParentObject;//親オブジェクトを格納する場所
-    public Vector2 VisionVec;//視線の向き
-    public float _myRotation;//視線の角度
-    public Transform VisionTrans;//自分の位置
+    private Vector2 VisionVec;//視線の向き
+    public Vector2 GetVisonVec//VisionVecのプロパティ
+    {
+        get { return VisionVec; }
+        set { VisionVec = value; }
+    }
+    private float _myRotation;//視線の角度 
+    private Transform VisionTrans;//自分の位置
     [Header("巡回させるか制御する")]
-    public bool isPatrol = true;//パトロール中かどうか制御する
+    private bool isPatrol = true;//パトロール中かどうか制御する
+    public bool existIsPatrol//isPatrolのプロパティ
+    {
+        get { return isPatrol; }
+        set { isPatrol = value; }
+    }
     private float _radians;//角度を向きに変換するための数値
     
     RaycastHit2D ObstacleRay;//障害物を見分ける視線
@@ -79,5 +89,16 @@ public class EnemyVisionScript : MonoBehaviour
     {
         _radians = _myRotation * Mathf.Deg2Rad;//視線の角度を向きに変換
         VisionVec = new Vector2(Mathf.Cos(_radians), Mathf.Sin(_radians));//_radiansから視線の向きを取得
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            isPatrol = false;
+            float PresenceAngle = Mathf.Atan2(collision.gameObject.transform.position.y, collision.gameObject.transform.position.x) * Mathf.Rad2Deg;
+            _myRotation = PresenceAngle;
+            //_myRotation = Quaternion.Euler(new Vector3(0, 0, PresenceAngle));
+        }
     }
 }
