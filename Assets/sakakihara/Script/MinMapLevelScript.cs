@@ -4,50 +4,83 @@ using UnityEngine;
 
 public class MinMapLevelScript : MonoBehaviour
 {
-    //�~�j�}�b�v�ɕ\�������邩
+    //ミニマップに表示させるか
 
-    GameObject myGameObject;
-    private int minMapLevel;
+    private int minMapLevel;//マップのレベル
 
-    //[SerializeField] GameObject enemyPrefab;//�����p�I�u�W�F�N�g
+    [SerializeField] GameObject enemyPrefab;//敵生成用オブジェクト
+    [SerializeField] GameObject lightPrefab;//索敵範囲生成用オブジェクト
+    [SerializeField] GameObject treasurePrefab;//宝生成用オブジェクト
 
-    [SerializeField] GameObject minMapObj;//�q�I�u�W�F�N�g
-    SpriteRenderer minMapObjSpriteRenderer;//
+    private GameObject gameObjectC;//索敵範囲オブジェクト
 
-    private void Awake()
+    private bool isChild;//子オブジェクト有無判定
+
+    private void Start()
     {
 
-        minMapObj = this.gameObject.transform.GetChild(0).gameObject;//�q�I�u�W�F�N�g�擾
-        minMapObjSpriteRenderer = minMapObj.GetComponent<SpriteRenderer>();
-    }
-    //void Start()
-    //{
-    //    //myGameObject = this.gameObject; //�����擾
+        minMapLevel = SakakiharaMapLevelScript.MAPLevel;//他スクリプトからマップのレベル取得
 
-    //    minMapObj = transform.GetChild(0).gameObject;//�q�I�u�W�F�N�g�擾
-    //    minMapObjSpriteRenderer = minMapObj.GetComponent<SpriteRenderer>();
-    
-    //}
-
-    // Update is called once per frame
-    void Update()
-    {
-        minMapLevel = SakakiharaMapLevelScript.MAPLevel;
-        switch (minMapLevel)
+        if (GameObject.Find("Light").transform.IsChildOf(transform))//索敵範囲オブジェクトがあるかどうか
         {
-            case 1:
-                if (this.gameObject.CompareTag("Enemy"))
-                {
-                    //myGameObject = Instantiate(enemyPrefab);    //�����ɐ���
-
-                    minMapObjSpriteRenderer.enabled = true;  // �q�I�u�W�F�N�g�L����
-                }
-                break;
-            default:
-                minMapObjSpriteRenderer.enabled = false;
-                break;
+            isChild = true;
+            gameObjectC = transform.Find("Light").gameObject;//索敵範囲オブジェクト取得
+        }
+        else
+        {
+            isChild = false;
         }
 
+        switch (minMapLevel)
+        {
+            case 1://1 敵の表示！
+                if (this.gameObject.CompareTag("Enemy"))//敵の表示
+                {
+                    GameObject enemyObj = Instantiate(enemyPrefab);    //自分に生成
+                    enemyObj.transform.parent = this.transform;
+                    enemyObj.transform.localPosition = Vector3.zero;
+                }
+                break;
 
+            case 2://2 敵の表示+索敵範囲表示！
+                if (this.gameObject.CompareTag("Enemy"))//敵の表示
+                {
+                    GameObject enemyObj = Instantiate(enemyPrefab);//自分に生成
+                    enemyObj.transform.parent = this.transform;
+                    enemyObj.transform.localPosition = Vector3.zero;
+                }
+                if (isChild && gameObjectC.gameObject.CompareTag("Light"))//索敵範囲
+                {
+                    GameObject lightObj = Instantiate(lightPrefab);//自分に生成
+                    lightObj.transform.parent = gameObjectC.transform;
+                    lightObj.transform.localPosition = Vector3.zero;
+                }
+                break;
+
+            case 3://3 敵の表示+索敵範囲表示+宝物表示！
+                if (this.gameObject.CompareTag("Enemy"))//敵の表示
+                {
+                    GameObject enemyObj = Instantiate(enemyPrefab);//自分に生成
+                    enemyObj.transform.parent = this.transform;
+                    enemyObj.transform.localPosition = Vector3.zero;
+                }
+                if (isChild && gameObjectC.gameObject.CompareTag("Light"))//索敵範囲
+                {
+                    GameObject lightObj = Instantiate(lightPrefab);//自分に生成
+                    lightObj.transform.parent = gameObjectC.transform;
+                    lightObj.transform.localPosition = Vector3.zero;
+                }
+                if (this.gameObject.CompareTag("Treasure"))//宝の表示
+                {
+                    GameObject treasureObj = Instantiate(treasurePrefab);//自分に生成
+                    treasureObj.transform.parent = this.transform;
+                    treasureObj.transform.localPosition = Vector3.zero;
+                }
+                break;
+
+            default:
+                break;
+        }
     }
+
 }

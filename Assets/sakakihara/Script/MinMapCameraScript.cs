@@ -42,29 +42,16 @@ public class MinMapCameraScript : MonoBehaviour
             //CameraRotation();//マップ回転用
         }
 
-        if (Input.GetKey(KeyCode.X))
+        if (Input.GetKey(KeyCode.X))//キー押したら
         {
             if (!isBigMapFrag)
             {
-                isBigMap = true;//大きいマップ表示してる判定
-
-                cameraComponent.orthographicSize = bigCameraSize;//カメラの表示範囲を大きくする
-                transform.position = new Vector3(mapTransform.x, mapTransform.y, transform.position.z);//カメラ固定
-                cameraComponent.LayerCullingHide("NotBegMap"); // 指定したレイヤーを非表示
-
-                minMapObject.SetActive(false);//みにマップ非表示
-                bigMapObject.SetActive(true);//大きいマップ表示
+                BigMap();
             }
 
             if (isBigMapFrag)
             {
-                isBigMap = false;//大きいマップ消してる判定
-
-                cameraComponent.orthographicSize = minCameraSize;//カメラの表示範囲を戻す
-                cameraComponent.LayerCullingShow("NotBegMap"); // 指定したレイヤーを表示
-
-                bigMapObject.SetActive(false); //大きいマップ非表示
-                minMapObject.SetActive(true);//みにマップ表示
+                NotBigMap();
             }
         }
         if (Input.GetKeyUp(KeyCode.X))
@@ -87,6 +74,27 @@ public class MinMapCameraScript : MonoBehaviour
 
         transform.position = new Vector3(
             playerPos.x, playerPos.y, transform.position.z);//プレイヤーのについてくぞ☆
+    }
+    void BigMap()
+    {
+        isBigMap = true;//大きいマップ表示してる判定
+        Time.timeScale = 0;
+        cameraComponent.orthographicSize = bigCameraSize;//カメラの表示範囲を大きくする
+        transform.position = new Vector3(mapTransform.x, mapTransform.y, transform.position.z);//カメラ固定
+        cameraComponent.LayerCullingHide("NotBigMap"); // 指定したレイヤーを非表示
+
+        minMapObject.SetActive(false);//みにマップ非表示
+        bigMapObject.SetActive(true);//大きいマップ表示
+    }
+    void NotBigMap()
+    {
+        isBigMap = false;//大きいマップ消してる判定
+        Time.timeScale = 1;
+        cameraComponent.orthographicSize = minCameraSize;//カメラの表示範囲を戻す
+        cameraComponent.LayerCullingShow("NotBigMap"); // 指定したレイヤーを表示
+
+        bigMapObject.SetActive(false); //大きいマップ非表示
+        minMapObject.SetActive(true);//みにマップ表示
     }
     //void CameraRotation() //マップ回転用　※プレイヤーが→を向いた際回転し続けるためコメント化
     //{

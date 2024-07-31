@@ -8,6 +8,10 @@ TagManager:
   - Item
   - Obstacle
   - Enemy
+  - FirstFloor
+  - Light
+  - Treasure
+  - SecondFloor
   layers:
   - Default
   - TransparentFX
@@ -15,7 +19,7 @@ TagManager:
   - MinMap
   - Water
   - UI
-  - NotBegMap
+  - NotBigMap
   - 
   - 
   - 

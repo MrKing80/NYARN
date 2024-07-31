@@ -11,11 +11,8 @@ public class SakakiharaMapLevelScript : MonoBehaviour
 
     private void Awake()
     {
-        mapLevel = 0;
-
-    }
-    void Update()
-    {
+        mapLevel = 3;
         MAPLevel = mapLevel;
     }
+
 }
