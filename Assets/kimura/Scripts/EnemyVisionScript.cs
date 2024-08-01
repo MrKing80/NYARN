@@ -83,7 +83,7 @@ public class EnemyVisionScript : MonoBehaviour
                 case MoveDirection.Left:
                     _myRotation += 180;
                     break;           
-            }
+            }          
         }
     }
 
@@ -91,25 +91,32 @@ public class EnemyVisionScript : MonoBehaviour
     void Update()
     {
         VisionConvert();
-
+      
         RaycastHit2D hit1 = Physics2D.Raycast(VisionTrans.position, VisionVec, _rayDistance, TargetLayer);
         RaycastHit2D hit2 = Physics2D.Raycast(VisionTrans.position,Hit2Vec, _rayDistance, TargetLayer);
         RaycastHit2D hit3 = Physics2D.Raycast(VisionTrans.position,Hit3Vec, _rayDistance, TargetLayer);
         Debug.DrawRay(VisionTrans.position, GetVisonVec * _rayDistance, Color.red);
         Debug.DrawRay(VisionTrans.position, Hit2Vec * _rayDistance, Color.blue);
         Debug.DrawRay(VisionTrans.position, Hit3Vec * _rayDistance, Color.green);
-        ObstacleRay = Physics2D.Raycast(VisionTrans.position, VisionVec, _rayDistance, ObstacleLayer);
-        PresenceRay = Physics2D.CircleCast(VisionTrans.position, _rayRadius, VisionVec,_maxDistance,TargetLayer);
+        ObstacleRay = Physics2D.Raycast(VisionTrans.position, VisionVec, _rayDistance, ObstacleLayer);//障害物を見分けるレイ
+        PresenceRay = Physics2D.CircleCast(VisionTrans.position, _rayRadius, VisionVec,_maxDistance,TargetLayer);//死角でもプレイヤー察知できるようにするレイ
       
         if (isPatrol && ObstacleRay.collider!=null && ObstacleRay.collider.gameObject!=ParentObject)//巡回時、障害物に当たったら
         {
             print("あたった");
             _myRotation += (int)GetAngle;//視線をGetAngleで指定した角度に傾かせる
+            print(_myRotation);
+            if (_myRotation >= 360)//角度リセットの仮組
+            {
+                _myRotation -= 360;
+            }
+
+            //３６０度超えたらリセットする仕組み必要かも
         }
         if (PresenceRay)
         {
             print("なんや?");
-            print(PresenceRay.collider.gameObject.name);
+            print(PresenceRay.collider.gameObject.name);//テスト用に名前を取得する
             TurnAngle();//当たったオブジェクトの位置に振り向く
         }
 
@@ -120,7 +127,7 @@ public class EnemyVisionScript : MonoBehaviour
 
     }
 
-    void VisionConvert()
+    void VisionConvert()//角度を向きに変換するメソッド
     {
         _radians = _myRotation * Mathf.Deg2Rad;//視線の角度を向きに変換
         VisionVec = new Vector2(Mathf.Cos(_radians), Mathf.Sin(_radians));//_radiansから視線の向きを取得
@@ -137,7 +144,7 @@ public class EnemyVisionScript : MonoBehaviour
         isPatrol = false;
     }
 
-    void OnDrawGizmos()
+    void OnDrawGizmos()//PresenceRayを可視化
     {
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(VisionTrans.position, _rayRadius);
