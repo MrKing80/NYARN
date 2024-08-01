@@ -45,6 +45,11 @@ public class EnemyVisionScript : MonoBehaviour
         set { isPatrol = value; }
     }
     private float _myRotation;//視線の角度 
+    public float GetMyRotation
+    {
+        get { return _myRotation; }
+        set { _myRotation = value; }
+    }
     private float _radians;//角度を向きに変換するための数値
     private float _angleOffset = 15f;
     private GameObject ParentObject;//親オブジェクトを格納する場所
