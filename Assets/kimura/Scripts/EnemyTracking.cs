@@ -14,13 +14,13 @@ public class EnemyTracking : MonoBehaviour
     private float _initialPosDistance;//初期位置と自分の距離
     private float _rayAngle;
     [Header("追跡時間")]
-    [SerializeField] private float _trackingTime = 10;//追跡時間
+    [SerializeField] private float _trackingTime ;//追跡時間
     [Header("警戒時間")]
-    [SerializeField] private float _alertTime = 5;//警戒時間
+    [SerializeField] private float _alertTime;//警戒時間
     [Header("プレイヤーと自分の距離")]
     [SerializeField] private float _playerDistance;//プレイヤーと自分の距離 
     [Header("レイの距離  ")]
-    [SerializeField] private float _rayDistance = 5f;
+    [SerializeField] private float _rayDistance ;
     [Header("プレイヤーのレイヤー")]
     [SerializeField] private LayerMask TargetLayer;
     [Header("プレイヤーの位置")]
@@ -29,6 +29,11 @@ public class EnemyTracking : MonoBehaviour
     [SerializeField] private float _trackingSpeed = 5;//敵のスピード
     [Header("追跡フラグ")]
     [SerializeField] private bool isTracking = false;//追跡フラグ
+    public bool existIsTracking
+    {
+        get { return isTracking; }
+        set { isTracking = value; }
+    }
     Transform MyTrans;//自分の位置
     EnemyMove GetMove;//自分の動きを取得する
     EnemyVisionScript GetEnemyVision;//自分の視線を取得
@@ -50,6 +55,7 @@ public class EnemyTracking : MonoBehaviour
     {
         //_rayAngle = Mathf.Atan2(PlayerVec.y, PlayerVec.x) * Mathf.Rad2Deg;
         //_rayAngle = MyTrans.eulerAngles.z * Mathf.Deg2Rad;
+        
         MyVector = GetMove.GetMyTrans.position;//自分の向きを取得
         GetRay = Physics2D.Raycast(MyTrans.position, GetEnemyVision.GetVisonVec, _rayDistance, TargetLayer);//レイキャストを実行
       

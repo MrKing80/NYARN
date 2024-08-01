@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1650285128240664948}
   - component: {fileID: 4313383615994212098}
-  - component: {fileID: 1413115449949465390}
   - component: {fileID: 3112647706243501968}
   m_Layer: 0
   m_Name: Enemy Vision
@@ -51,43 +50,12 @@ MonoBehaviour:
   ObstacleLayer:
     serializedVersion: 2
     m_Bits: 64
+  TargetLayer:
+    serializedVersion: 2
+    m_Bits: 8
   _rayDistance: 5
---- !u!58 &1413115449949465390
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2472750567044208890}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.003097737}
-  m_Radius: 0.090893775
+  _rayRadius: 1
+  _maxDistance: 10
 --- !u!212 &3112647706243501968
 SpriteRenderer:
   m_ObjectHideFlags: 0
