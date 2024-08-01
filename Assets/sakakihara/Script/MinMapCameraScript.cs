@@ -8,11 +8,14 @@ public class MinMapCameraScript : MonoBehaviour
     //ミニマップと大きいマップ両方に表示する場合はレイヤーを「MinMap」にしてください
     //大きいマップに表示したくないものはレイヤーを「NotBegMap」にしてください
 
-
+    [Header("ミニマップで追尾する対象")]
     [SerializeField] GameObject player;//追いかける対象
 
+    [Header("大きいマップ")]
     [SerializeField] GameObject bigMapObject;//大きいマップ
+    [Header("小さいマップ")]
     [SerializeField] GameObject minMapObject;//みにマップ
+    [Header("タイルマップで作ったMapを入れる")]
     [SerializeField] GameObject mapObject;//マップ
 
     private Camera cameraComponent;//カメラコンポーネント
@@ -29,9 +32,9 @@ public class MinMapCameraScript : MonoBehaviour
 
     private void Start()
     {
-        cameraComponent = this.gameObject.GetComponent<Camera>();//カメラのカメラ取得
+        cameraComponent = this.gameObject.GetComponent<Camera>();//カメラのCamera取得
         bigMapObject.SetActive(false);//大きいマップ表示しない
-        mapTransform = mapObject.transform.position;//map位置取得
+        mapTransform = mapObject.transform.position;//投影するmap位置取得
     }
     void Update()
     {
@@ -42,7 +45,7 @@ public class MinMapCameraScript : MonoBehaviour
             //CameraRotation();//マップ回転用
         }
 
-        if (Input.GetKey(KeyCode.X))//キー押したら
+        if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.Tab))//キー押したら
         {
             if (!isBigMapFrag)
             {
@@ -54,7 +57,7 @@ public class MinMapCameraScript : MonoBehaviour
                 NotBigMap();
             }
         }
-        if (Input.GetKeyUp(KeyCode.X))
+        if (Input.GetKey(KeyCode.C) || Input.GetKey(KeyCode.Tab))
         {
             if (!isBigMap)
             {
@@ -68,14 +71,15 @@ public class MinMapCameraScript : MonoBehaviour
 
 
     }
-    void CameraMove()//プレイヤー追尾
+
+    private void CameraMove()//プレイヤー追尾
     {
         Vector3 playerPos = this.player.transform.position;
 
-        transform.position = new Vector3(
-            playerPos.x, playerPos.y, transform.position.z);//プレイヤーのについてくぞ☆
+        transform.position = new Vector3(playerPos.x, playerPos.y, transform.position.z);//プレイヤーのについてくぞ☆
     }
-    void BigMap()
+
+    private void BigMap()//大きいマップ表示
     {
         isBigMap = true;//大きいマップ表示してる判定
         Time.timeScale = 0;
@@ -86,7 +90,8 @@ public class MinMapCameraScript : MonoBehaviour
         minMapObject.SetActive(false);//みにマップ非表示
         bigMapObject.SetActive(true);//大きいマップ表示
     }
-    void NotBigMap()
+
+    void NotBigMap()//大きいマップ消してる
     {
         isBigMap = false;//大きいマップ消してる判定
         Time.timeScale = 1;
@@ -96,7 +101,7 @@ public class MinMapCameraScript : MonoBehaviour
         bigMapObject.SetActive(false); //大きいマップ非表示
         minMapObject.SetActive(true);//みにマップ表示
     }
-    //void CameraRotation() //マップ回転用　※プレイヤーが→を向いた際回転し続けるためコメント化
+    //private void CameraRotation() //マップ回転用　※プレイヤーが→を向いた際回転し続けるためコメント化
     //{
     //    //☆
     //    Vector3 playerRotationPos = this.player.transform.eulerAngles;

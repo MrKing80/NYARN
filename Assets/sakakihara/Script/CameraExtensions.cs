@@ -5,7 +5,9 @@ using UnityEngine;
 public static class CameraExtensions
 {
     //カメラ拡張用スクリプト
-    //どこにも付いてないけど消すとどえらいことになるから消さないでね
+    //表示レイヤーを変更するために必要
+
+    //どこにも付いてないけど消すとたぶんどえらいことになるから消さないでね
 
     //引用元：https://baba-s.hatenablog.com/entry/2018/01/23/083100
     //参考サイト：https://teratail.com/questions/289846
