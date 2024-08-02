@@ -43843,7 +43843,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4313383615994212098, guid: 10237f9d6c9a70740ace3baf204694c8, type: 3}
       propertyPath: GetAngle
-      value: 180
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 4313383615994212098, guid: 10237f9d6c9a70740ace3baf204694c8, type: 3}
       propertyPath: isPatrol

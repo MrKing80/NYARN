@@ -86,7 +86,6 @@ public class EnemyMove : MonoBehaviour
                 case 180:
                     EnemyAnimator.Play("left");
                     break;
-
             }
         }
 
