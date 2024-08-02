@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class MoneyManager : MonoBehaviour
+public class MainGameMoneyManager : MonoBehaviour
 {
 
     [SerializeField,Header("目標金額のテキスト入れるところ")] private TMP_Text goalMoneyTextObj = default;

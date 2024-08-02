@@ -14,7 +14,7 @@ public class PlayerItemCatch : MonoBehaviour
     //private PlayerMove move = default;
 
     //お金のUI管理スクリプト
-    private MoneyManager moneyMgr = default;
+    private MainGameMoneyManager moneyMgr = default;
 
     //Rigidbody2D
     private Rigidbody2D rig = default;
@@ -55,7 +55,7 @@ public class PlayerItemCatch : MonoBehaviour
     private void Start()
     {
         rig = this.GetComponent<Rigidbody2D>();
-        moneyMgr = GameObject.Find("NowMoneyManager").GetComponent<MoneyManager>();
+        moneyMgr = GameObject.Find("NowMoneyManager").GetComponent<MainGameMoneyManager>();
         //move = this.GetComponent<PlayerMove>();
     }
     void Update()

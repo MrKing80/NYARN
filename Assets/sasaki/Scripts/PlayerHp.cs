@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerHP : MonoBehaviour
 {
     [SerializeField,Header("HPを入れるところだよ～")] private int playerHp;
+
+    [SerializeField,Header("ゲームオーバーテキスト入れるところだよ～")] private TMP_Text gameOverUi;
 
     //無敵かどうか
     private bool isInvincible = false;
@@ -17,7 +20,7 @@ public class PlayerHP : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        gameOverUi.enabled = false;
     }
 
     // Update is called once per frame
@@ -37,7 +40,7 @@ public class PlayerHP : MonoBehaviour
 
         if (playerHp <= 0)
         {
-            print("gameover");
+            gameOverUi.enabled = true;
         }
     }
 
