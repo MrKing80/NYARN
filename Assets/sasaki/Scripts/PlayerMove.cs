@@ -18,8 +18,11 @@ public class PlayerMove : MonoBehaviour
 
     private bool isWallTouch = false;   //•Ç‚ÉG‚ê‚Ä‚¢‚é‚©
 
+    PLAYER_STATUS state = PLAYER_STATUS.NULL;
+
     private enum PLAYER_STATUS
     {
+        NULL,
         FORWARD,
         FORWARDWALK,
         LEFT,
@@ -66,7 +69,6 @@ public class PlayerMove : MonoBehaviour
 
     private void MoveRotation()
     {
-        PLAYER_STATUS state = default;
 
         if (inputX > 0)
         {
@@ -86,23 +88,43 @@ public class PlayerMove : MonoBehaviour
             state = PLAYER_STATUS.BEHINDWALK;
         }
 
-        if (inputX == 0 && state == PLAYER_STATUS.LEFTWALK)
+        if(inputX == 0 && state == PLAYER_STATUS.LEFTWALK)
         {
             state = PLAYER_STATUS.LEFT;
         }
-        else if (inputX == 0 && state == PLAYER_STATUS.RIGHTWALK)
+        else if(inputX == 0 && state == PLAYER_STATUS.RIGHTWALK)
         {
             state = PLAYER_STATUS.RIGHT;
         }
 
-        if (inputY == 0 && state == PLAYER_STATUS.FORWARDWALK)
-        {
-            state = PLAYER_STATUS.FORWARD;
-        }
-        else if (inputY == 0 && state == PLAYER_STATUS.BEHINDWALK)
+        if(inputY == 0 && state == PLAYER_STATUS.BEHINDWALK)
         {
             state = PLAYER_STATUS.BEHIND;
         }
+        else if(inputY == 0 && state == PLAYER_STATUS.FORWARDWALK)
+        {
+            state = PLAYER_STATUS.FORWARD;
+        }
+
+        //if(Input.GetKeyUp(KeyCode.W))
+        //{
+        //    state = PLAYER_STATUS.FORWARD;
+        //}
+
+        //if(Input.GetKeyUp(KeyCode.A))
+        //{
+        //    state = PLAYER_STATUS.LEFT;
+        //}
+
+        //if(Input.GetKeyUp(KeyCode.S))
+        //{
+        //    state = PLAYER_STATUS.BEHIND;
+        //}
+
+        //if(Input.GetKeyUp(KeyCode.D))
+        //{
+        //    state = PLAYER_STATUS.RIGHT;
+        //}
 
         switch (state)
         {
@@ -138,7 +160,7 @@ public class PlayerMove : MonoBehaviour
                 playerAnimator.SetBool("behind", false);
                 playerAnimator.SetBool("behindwalk", false);
                 break;
-            
+
             case PLAYER_STATUS.LEFTWALK:
                 playerAnimator.SetBool("forward", false);
                 playerAnimator.SetBool("forwardwalk", false);
@@ -149,7 +171,7 @@ public class PlayerMove : MonoBehaviour
                 playerAnimator.SetBool("behind", false);
                 playerAnimator.SetBool("behindwalk", false);
                 break;
-            
+
             case PLAYER_STATUS.RIGHT:
                 playerAnimator.SetBool("forward", false);
                 playerAnimator.SetBool("forwardwalk", false);
@@ -160,7 +182,7 @@ public class PlayerMove : MonoBehaviour
                 playerAnimator.SetBool("behind", false);
                 playerAnimator.SetBool("behindwalk", false);
                 break;
-            
+
             case PLAYER_STATUS.RIGHTWALK:
                 playerAnimator.SetBool("forward", false);
                 playerAnimator.SetBool("forwardwalk", false);
@@ -171,7 +193,7 @@ public class PlayerMove : MonoBehaviour
                 playerAnimator.SetBool("behind", false);
                 playerAnimator.SetBool("behindwalk", false);
                 break;
-            
+
             case PLAYER_STATUS.BEHIND:
                 playerAnimator.SetBool("forward", false);
                 playerAnimator.SetBool("forwardwalk", false);
@@ -182,7 +204,7 @@ public class PlayerMove : MonoBehaviour
                 playerAnimator.SetBool("behind", true);
                 playerAnimator.SetBool("behindwalk", false);
                 break;
-            
+
             case PLAYER_STATUS.BEHINDWALK:
                 playerAnimator.SetBool("forward", false);
                 playerAnimator.SetBool("forwardwalk", false);
