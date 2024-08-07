@@ -24,7 +24,7 @@ public class ButtonGuid : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        //プレイヤーが触れていたら
+        //プレイヤーが触れていたらボタン表示
         if (collision.gameObject.CompareTag("Player"))
         {
             aButton.SetActive(true);
@@ -33,7 +33,7 @@ public class ButtonGuid : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        //プレイヤーが離れたら
+        //プレイヤーが離れたらボタン非表示
         if (collision.gameObject.CompareTag("Player"))
         {
             aButton.SetActive(false);

@@ -18,19 +18,21 @@ public class PlayerMove : MonoBehaviour
 
     private bool isWallTouch = false;   //壁に触れているか
 
-    PLAYER_STATUS state = PLAYER_STATUS.NULL;
+    PLAYER_STATUS state = default;
 
+    /// <summary>
+    /// プレイヤーのアニメーションの遷移先を決める列挙型定数
+    /// </summary>
     private enum PLAYER_STATUS
     {
-        NULL,
-        FORWARD,
-        FORWARDWALK,
-        LEFT,
-        LEFTWALK,
-        RIGHT,
-        RIGHTWALK,
-        BEHIND,
-        BEHINDWALK,
+        FORWARD,        //前向き
+        FORWARDWALK,    //前向きに歩く
+        LEFT,           //左向き
+        LEFTWALK,       //左向きに歩く
+        RIGHT,          //右向き
+        RIGHTWALK,      //右向きに歩く
+        BEHIND,         //後ろ向き
+        BEHINDWALK,     //後ろ向きに歩く
     }
 
     /// <summary>
@@ -52,6 +54,7 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //一時停止されていたら処理をしない
         if (Time.timeScale == 0)
         {
             return;
@@ -67,9 +70,12 @@ public class PlayerMove : MonoBehaviour
         MoveRotation();
     }
 
+    /// <summary>
+    /// プレイヤーの向きとアニメーションのステータスを決める関数
+    /// </summary>
     private void MoveRotation()
     {
-
+        //プレイヤーが横方向に移動したとき方向に応じてプレイヤーのステータスを変更
         if (inputX > 0)
         {
             state = PLAYER_STATUS.RIGHTWALK;
@@ -79,6 +85,7 @@ public class PlayerMove : MonoBehaviour
             state = PLAYER_STATUS.LEFTWALK;
         }
 
+        //プレイヤーが縦方向に移動したとき方向に応じてプレイヤーのステータスを変更
         if (inputY > 0)
         {
             state = PLAYER_STATUS.FORWARDWALK;
@@ -88,6 +95,7 @@ public class PlayerMove : MonoBehaviour
             state = PLAYER_STATUS.BEHINDWALK;
         }
 
+        //プレイヤーが横方向の移動をやめたときプレイヤーのステータスに応じてステータスを変更
         if(inputX == 0 && state == PLAYER_STATUS.LEFTWALK)
         {
             state = PLAYER_STATUS.LEFT;
@@ -97,7 +105,8 @@ public class PlayerMove : MonoBehaviour
             state = PLAYER_STATUS.RIGHT;
         }
 
-        if(inputY == 0 && state == PLAYER_STATUS.BEHINDWALK)
+        //プレイヤーが縦方向の移動をやめたときプレイヤーのステータスに応じてステータスを変更
+        if (inputY == 0 && state == PLAYER_STATUS.BEHINDWALK)
         {
             state = PLAYER_STATUS.BEHIND;
         }
@@ -106,6 +115,7 @@ public class PlayerMove : MonoBehaviour
             state = PLAYER_STATUS.FORWARD;
         }
 
+        //プレイヤーのステータスに応じてアニメーションを切り替える
         switch (state)
         {
             case PLAYER_STATUS.FORWARD:
@@ -207,7 +217,5 @@ public class PlayerMove : MonoBehaviour
                 playerAnimator.SetBool("behindwalk", false);
                 break;
         }
-
-        print(state);
     }
 }

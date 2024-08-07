@@ -16,9 +16,10 @@ public class MiniMapPlayerRotate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        inputX = Input.GetAxisRaw("Horizontal");   //ƒvƒŒƒCƒ„[‚Ì‰¡•ûŒü‚ÌˆÚ“®‘¬“x‚ðŠi”[
-        inputY = Input.GetAxisRaw("Vertical");      //ƒvƒŒƒCƒ„[‚Ìc•ûŒü‚ÌˆÚ“®‘¬“x‚ðŠi”[
+        inputX = Input.GetAxisRaw("Horizontal");   //ƒvƒŒƒCƒ„[‚Ì‰¡•ûŒü‚Ì’l‚ðŠi”[
+        inputY = Input.GetAxisRaw("Vertical");      //ƒvƒŒƒCƒ„[‚Ìc•ûŒü‚Ì’l‚ðŠi”[
 
+        //ƒvƒŒƒCƒ„[‚ª‰¡•ûŒü‚ÉˆÚ“®‚µ‚½‚Æ‚«•ûŒü‚É‰ž‚¶‚Ä‰ñ“]
         if (inputX > 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, -90);
@@ -28,6 +29,7 @@ public class MiniMapPlayerRotate : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, 90);
         }
 
+        //ƒvƒŒƒCƒ„[‚ªc•ûŒü‚ÉˆÚ“®‚µ‚½‚Æ‚«•ûŒü‚É‰ž‚¶‚Ä‰ñ“]
         if(inputY > 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);

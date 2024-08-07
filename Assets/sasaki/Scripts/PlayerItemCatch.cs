@@ -60,6 +60,7 @@ public class PlayerItemCatch : MonoBehaviour
     }
     void Update()
     {
+        //一時停止されていたら処理をしない
         if (Time.timeScale == 0)
         {
             return;

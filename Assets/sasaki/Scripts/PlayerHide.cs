@@ -17,6 +17,7 @@ public class PlayerHide : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //ˆê’â~‚³‚ê‚Ä‚¢‚½‚çˆ—‚ğ‚µ‚È‚¢
         if (Time.timeScale == 0)
         {
             return;
