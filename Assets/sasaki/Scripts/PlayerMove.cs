@@ -106,26 +106,6 @@ public class PlayerMove : MonoBehaviour
             state = PLAYER_STATUS.FORWARD;
         }
 
-        //if(Input.GetKeyUp(KeyCode.W))
-        //{
-        //    state = PLAYER_STATUS.FORWARD;
-        //}
-
-        //if(Input.GetKeyUp(KeyCode.A))
-        //{
-        //    state = PLAYER_STATUS.LEFT;
-        //}
-
-        //if(Input.GetKeyUp(KeyCode.S))
-        //{
-        //    state = PLAYER_STATUS.BEHIND;
-        //}
-
-        //if(Input.GetKeyUp(KeyCode.D))
-        //{
-        //    state = PLAYER_STATUS.RIGHT;
-        //}
-
         switch (state)
         {
             case PLAYER_STATUS.FORWARD:
