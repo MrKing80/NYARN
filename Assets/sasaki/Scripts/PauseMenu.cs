@@ -25,12 +25,14 @@ public class PauseMenu : MonoBehaviour
         //スタートボタンもしくはESCキー
         if (Input.GetKeyDown("joystick button 7") || Input.GetKeyDown(KeyCode.Escape))
         {
+            //一時停止していたら一時停止をやめる
             if(isPause)
             {
                 pause.SetActive(false);
                 Time.timeScale = 1;
                 isPause = false;
             }
+            //一時停止していなければ一時停止をする
             else if(!isPause)
             {
                 pause.SetActive(true);
