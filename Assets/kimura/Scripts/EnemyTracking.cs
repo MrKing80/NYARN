@@ -7,7 +7,7 @@ public class EnemyTracking : MonoBehaviour
 {
     // Start is called before the first frame update
    
-    RaycastHit2D GetRay;//自分の視線
+    //RaycastHit2D GetRay;//自分の視線
     private Vector2 PlayerVec;//プレイヤーの位置を取得する
     private Vector2 MyVector;//自分の向き
     private Vector2 MoveDirection;
@@ -44,7 +44,7 @@ public class EnemyTracking : MonoBehaviour
         GetMove = this.GetComponent<EnemyMove>();//自分の動きを取得
         GetAgent2D = this.GetComponent<NavMeshAgent2D>();//自分のNavMeshAgent2Dを取得
         MyTrans = GetMove.GetMyTrans;//自分のTransformを取得
-        GetEnemyVision = GetComponentInChildren<EnemyVisionScript>();//子オブジェクトからEnemyVisionScriptを取得
+        GetEnemyVision = GetComponent<EnemyVisionScript>();//子オブジェクトからEnemyVisionScriptを取得
         //GetAgent = this.GetComponent<NavMeshAgent>();
         //GetAgent.updateRotation = false;
         //GetAgent.updateUpAxis = false;
@@ -55,20 +55,19 @@ public class EnemyTracking : MonoBehaviour
     {
         //_rayAngle = Mathf.Atan2(PlayerVec.y, PlayerVec.x) * Mathf.Rad2Deg;
         //_rayAngle = MyTrans.eulerAngles.z * Mathf.Deg2Rad;
-        
         MyVector = GetMove.GetMyTrans.position;//自分の向きを取得
-        GetRay = Physics2D.Raycast(MyTrans.position, GetEnemyVision.GetVisonVec, _rayDistance, TargetLayer);//レイキャストを実行
+        //GetRay = Physics2D.Raycast(MyTrans.position, GetEnemyVision.GetVisonVec, _rayDistance, TargetLayer);//レイキャストを実行
       
         Debug.DrawRay(MyTrans.position, GetEnemyVision.GetVisonVec * _rayDistance, Color.red);//レイを可視化
 
-        if (GetRay)//プレイヤーがレイに触れたら
+        if (GetEnemyVision.GetHit1|| GetEnemyVision.GetHit2 || GetEnemyVision.GetHit3)//プレイヤーがレイに触れたら
         {
             isTracking = true;//追跡フラグをオンにする
             _trackingTime = 10;
             _alertTime = 5;
         }
 
-        else if (!GetRay && isTracking)//レイにヒットしていないが、追いかけてる最中だったら
+        else if (!GetEnemyVision.GetHit1 && isTracking)//レイにヒットしていないが、追いかけてる最中だったら
         {
             print("のがすな");
             _trackingTime -= Time.deltaTime;          
@@ -102,7 +101,7 @@ public class EnemyTracking : MonoBehaviour
             PlayerVec = TargetTrans.position;//プレイヤーの位置を取得
             GetAgent2D.SetDestination(TargetTrans.position);//プレイヤーを追い掛け回す
             GetEnemyVision.existIsPatrol = false;//警備をやめて追跡
-            GetEnemyVision.GetVisonVec = (TargetTrans.position - MyTrans.position).normalized;
+            //GetEnemyVision.GetVisonVec = (TargetTrans.position - MyTrans.position).normalized;
         }
     }
 

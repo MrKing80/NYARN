@@ -32,6 +32,7 @@ public class EnemyVisionScript : MonoBehaviour
     [SerializeField] private float _rayRadius = 1f;
     [SerializeField] private float _maxDistance = 10f;
     [SerializeField] private float _stopTime = 5f;
+    [SerializeField] private  float _initialValue = 5f;//汎用の初期値（テスト用）
     [SerializeField] private bool isStop = false;
     public Vector2 GetVisonVec//VisionVecのプロパティ
     {
@@ -55,20 +56,34 @@ public class EnemyVisionScript : MonoBehaviour
     private float _radians;//角度を向きに変換するための変数
     private float _angleOffset = 15f;
     private float _currentRotation = default;//myRotationの値を取得するための変数
-    private GameObject ParentObject;//親オブジェクトを格納する場所
+    private float _turnAroundTime = 0.5f;
     private Vector2 VisionVec;//視線の向き
     private Vector2 Hit2Vec;
     private Vector2 Hit3Vec;
     RaycastHit2D ObstacleRay;//障害物を見分ける視線
     RaycastHit2D PresenceRay;//死角でもプレイヤーを察知できるようにする球状のレイ
+    RaycastHit2D hit1;
+    RaycastHit2D hit2;
+    RaycastHit2D hit3;
+    public RaycastHit2D GetHit1
+    {
+        get { return hit1;}
+    }
+    public RaycastHit2D GetHit2
+    {
+        get { return hit2; }
+    }
+
+    public RaycastHit2D GetHit3
+    {
+        get { return hit3; }
+    }
     EnemyTracking GetTracking;
     // Start is called before the first frame update
     void Start()
-    {
-        ParentObject = transform.parent.gameObject;//テスト用に親オブジェクトを取得        
-        print(ParentObject.name);
+    {               
         VisionTrans = this.GetComponent<Transform>();
-        GetTracking = GetComponentInParent<EnemyTracking>();
+        GetTracking = GetComponent<EnemyTracking>();
         _myRotation = VisionTrans.rotation.z;//角度を取得
         if (isPatrol)//警備中だったらEnemyMoveスクリプトで移動させる
         {
@@ -96,16 +111,16 @@ public class EnemyVisionScript : MonoBehaviour
     {
         VisionConvert();
 
-        RaycastHit2D hit1 = Physics2D.Raycast(VisionTrans.position, VisionVec, _rayDistance, TargetLayer);
-        RaycastHit2D hit2 = Physics2D.Raycast(VisionTrans.position, Hit2Vec, _rayDistance, TargetLayer);
-        RaycastHit2D hit3 = Physics2D.Raycast(VisionTrans.position, Hit3Vec, _rayDistance, TargetLayer);
+        hit1 = Physics2D.Raycast(VisionTrans.position, VisionVec, _rayDistance, TargetLayer);
+        hit2 = Physics2D.Raycast(VisionTrans.position, Hit2Vec, _rayDistance, TargetLayer);
+        hit3 = Physics2D.Raycast(VisionTrans.position, Hit3Vec, _rayDistance, TargetLayer);
         Debug.DrawRay(VisionTrans.position, GetVisonVec * _rayDistance, Color.red);
         Debug.DrawRay(VisionTrans.position, Hit2Vec * _rayDistance, Color.blue);
         Debug.DrawRay(VisionTrans.position, Hit3Vec * _rayDistance, Color.green);
         ObstacleRay = Physics2D.Raycast(VisionTrans.position, VisionVec, _rayDistance, ObstacleLayer);//障害物を見分けるレイ
         PresenceRay = Physics2D.CircleCast(VisionTrans.position, _rayRadius, VisionVec, _maxDistance, TargetLayer);//死角でもプレイヤー察知できるようにするレイ
 
-        if (isPatrol && ObstacleRay.collider != null && ObstacleRay.collider.gameObject != ParentObject)//巡回時、障害物に当たったら
+        if (isPatrol && ObstacleRay.collider != null && ObstacleRay.collider.gameObject != this.gameObject)//巡回時、障害物に当たったら
         {
             print("あたった");
             _myRotation += (int)GetAngle;//視線をGetAngleで指定した角度に傾かせる 　
@@ -122,26 +137,27 @@ public class EnemyVisionScript : MonoBehaviour
         {
             print("なんや?");
             print(PresenceRay.collider.gameObject.name);//テスト用に名前を取得する
+            isPatrol = false;
             isStop = true;//立ち止まる
-            TurnAngle();//当たったオブジェクトの位置に振り向く
+            if (_turnAroundTime <= 0)
+            {
+                TurnAngle();
+                print("ふりむけ");
+            }
         }
 
         if (isStop)//止まったら
         {
             _stopTime -= Time.deltaTime;
+            _turnAroundTime -= Time.deltaTime;
             if (_stopTime <= 0)//０秒になったら（振り向く前にプレイヤーが移動したら)
-            {
-                _stopTime = 5;//停止時間を初期値に戻す
+            {        
                 _myRotation = _currentRotation;//_myRotationを巡回していた時の角度にもどす
                 isPatrol = true;//再び巡回させる
+                isStop = false;
+                _stopTime = _initialValue;
+                _turnAroundTime = 0.5f;
             }
-        }
-
-        
-
-        if (hit1 || hit2 || hit3)
-        {
-
         }
 
     }
@@ -158,9 +174,8 @@ public class EnemyVisionScript : MonoBehaviour
 
     void TurnAngle()//振り向かせるメソッド
     {
-        float PresenceAngle = Mathf.Atan2(PresenceRay.collider.gameObject.transform.position.y, PresenceRay.collider.gameObject.transform.position.x) * Mathf.Rad2Deg;
-        _myRotation = PresenceAngle;
-        isPatrol = false;
+        float PresenceAngle = Mathf.Atan2(PresenceRay.point.y, PresenceRay.point.x) * Mathf.Rad2Deg;//衝突したオブジェクトの座標を取得
+        _myRotation = PresenceAngle;//PresenceAngleの値を取得してその値の向きに合わせる
     }
 
     void OnDrawGizmos()//PresenceRayを可視化

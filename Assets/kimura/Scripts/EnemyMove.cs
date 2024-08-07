@@ -37,7 +37,7 @@ public class EnemyMove : MonoBehaviour
         EnemyAnimator = this.GetComponent<Animator>();
         Agent2D=this.GetComponent<NavMeshAgent2D>();
         InitialPosition = MyTrans.position;//自分の初期位置を取得
-        GetVison = GetComponentInChildren<EnemyVisionScript>();//子オブジェクトからEnemyVisionスクリプトを取得
+        GetVison = GetComponent<EnemyVisionScript>();//子オブジェクトからEnemyVisionスクリプトを取得
         SetDirection();
         
     }
