@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6919402141153874106}
   - component: {fileID: 395305396394083819}
-  m_Layer: 6
+  m_Layer: 29
   m_Name: TreasureP
   m_TagString: Untagged
   m_Icon: {fileID: 0}

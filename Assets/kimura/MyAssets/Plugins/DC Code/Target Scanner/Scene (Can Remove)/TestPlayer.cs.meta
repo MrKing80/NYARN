@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: a502e75a9a2759c449176d7f6a4790ab
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 223356
+  packageName: Target Scanner
+  packageVersion: 1.0
+  assetPath: Assets/Plugins/DC Code/Target Scanner/Scene (Can Remove)/TestPlayer.cs
+  uploadId: 582670

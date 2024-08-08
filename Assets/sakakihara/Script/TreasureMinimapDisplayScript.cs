@@ -12,7 +12,7 @@ public class TreasureMinimapDisplayScript : MonoBehaviour
 
     private int minMapLevel;//マップのレベル
 
-    [Header("「宝」生成用オブジェクト")]
+    [Header("ミニマップに生成用する宝オブジェクト")]
     [SerializeField] GameObject treasurePrefab;//宝生成用オブジェクト
 
     // Start is called before the first frame update

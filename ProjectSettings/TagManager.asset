@@ -4,46 +4,47 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Wall
   - Item
-  - Obstacle
   - Enemy
-  - FirstFloor
+  - Wall
   - Light
+  - FirstFloor
   - Treasure
   - SecondFloor
+  - MapCamera
+  - Obstacle
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - MinMap
+  - 
   - Water
   - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - NotBigMap
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - MinMap
   - 
   m_SortingLayers:
   - name: Default

@@ -6,43 +6,65 @@ public class PlayerItemCatch : MonoBehaviour
 {
     // アイテムリスト情報
     [SerializeField] private ItemDataBase itemData;
+    
     // 落ちてるアイテム情報   
     [SerializeField] private ItemCreate itemCreate;
-    // 拾ったアイテム情報
-    private int catchItemID = default;
+
     ////移動関係のスクリプト
     //private PlayerMove move = default;
+
+    //お金のUI管理スクリプト
+    private MainGameMoneyManager moneyMgr = default;
+
     //Rigidbody2D
     private Rigidbody2D rig = default;
-    // 重さ
-    [SerializeField] private float catchItemWeight = default;
-
+    
     //最大所持重量
     private const float MAX_CARRYING_WEIGHT = 100f;
+    
     //現在所持重量
     private float carryingWeight = default;
+    
     //拾ったアイテムを格納する変数
     private GameObject item = default;
+    
     //捨てたアイテムを格納する変数
     private GameObject removeItem = default;
+
+    // 拾ったアイテム情報
+    private int catchItemID = default;
+
+    //所持しているお金
+    private int carryMoney = default;
+    
     //アイテムが拾えるかどうか
     private bool isItemTouch = false;
+    
     //アイテムが捨てられるかどうか
     private bool isDoNotThrow = false;
+    
     //リストの添え字
     private int i = 0;
+    
     //リストの０番目を指す
     private int zero = 0;
+    
     //アイテムのリスト
     public List<GameObject> itemLists = new List<GameObject>();    
 
     private void Start()
     {
         rig = this.GetComponent<Rigidbody2D>();
+        moneyMgr = GameObject.Find("NowMoneyManager").GetComponent<MainGameMoneyManager>();
         //move = this.GetComponent<PlayerMove>();
     }
     void Update()
     {
+        //一時停止されていたら処理をしない
+        if (Time.timeScale == 0)
+        {
+            return;
+        }
 
         //アイテム取得
         if (isItemTouch && (Input.GetKeyDown("joystick button 0") || Input.GetKeyDown(KeyCode.Mouse0)))
@@ -56,6 +78,10 @@ public class PlayerItemCatch : MonoBehaviour
             catchItemID = item.GetComponent<ItemCreate>().itemID;  //拾ったアイテムのID取得
             
             carryingWeight += itemData.GetItemLists()[catchItemID].Weight;  //重量を加算
+            
+            carryMoney += itemData.GetItemLists()[catchItemID].Price;  //金額を加算
+
+            moneyMgr.NowHaveMoneyProperty = carryMoney;     //UIのほうへ受け渡す
 
             //Rigidbodyの重さが最大所持重量よりも下の場合
             if (rig.drag <= MAX_CARRYING_WEIGHT)
@@ -84,6 +110,10 @@ public class PlayerItemCatch : MonoBehaviour
 
             carryingWeight -= itemData.GetItemLists()[catchItemID].Weight;  //重量を減算
 
+            carryMoney -= itemData.GetItemLists()[catchItemID].Price;  //金額を減算
+
+            moneyMgr.NowHaveMoneyProperty = carryMoney;     //UIのほうへ受け渡す
+
             rig.drag = carryingWeight;  //重さ変更
 
             itemLists[zero].SetActive(true);        //アイテム表示
@@ -105,7 +135,6 @@ public class PlayerItemCatch : MonoBehaviour
         if (collision.gameObject.CompareTag("Item"))
         {
             item = collision.gameObject;    //触れたアイテムの情報取得
-
         }
     }
     private void OnTriggerStay2D(Collider2D collision)

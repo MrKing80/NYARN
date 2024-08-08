@@ -13,9 +13,9 @@ public class EnemyMinimapDisplayScript : MonoBehaviour
 
     private int minMapLevel;//マップのレベル
 
-    [Header("敵ミニマップ生成用オブジェクト")]
+    [Header("ミニマップに生成用する敵オブジェクト")]
     [SerializeField] GameObject enemyPrefab;//敵生成用オブジェクト
-    [Header("索敵範囲生成用オブジェクト")]
+    [Header("ミニマップに生成用する索敵範囲オブジェクト")]
     [SerializeField] GameObject lightPrefab;//索敵範囲生成用オブジェクト
 
     private GameObject gameObjectC;//子である索敵範囲取得用オブジェクト

@@ -18,6 +18,6 @@ MonoBehaviour:
   artName: test4
   gameObject: {fileID: 7886504720227833321, guid: 95c6af39c306f77488f77a8d526a5165, type: 3}
   explanation: "\u30C6\u30B9\u30C8\u7528\u30A2\u30A4\u30C6\u30E04"
-  price: 0
-  weight: 5
+  price: 10000000
+  weight: 2.5
   dead: 0

@@ -7,16 +7,19 @@ public class MoveToAnotherFloorScript : MonoBehaviour
 
     //FirstFloorなど階段前につけるスクリプト
     //ほかの階に移動
-
+    [Header("プレイヤー")]
     [SerializeField] GameObject player;//プレイヤー
+    [Header("ミニマップ達（MinMaps）")]
     [SerializeField] GameObject minMap;//  ミニマップ
+    [Header("読み込み背景（LoadingBackground）")]
     [SerializeField] GameObject loadingBackground;//読み込み背景
     private float loadingTime = 0.5f;//読み込み時間
 
     [Header("階層と出現場所")]
+    [Header("一階")]
     [SerializeField] GameObject firstFloorMap1;//一階
     [SerializeField] GameObject spawnPos1;//一階出現場所
-
+    [Header("二階")]
     [SerializeField] GameObject secondFloorMap2;//二階
     [SerializeField] GameObject spawnPos2;//一階出現場所
 
