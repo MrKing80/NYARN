@@ -46,7 +46,7 @@ public class EnemyMove : MonoBehaviour
     void Update()
     {
         _initialDistance = Vector2.Distance(InitialPosition, MyVector);
-        MyVector = MyTrans.position;//©•ª‚ÌŒü‚«‚ğæ“¾ 
+        MyVector = MyTrans.position;//©•ª‚ÌŒü‚«‚ğæ“¾
         if (GetVison.existIsPatrol)//Œx”õ’†‚¾‚Á‚½‚ç
         {
             MyTrans.Translate(GetVison.GetVisonVec * Time.deltaTime);//„‰ñ‚³‚¹‚é
