@@ -25,7 +25,7 @@ public class EnemyTracking : MonoBehaviour
     [Header("プレイヤーのレイヤー")]
     [SerializeField] private LayerMask TargetLayer;
     [Header("プレイヤーの位置")]
-    [SerializeField] Transform TargetTrans;//プレイヤーの位置
+    private Transform TargetTrans;//プレイヤーの位置
     [Header("自分の追跡速度")]
     [SerializeField] private float _trackingSpeed = 5;//敵のスピード
     [Header("追跡フラグ")]
@@ -41,7 +41,7 @@ public class EnemyTracking : MonoBehaviour
     NavMeshAgent2D GetAgent2D;
     void Start()
     {
-      
+        TargetTrans = GameObject.FindGameObjectWithTag("Player").transform;
         GetMove = this.GetComponent<EnemyMove>();//自分の動きを取得
         GetAgent2D = this.GetComponent<NavMeshAgent2D>();//自分のNavMeshAgent2Dを取得
         MyTrans = GetMove.GetMyTrans;//自分のTransformを取得
