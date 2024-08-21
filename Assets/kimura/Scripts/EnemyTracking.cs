@@ -75,12 +75,12 @@ public class EnemyTracking : MonoBehaviour
         }
 
 
-        if (_trackingTime <= 0 ||_playerDistance >= 10)//プレイヤーを見失ったら  場合によってはorにする
+        if (_trackingTime <= 0 &&_playerDistance >= 10)//プレイヤーを見失ったら  場合によってはorにする
         {
             TargetLost();
         }
 
-        if (isTracking&&!PlayerObj.activeSelf&&_playerDistance>=10)//プレイヤーがロッカーに隠れた時のテスト
+        if (isTracking&&!PlayerObj.activeSelf&&_playerDistance>=5)//プレイヤーがロッカーに隠れた時のテスト
         {
             print("非表示です");
             TargetLost();
@@ -93,7 +93,7 @@ public class EnemyTracking : MonoBehaviour
             PlayerVec = TargetTrans.position;//プレイヤーの位置を取得
             GetAgent2D.SetDestination(TargetTrans.position);//プレイヤーを追い掛け回す
             GetEnemyVision.existIsPatrol = false;//警備をやめて追跡
-            GetAgent2D.enabled = true;
+            //GetAgent2D.enabled = true;
             //GetEnemyVision.GetVisonVec = (TargetTrans.position - MyTrans.position).normalized;
         }
     }
@@ -111,7 +111,7 @@ public class EnemyTracking : MonoBehaviour
             if (MyVector == GetMove.GetInitialPos)//初期位置に戻ったら
             {
                 GetEnemyVision.existIsPatrol = true;//警備再開させる
-                GetAgent2D.enabled = false;
+                //GetAgent2D.enabled = false;
                 print(GetEnemyVision.existIsPatrol);
                 print("警備再開");
             }
