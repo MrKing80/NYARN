@@ -34,7 +34,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.98414993, y: 1.4170703, z: 1.5}
+  m_LocalScale: {x: 0.6561, y: 0.94471353, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 9201164744321129334}
@@ -112,7 +112,6 @@ MonoBehaviour:
   TargetLayer:
     serializedVersion: 2
     m_Bits: 8
-  TargetTrans: {fileID: 1934146251053199515, guid: 76ce6e2eeab31cf4fb4869f812a0fc2d, type: 3}
   _trackingSpeed: 5
   isTracking: 0
 --- !u!114 &6051563206678261081
