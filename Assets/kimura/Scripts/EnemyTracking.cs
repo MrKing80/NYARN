@@ -13,6 +13,7 @@ public class EnemyTracking : MonoBehaviour
     private Vector2 MoveDirection;
     private float _initialPosDistance;//初期位置と自分の距離
     private float _rayAngle;
+    [SerializeField] GameObject PlayerObj;
     [Header("追跡時間")]
     [SerializeField] private float _trackingTime ;//追跡時間
     [Header("警戒時間")]
@@ -40,7 +41,7 @@ public class EnemyTracking : MonoBehaviour
     NavMeshAgent2D GetAgent2D;
     void Start()
     {
-       
+      
         GetMove = this.GetComponent<EnemyMove>();//自分の動きを取得
         GetAgent2D = this.GetComponent<NavMeshAgent2D>();//自分のNavMeshAgent2Dを取得
         MyTrans = GetMove.GetMyTrans;//自分のTransformを取得
@@ -86,6 +87,7 @@ public class EnemyTracking : MonoBehaviour
                 if (MyVector==GetMove.GetInitialPos)//初期位置に戻ったら
                 {
                     GetEnemyVision.existIsPatrol = true;//警備再開させる
+                    GetAgent2D.enabled = false;
                     print(GetEnemyVision.existIsPatrol);
                     print("警備再開");
                 }
@@ -101,15 +103,26 @@ public class EnemyTracking : MonoBehaviour
             PlayerVec = TargetTrans.position;//プレイヤーの位置を取得
             GetAgent2D.SetDestination(TargetTrans.position);//プレイヤーを追い掛け回す
             GetEnemyVision.existIsPatrol = false;//警備をやめて追跡
+            GetAgent2D.enabled = true;
             //GetEnemyVision.GetVisonVec = (TargetTrans.position - MyTrans.position).normalized;
         }
     }
+
+   //新しいメソッド書く
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))//プレイヤーと追突したら追跡開始
         {
             isTracking = true;          
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+
         }
     }
 }
