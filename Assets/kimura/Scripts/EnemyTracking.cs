@@ -75,28 +75,18 @@ public class EnemyTracking : MonoBehaviour
         }
 
 
-        if (_trackingTime <= 0 &&_playerDistance >= 10)//プレイヤーを見失ったら  場合によってはorにする
+        if (_trackingTime <= 0 ||_playerDistance >= 10)//プレイヤーを見失ったら  場合によってはorにする
         {
-            isTracking = false;          
-            _alertTime -= Time.deltaTime;
-            print("どこ？");
-            if (_alertTime <= 0)//完全に見失ったら
-            {
-                GetAgent2D.SetDestination(GetMove.GetInitialPos);
-                _initialPosDistance = Vector2.Distance(MyVector, GetMove.GetInitialPos);
-                if (MyVector==GetMove.GetInitialPos)//初期位置に戻ったら
-                {
-                    GetEnemyVision.existIsPatrol = true;//警備再開させる
-                    GetAgent2D.enabled = false;
-                    print(GetEnemyVision.existIsPatrol);
-                    print("警備再開");
-                }
-               
-                print("つかれた");
-            }
+            TargetLost();
         }
 
-        if (isTracking)//追跡フラグがオンだったら
+        if (isTracking&&!PlayerObj.activeSelf&&_playerDistance>=10)//プレイヤーがロッカーに隠れた時のテスト
+        {
+            print("非表示です");
+            TargetLost();
+        }
+
+            if (isTracking)//追跡フラグがオンだったら
         {
             print("みいつけた！！");
             _playerDistance = Vector2.Distance(PlayerVec, MyVector);//自分とプレイヤーの距離を計算
@@ -109,6 +99,26 @@ public class EnemyTracking : MonoBehaviour
     }
 
    //新しいメソッド書く
+   void TargetLost()
+    {
+        isTracking = false;
+        _alertTime -= Time.deltaTime;
+        print("どこ？");
+        if (_alertTime <= 0)//完全に見失ったら
+        {
+            GetAgent2D.SetDestination(GetMove.GetInitialPos);
+            _initialPosDistance = Vector2.Distance(MyVector, GetMove.GetInitialPos);
+            if (MyVector == GetMove.GetInitialPos)//初期位置に戻ったら
+            {
+                GetEnemyVision.existIsPatrol = true;//警備再開させる
+                GetAgent2D.enabled = false;
+                print(GetEnemyVision.existIsPatrol);
+                print("警備再開");
+            }
+
+            print("つかれた");
+        }
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
