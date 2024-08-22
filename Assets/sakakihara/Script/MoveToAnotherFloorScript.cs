@@ -41,7 +41,7 @@ public class MoveToAnotherFloorScript : MonoBehaviour
 
                 loadingBackground.SetActive(true);//読み込み画面表示
 
-                Invoke(nameof(MoveToTheSecondFloor), loadingTime);//1秒後に表示
+                Invoke(nameof(MoveToTheSecondFloor), loadingTime);//loadingTime秒後に表示
             }
 
             if (this.tag == ("SecondFloor")) //自分が2階だったら
@@ -51,7 +51,7 @@ public class MoveToAnotherFloorScript : MonoBehaviour
 
                 loadingBackground.SetActive(true);//読み込み画面表示
 
-                Invoke(nameof(MoveToTheFirstFloor), loadingTime);//1秒後に表示
+                Invoke(nameof(MoveToTheFirstFloor), loadingTime);//loadingTime秒後に表示
             }
         }
     }
@@ -62,7 +62,7 @@ public class MoveToAnotherFloorScript : MonoBehaviour
         player.transform.position = spawnPos2.transform.position;//プレイヤーを2階に移動
 
         minMap.SetActive(true);//ミニマップを表示
-        secondFloorMap2.SetActive(true);//1階を表示
+        secondFloorMap2.SetActive(true);//2階を表示
 
         loadingBackground.SetActive(false);//読み込み画面非表示
     }
