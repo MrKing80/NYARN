@@ -19,6 +19,8 @@ public class MainGameMoneyManager : MonoBehaviour
     //各ステージの目標金額を格納した配列
     private string[] goalMoneyArrey = new string[3] { "50,000,000", "500,000,000", "50,000,000,000" };
 
+    private static MainGameMoneyManager instance = default;
+
     /// <summary>
     /// プレイヤーの所持金を受け取るプロパティ
     /// </summary>
@@ -26,6 +28,19 @@ public class MainGameMoneyManager : MonoBehaviour
     {
         get { return nowHaveMoney; }
         set { nowHaveMoney = value; }
+    }
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
     // Start is called before the first frame update
     void Start()

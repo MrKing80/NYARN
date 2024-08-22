@@ -11,5 +11,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/sasaki/Scenes/MainGameScene.unity
     guid: e6689163bf7f8a845b2b294460623af3
+  - enabled: 1
+    path: Assets/Nakahira/Scenes/shop.unity
+    guid: 434232365ebdde944a369b7588363eaa
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
