@@ -27,6 +27,6 @@ public class S_EscapeSceneScript : MonoBehaviour
     private IEnumerator LoadScene()
     {
         yield return new WaitForSeconds(0.5f);
-        SceneManager.LoadScene("MainGameScene");//すぐにシーン遷移するぞ
+        SceneManager.LoadScene("shop");//すぐにシーン遷移するぞ
     }
 }
