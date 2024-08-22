@@ -72,6 +72,8 @@ public class PlayerItemCatch : MonoBehaviour
                 i--;                                //デクリメント
             }*/
 
+//            result = inventoryManager.DumpItem(items[catchItemID]);
+
             InventoryManager.instance.GetSelectedItem(true);
         }
 

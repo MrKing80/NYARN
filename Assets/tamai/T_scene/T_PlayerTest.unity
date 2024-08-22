@@ -1683,6 +1683,7 @@ MonoBehaviour:
   - {fileID: 1724266891}
   - {fileID: 1942101860}
   inventoryItemPrefab: {fileID: 7723558019390256350, guid: af1ec2af23ebfc94fa421699e9cbf70f, type: 3}
+  playerPos: {x: 0, y: 0, z: 0}
   isTrigger: 0
 --- !u!4 &398448652
 Transform:
@@ -5430,7 +5431,7 @@ GameObject:
   - component: {fileID: 1596403444}
   m_Layer: 0
   m_Name: TestPlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
