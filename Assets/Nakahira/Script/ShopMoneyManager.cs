@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class ShopMoneyManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _moneypossession;
-    private int money = 20000;
+    private int money = 0;
     // ƒ{ƒ^ƒ“‚Ì‰¿Ši
     [SerializeField] private int price = 1000;
     [SerializeField] private int moneypey = 2000;
@@ -52,11 +52,18 @@ public class ShopMoneyManager : MonoBehaviour
     private int verticalmap = 0;
     private int besidemap = 0;
 
+    private MainGameMoneyManager mainMoney = default;
+
     void Start()
     {
+        mainMoney = GameObject.Find("NowMoneyManager").GetComponent<MainGameMoneyManager>();
+
+        money = mainMoney.NowHaveMoneyProperty;
+
         _moneypossession.text = money.ToString(); // UI‚ğ‰Šú‰»
 
         maparray = new GameObject[2, 3] { { map1, map2, map3 }, { map4, map5, map6 }, };
+
 
     }
     private void Update()
@@ -125,7 +132,7 @@ public class ShopMoneyManager : MonoBehaviour
         {
             map.interactable = false;
         }
-      
+
     }
 
     public void OnCllic()
