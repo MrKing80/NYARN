@@ -6,10 +6,8 @@ public class SakakiharaCameraScript : MonoBehaviour
 {
     //カメラにつけるスクリプト
     //メインカメラに仮でつけてるカメラ移動スクリプト
-    //MapCameraにつけるスクリプト
 
-
-    [SerializeField] GameObject player;
+    [SerializeField] GameObject player;//追いかける対象
 
     void Update()
     {
