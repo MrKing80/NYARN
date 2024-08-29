@@ -14,6 +14,7 @@ public class EnemyTracking : MonoBehaviour
     private float _initialPosDistance;//初期位置と自分の距離
     private float _trakingTimeLimit = 10;
     private float _arertTimeLimit = 5;
+   
     [SerializeField] GameObject PlayerObj;
     [Header("追跡時間")]
     [SerializeField] private float _trackingTime ;//追跡時間
@@ -49,6 +50,7 @@ public class EnemyTracking : MonoBehaviour
         MyTrans = GetMove.GetMyTrans;//自分のTransformを取得
         GetEnemyVision = GetComponent<EnemyVisionScript>();//子オブジェクトからEnemyVisionScriptを取得
         GetAgent = this.GetComponent<NavMeshAgent>();
+        GetAgent.enabled = false;
         GetAgent.updateRotation = false;
         GetAgent.updateUpAxis = false;
     }
@@ -61,9 +63,9 @@ public class EnemyTracking : MonoBehaviour
         MyVector = GetMove.GetMyTrans.position;//自分の向きを取得
         //GetRay = Physics2D.Raycast(MyTrans.position, GetEnemyVision.GetVisonVec, _rayDistance, TargetLayer);//レイキャストを実行
       
-        Debug.DrawRay(MyTrans.position, GetEnemyVision.GetVisonVec * _rayDistance, Color.red);//レイを可視化
+        Debug.DrawRay(MyTrans.position, GetEnemyVision.GetVisionVec * _rayDistance, Color.red);//レイを可視化
 
-        if (GetEnemyVision.GetHit1|| GetEnemyVision.GetHit2 || GetEnemyVision.GetHit3)//プレイヤーがレイに触れたら
+        if (GetEnemyVision.GetHit1)//プレイヤーがレイに触れたら
         {
             isTracking = true;//追跡フラグをオンにする
             _trackingTime = _trakingTimeLimit;
@@ -96,7 +98,9 @@ public class EnemyTracking : MonoBehaviour
             PlayerVec = TargetTrans.position;//プレイヤーの位置を取得
             GetAgent.SetDestination(TargetTrans.position);//プレイヤーを追い掛け回す
             GetEnemyVision.existIsPatrol = false;//警備をやめて追跡
-            //GetAgent2D.enabled = true;
+                                                 //GetAgent2D.enabled = true;
+            //float _targetAngle = Mathf.Atan2(PlayerVec.y, PlayerVec.x) * Mathf.Rad2Deg;
+            //GetEnemyVision.GetMyRotation = _targetAngle;
             //GetEnemyVision.GetVisonVec = (TargetTrans.position - MyTrans.position).normalized;
         }
     }
@@ -147,6 +151,7 @@ public class EnemyTracking : MonoBehaviour
         print(GetEnemyVision.existIsPatrol);
         print("警備再開");
         GetAgent.enabled = false;
+        print("えーじぇんとおふ");
 
     }
 
