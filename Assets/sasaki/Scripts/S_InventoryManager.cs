@@ -37,7 +37,33 @@ public class S_InventoryManager : MonoBehaviour
     void Update()
     {
         InventoryOpenAndClose();
+        InventorySelect();
+    }
 
+    private void InventoryOpenAndClose()
+    {
+        if (Input.GetKeyDown("joystick button 3"))
+        {
+            if (inventory.activeSelf == true)
+            {
+                isOpen = false;
+                inventory.SetActive(false);
+            }
+            else if (inventory.activeSelf == false)
+            {
+                isOpen = true;
+                inventory.SetActive(true);
+
+                inventorySlotScript = inventorySlots[v, h].GetComponent<S_InventorySlotScript>();
+                inventorySlotScript.Select();
+
+            }
+        }
+
+    }
+
+    private void InventorySelect()
+    {
         if (isOpen)
         {
 
@@ -125,27 +151,6 @@ public class S_InventoryManager : MonoBehaviour
                 isVerticalButtonPush = false;
             }
 
-        }
-    }
-
-    private void InventoryOpenAndClose()
-    {
-        if (Input.GetKeyDown("joystick button 3"))
-        {
-            if (inventory.activeSelf == true)
-            {
-                isOpen = false;
-                inventory.SetActive(false);
-            }
-            else if (inventory.activeSelf == false)
-            {
-                isOpen = true;
-                inventory.SetActive(true);
-
-                inventorySlotScript = inventorySlots[v, h].GetComponent<S_InventorySlotScript>();
-                inventorySlotScript.Select();
-
-            }
         }
 
     }
