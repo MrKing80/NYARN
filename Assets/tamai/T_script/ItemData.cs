@@ -13,10 +13,15 @@ public class ItemData : ScriptableObject
 {
     public enum ArtWork
     {
+        /*
         PORTRAIT,     // 肖像画
         SELFPORTRAIT, // 自画像
         LANDSCAPE,    // 風景画
         ABSTRACT      // 抽象画
+        */
+
+        TREASURE,　//宝物
+        ENABLEDITEM　//使用可能アイテム
     }
 
     [Header("ジャンル")] [SerializeField] private ArtWork type;
