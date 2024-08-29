@@ -8,11 +8,11 @@ using UnityEngine.SceneManagement;
 public class ShopMoneyManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _moneypossession;
-    private int money = 20000;
+    private int money = 0;
     // ボタンの価格
-    [SerializeField] private int price = 1000;
-    [SerializeField] private int moneypey = 2000;
-    [SerializeField] private int mappey = 5000;
+    [SerializeField] private int price = 100000;
+    [SerializeField] private int moneypey = 200000;
+    [SerializeField] private int mappey = 500000;
     //ボタンを取得
     [SerializeField] private Button shoes;
     [SerializeField] private Button pawer;
@@ -25,9 +25,9 @@ public class ShopMoneyManager : MonoBehaviour
     [SerializeField] private Sprite newSprite2;
     [SerializeField] private Sprite newSprite3;
     [SerializeField] private Sprite newSprite4;
-    [SerializeField] private int common_people = 7000;
-    [SerializeField] private int wealthy = 15000;
-    [SerializeField] private int millionaire = 20000;
+    [SerializeField] private int common_people = 700000;
+    [SerializeField] private int wealthy = 1500000;
+    [SerializeField] private int millionaire = 2000000;
     //それぞれ押した回数
     private int countshoes = 0;
     private int countpawer = 0;
@@ -52,11 +52,18 @@ public class ShopMoneyManager : MonoBehaviour
     private int verticalmap = 0;
     private int besidemap = 0;
 
+    private MainGameMoneyManager mainMoney = default;
+
     void Start()
     {
-        _moneypossession.text = money.ToString(); // UIを初期化
+        mainMoney = GameObject.Find("NowMoneyManager").GetComponent<MainGameMoneyManager>();
+
+        money = mainMoney.NowHaveMoneyProperty;
+
+        _moneypossession.text = money.ToString("N0"); // UIを初期化
 
         maparray = new GameObject[2, 3] { { map1, map2, map3 }, { map4, map5, map6 }, };
+
 
     }
     private void Update()
@@ -82,7 +89,7 @@ public class ShopMoneyManager : MonoBehaviour
         if (money >= price) // 所持金が価格以上ある場合
         {
             money -= price; // 所持金から価格を引く
-            _moneypossession.text = money.ToString(); // UIを更新
+            _moneypossession.text = money.ToString("N0"); // UIを更新
             sum = sum + price;
             countpawer += 1;
         }
@@ -98,7 +105,7 @@ public class ShopMoneyManager : MonoBehaviour
         if (money >= moneypey) // 所持金が価格以上ある場合
         {
             money -= moneypey; // 所持金から価格を引く
-            _moneypossession.text = money.ToString(); // UIを更新
+            _moneypossession.text = money.ToString("N0"); // UIを更新
             sum = sum + moneypey;
             countshoes += 1;
         }
@@ -117,7 +124,7 @@ public class ShopMoneyManager : MonoBehaviour
                              // player = maparray[verticalmap, besidemap];
             Debug.Log(maparray[verticalmap, besidemap]);
             besidemap += 1;
-            _moneypossession.text = money.ToString(); // UIを更新
+            _moneypossession.text = money.ToString("N0"); // UIを更新
             sum = sum + mappey;
             countmap += 1;
         }
@@ -125,7 +132,7 @@ public class ShopMoneyManager : MonoBehaviour
         {
             map.interactable = false;
         }
-      
+
     }
 
     public void OnCllic()

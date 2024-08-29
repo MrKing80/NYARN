@@ -112,7 +112,7 @@ MonoBehaviour:
   TargetLayer:
     serializedVersion: 2
     m_Bits: 8
-  _trackingSpeed: 5
+  _trackingSpeed: 3
   isTracking: 0
 --- !u!114 &6051563206678261081
 MonoBehaviour:
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f667f4c50c4986f419e6b7b7d7ecdaf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6.5
+  speed: 5
   stoppingDistance: 0
 --- !u!50 &8080662175689997484
 Rigidbody2D:

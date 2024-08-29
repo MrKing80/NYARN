@@ -5,20 +5,21 @@ TagManager:
   serializedVersion: 2
   tags:
   - Item
-  - Wall
-  - Obstacle
-  - MapCamera
   - Enemy
-  - BuffItems
+  - Wall
+  - Light
+  - FirstFloor
+  - Treasure
+  - SecondFloor
+  - MapCamera
+  - Obstacle
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Player
+  - 
   - Water
   - UI
-  - Obstacle
-  - MAP
   - 
   - 
   - 
@@ -42,6 +43,8 @@ TagManager:
   - 
   - 
   - 
+  - NotBigMap
+  - MinMap
   - 
   m_SortingLayers:
   - name: Default
