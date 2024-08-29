@@ -94,16 +94,16 @@ public class EnemyVisionScript : MonoBehaviour
             switch (_direction)//最初に移動する方向
             {
                 case MoveDirection.Up:
-                    _myRotation += 90;
+                    _myRotation = 90;
                     break;
                 case MoveDirection.Down:
-                    _myRotation += 270;
+                    _myRotation = 270;
                     break;
                 case MoveDirection.Right:
-                    _myRotation += 0;
+                    _myRotation = 0;
                     break;
                 case MoveDirection.Left:
-                    _myRotation += 180;
+                    _myRotation = 180;
                     break;
             }
         }
@@ -122,13 +122,14 @@ public class EnemyVisionScript : MonoBehaviour
         Debug.DrawRay(VisionTrans.position, Hit3Vec * _rayDistance, Color.green);
         ObstacleRay = Physics2D.Raycast(VisionTrans.position, VisionVec, _rayDistance, ObstacleLayer);//障害物を見分けるレイ
         PresenceRay = Physics2D.CircleCast(VisionTrans.position, _rayRadius, VisionVec, _maxDistance, TargetLayer);//死角でもプレイヤー察知できるようにするレイ
-
+        int _turnCount = default;
         if (isPatrol && ObstacleRay.collider != null && ObstacleRay.collider.gameObject != this.gameObject)//巡回時、障害物に当たったら
         {
             print("あたった");
             _myRotation += (int)GetAngle;//視線をGetAngleで指定した角度に傾かせる 　
             if (_myRotation >= 360)//360度超えたら角度リセット
             {
+                print("りせっとしまぁす");
                 _myRotation -= 360;
                 _currentRotation = _myRotation;//再度myRotationの値を取得
                 print(_currentRotation);
@@ -142,19 +143,35 @@ public class EnemyVisionScript : MonoBehaviour
             print(PresenceRay.collider.gameObject.name);//テスト用に名前を取得する
             isPatrol = false;//巡回をやめる
             isStop = true;//立ち止まる
-            _stopTime = _initialValue;
-            _turnAroundTime = _turnAroundTimeValue;
+                          //if (_turnCount == 1)
+                          //{
+
+            //    _turnCount++;
+
+            //}
+            if (isStop == false)
+            {
+                _stopTime = _initialValue;
+                _turnAroundTime = _turnAroundTimeValue;
+            }
+           
+
             _presenceAngle = Mathf.Atan2(PresenceRay.point.y, PresenceRay.point.x) * Mathf.Rad2Deg;//衝突したオブジェクトの座標を取得
             
+        }
+        else
+        {
+            _turnCount = default;
         }
 
         if (isStop)//止まったら
         {
+            print(_turnCount);
             _stopTime -= Time.deltaTime;//立ち止まる時間をカウントダウン
             _turnAroundTime -= Time.deltaTime;//振り向くまでの時間をカウントダウン
             if (_turnAroundTime <= 0)//一定時間立ち止まったら
             {
-                TurnAngle();//プレイヤーがいた位置に振り向く
+                TurnAngle();//プレイヤーが視界内にいた位置に振り向く
                 print("ふりむけ");
             }
             if (_stopTime <= 0)//０秒になったら（振り向く前にプレイヤーが移動したら)
@@ -195,6 +212,5 @@ public class EnemyVisionScript : MonoBehaviour
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(VisionTrans.position, _rayRadius);
     }
-
 
 }

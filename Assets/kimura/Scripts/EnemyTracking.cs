@@ -31,6 +31,7 @@ public class EnemyTracking : MonoBehaviour
     [SerializeField] private float _trackingSpeed = 5;//敵のスピード
     [Header("追跡フラグ")]
     [SerializeField] private bool isTracking = false;//追跡フラグ
+    NavMeshAgent GetAgent;
     public bool existIsTracking
     {
         get { return isTracking; }
@@ -47,9 +48,9 @@ public class EnemyTracking : MonoBehaviour
         GetAgent2D = this.GetComponent<NavMeshAgent2D>();//自分のNavMeshAgent2Dを取得
         MyTrans = GetMove.GetMyTrans;//自分のTransformを取得
         GetEnemyVision = GetComponent<EnemyVisionScript>();//子オブジェクトからEnemyVisionScriptを取得
-        //GetAgent = this.GetComponent<NavMeshAgent>();
-        //GetAgent.updateRotation = false;
-        //GetAgent.updateUpAxis = false;
+        GetAgent = this.GetComponent<NavMeshAgent>();
+        GetAgent.updateRotation = false;
+        GetAgent.updateUpAxis = false;
     }
 
     // Update is called once per frame
@@ -76,7 +77,7 @@ public class EnemyTracking : MonoBehaviour
         }
 
 
-        if (_trackingTime <= 0 &&_playerDistance >= 10)//プレイヤーを見失ったら  場合によってはorにする
+        if (_trackingTime <= 0 ||_playerDistance >= 200)//プレイヤーを見失ったら  場合によってはorにする
         {
             TargetLost();
         }
@@ -90,9 +91,10 @@ public class EnemyTracking : MonoBehaviour
             if (isTracking)//追跡フラグがオンだったら
         {
             print("みいつけた！！");
+            GetAgent.enabled = true;
             _playerDistance = Vector2.Distance(PlayerVec, MyVector);//自分とプレイヤーの距離を計算
             PlayerVec = TargetTrans.position;//プレイヤーの位置を取得
-            GetAgent2D.SetDestination(TargetTrans.position);//プレイヤーを追い掛け回す
+            GetAgent.SetDestination(TargetTrans.position);//プレイヤーを追い掛け回す
             GetEnemyVision.existIsPatrol = false;//警備をやめて追跡
             //GetAgent2D.enabled = true;
             //GetEnemyVision.GetVisonVec = (TargetTrans.position - MyTrans.position).normalized;
@@ -108,14 +110,15 @@ public class EnemyTracking : MonoBehaviour
         if (_alertTime <= 0)//完全に見失ったら
         {
             print("つかれた");
-            GetAgent2D.SetDestination(GetMove.GetInitialPos);
+            GetAgent.SetDestination(GetMove.GetInitialPos);
             _initialPosDistance = Vector2.Distance(MyVector, GetMove.GetInitialPos);
-            if (MyVector == GetMove.GetInitialPos)//初期位置に戻ったら
+            if (!GetAgent.pathPending&&GetAgent.remainingDistance<=GetAgent.stoppingDistance)//初期位置に戻ったら
             {
-                GetEnemyVision.existIsPatrol = true;//警備再開させる
-                //GetAgent2D.enabled = false;
-                print(GetEnemyVision.existIsPatrol);
-                print("警備再開");
+                if (!GetAgent.hasPath || GetAgent.velocity.sqrMagnitude == 0f)
+                {
+                    OnDestinationReached();
+                }
+                
             }
            
         }
@@ -136,4 +139,15 @@ public class EnemyTracking : MonoBehaviour
 
         }
     }
+
+    void OnDestinationReached()
+    {
+        GetEnemyVision.existIsPatrol = true;//警備再開させる
+        //GetAgent2D.enabled = false;
+        print(GetEnemyVision.existIsPatrol);
+        print("警備再開");
+        GetAgent.enabled = false;
+
+    }
+
 }
