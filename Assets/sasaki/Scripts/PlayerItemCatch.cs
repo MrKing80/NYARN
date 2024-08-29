@@ -78,7 +78,7 @@ public class PlayerItemCatch : MonoBehaviour
 
             //i++;                            //インクリメント
 
-            catchItemID = item.GetComponent<ItemCreate>().itemID;  //拾ったアイテムのID取得
+            //catchItemID = item.GetComponent<ItemCreate>().itemID;  //拾ったアイテムのID取得
 
             carryingWeight += itemData.GetItemLists()[catchItemID].Weight;  //重量を加算
 
@@ -92,7 +92,7 @@ public class PlayerItemCatch : MonoBehaviour
                 rig.drag = carryingWeight;  //重さ変更
             }
 
-
+            inventoryMgr.GetItemInfo(item);
 
             print(itemData.GetItemLists()[catchItemID].ItemID + " : " + itemData.GetItemLists()[catchItemID].Name
                    + " : " + itemData.GetItemLists()[catchItemID].Price + " : " + itemData.GetItemLists()[catchItemID].Weight

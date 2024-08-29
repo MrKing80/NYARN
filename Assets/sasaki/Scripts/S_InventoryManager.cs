@@ -7,6 +7,7 @@ public class S_InventoryManager : MonoBehaviour
 {
     [SerializeField] private GameObject toolbar = default;
     [SerializeField] private GameObject inventory = default;
+    private GameObject item;
     private GameObject[,] inventorySlots = new GameObject[3, 9];
     private S_InventorySlotScript inventorySlotScript = default;
     private int k = 0;
@@ -15,6 +16,7 @@ public class S_InventoryManager : MonoBehaviour
     private bool isOpen = false;
     private bool isHorizontalButtonPush = false;
     private bool isVerticalButtonPush = false;
+
     private void Awake()
     {
         for (int i = 0; i < inventorySlots.GetLength(0); i++)
@@ -38,6 +40,8 @@ public class S_InventoryManager : MonoBehaviour
     {
         InventoryOpenAndClose();
         InventorySelect();
+
+        print(item);
     }
 
     private void InventoryOpenAndClose()
@@ -153,5 +157,10 @@ public class S_InventoryManager : MonoBehaviour
 
         }
 
+    }
+
+    public void GetItemInfo(GameObject getItem)
+    {
+        item = getItem;
     }
 }
