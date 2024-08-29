@@ -210,7 +210,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6084982421055393968, guid: 1e9076b84ef01cd458874c6d0b196a54, type: 3}
       propertyPath: m_Name
-      value: InventorySlot (13)
+      value: InventorySlot (14)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6424,7 +6424,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6084982421055393968, guid: 1e9076b84ef01cd458874c6d0b196a54, type: 3}
       propertyPath: m_Name
-      value: InventorySlot (4)
+      value: InventorySlot (23)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6526,7 +6526,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6084982421055393968, guid: 1e9076b84ef01cd458874c6d0b196a54, type: 3}
       propertyPath: m_Name
-      value: InventorySlot (12)
+      value: InventorySlot (13)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -36124,7 +36124,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6084982421055393968, guid: 1e9076b84ef01cd458874c6d0b196a54, type: 3}
       propertyPath: m_Name
-      value: InventorySlot (14)
+      value: InventorySlot (15)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -36226,7 +36226,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6084982421055393968, guid: 1e9076b84ef01cd458874c6d0b196a54, type: 3}
       propertyPath: m_Name
-      value: InventorySlot (25)
+      value: InventorySlot (8)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -36489,7 +36489,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6084982421055393968, guid: 1e9076b84ef01cd458874c6d0b196a54, type: 3}
       propertyPath: m_Name
-      value: InventorySlot
+      value: InventorySlot (19)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -36591,7 +36591,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6084982421055393968, guid: 1e9076b84ef01cd458874c6d0b196a54, type: 3}
       propertyPath: m_Name
-      value: InventorySlot (5)
+      value: InventorySlot (24)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -36633,23 +36633,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 378441786}
-  - {fileID: 2057825422}
-  - {fileID: 1754064093}
-  - {fileID: 1167520425}
-  - {fileID: 1425475159}
-  - {fileID: 1155193981}
-  - {fileID: 1337737600}
-  - {fileID: 168001135}
-  - {fileID: 147001295}
-  - {fileID: 56693134}
-  - {fileID: 379223046}
-  - {fileID: 290615835}
-  - {fileID: 613803913}
-  - {fileID: 870633819}
-  - {fileID: 609510247}
-  - {fileID: 2057956212}
-  - {fileID: 525403881}
   - {fileID: 1651419432}
   - {fileID: 1585448037}
   - {fileID: 1853977491}
@@ -36659,7 +36642,24 @@ RectTransform:
   - {fileID: 1093872749}
   - {fileID: 327350222}
   - {fileID: 2125573045}
+  - {fileID: 2057825422}
+  - {fileID: 1167520425}
+  - {fileID: 1155193981}
+  - {fileID: 168001135}
+  - {fileID: 56693134}
+  - {fileID: 290615835}
+  - {fileID: 870633819}
+  - {fileID: 2057956212}
   - {fileID: 1670144574}
+  - {fileID: 378441786}
+  - {fileID: 1754064093}
+  - {fileID: 1425475159}
+  - {fileID: 1337737600}
+  - {fileID: 147001295}
+  - {fileID: 379223046}
+  - {fileID: 613803913}
+  - {fileID: 609510247}
+  - {fileID: 525403881}
   m_Father: {fileID: 1437993697}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -37061,7 +37061,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6084982421055393968, guid: 1e9076b84ef01cd458874c6d0b196a54, type: 3}
       propertyPath: m_Name
-      value: InventorySlot (8)
+      value: InventorySlot (27)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -37168,7 +37168,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6084982421055393968, guid: 1e9076b84ef01cd458874c6d0b196a54, type: 3}
       propertyPath: m_Name
-      value: InventorySlot (7)
+      value: InventorySlot (26)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -37270,7 +37270,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6084982421055393968, guid: 1e9076b84ef01cd458874c6d0b196a54, type: 3}
       propertyPath: m_Name
-      value: InventorySlot (6)
+      value: InventorySlot (25)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -37740,7 +37740,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6084982421055393968, guid: 1e9076b84ef01cd458874c6d0b196a54, type: 3}
       propertyPath: m_Name
-      value: InventorySlot (22)
+      value: InventorySlot (5)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -37842,7 +37842,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6084982421055393968, guid: 1e9076b84ef01cd458874c6d0b196a54, type: 3}
       propertyPath: m_Name
-      value: InventorySlot (15)
+      value: InventorySlot (16)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -38001,7 +38001,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6084982421055393968, guid: 1e9076b84ef01cd458874c6d0b196a54, type: 3}
       propertyPath: m_Name
-      value: InventorySlot (21)
+      value: InventorySlot (4)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -38088,6 +38088,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a48aedda1dd304db93939c240566da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toolbar: {fileID: 1317324459}
+  inventory: {fileID: 451236667}
 --- !u!4 &974394804
 Transform:
   m_ObjectHideFlags: 0
@@ -44320,7 +44322,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6084982421055393968, guid: 1e9076b84ef01cd458874c6d0b196a54, type: 3}
       propertyPath: m_Name
-      value: InventorySlot (23)
+      value: InventorySlot (6)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -44422,7 +44424,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6084982421055393968, guid: 1e9076b84ef01cd458874c6d0b196a54, type: 3}
       propertyPath: m_Name
-      value: InventorySlot (24)
+      value: InventorySlot (7)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -44524,7 +44526,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6084982421055393968, guid: 1e9076b84ef01cd458874c6d0b196a54, type: 3}
       propertyPath: m_Name
-      value: InventorySlot (11)
+      value: InventorySlot (12)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -44718,7 +44720,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6084982421055393968, guid: 1e9076b84ef01cd458874c6d0b196a54, type: 3}
       propertyPath: m_Name
-      value: InventorySlot (10)
+      value: InventorySlot (11)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -62295,7 +62297,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6084982421055393968, guid: 1e9076b84ef01cd458874c6d0b196a54, type: 3}
       propertyPath: m_Name
-      value: InventorySlot (3)
+      value: InventorySlot (22)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -62669,7 +62671,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6084982421055393968, guid: 1e9076b84ef01cd458874c6d0b196a54, type: 3}
       propertyPath: m_Name
-      value: InventorySlot (2)
+      value: InventorySlot (21)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -63295,7 +63297,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6084982421055393968, guid: 1e9076b84ef01cd458874c6d0b196a54, type: 3}
       propertyPath: m_Name
-      value: InventorySlot (19)
+      value: InventorySlot (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -63536,7 +63538,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6084982421055393968, guid: 1e9076b84ef01cd458874c6d0b196a54, type: 3}
       propertyPath: m_Name
-      value: InventorySlot (18)
+      value: InventorySlot (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -63706,7 +63708,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6084982421055393968, guid: 1e9076b84ef01cd458874c6d0b196a54, type: 3}
       propertyPath: m_Name
-      value: InventorySlot (17)
+      value: InventorySlot (18)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -64012,7 +64014,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6084982421055393968, guid: 1e9076b84ef01cd458874c6d0b196a54, type: 3}
       propertyPath: m_Name
-      value: InventorySlot (1)
+      value: InventorySlot (20)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -64485,7 +64487,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6084982421055393968, guid: 1e9076b84ef01cd458874c6d0b196a54, type: 3}
       propertyPath: m_Name
-      value: InventorySlot (20)
+      value: InventorySlot (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -64678,7 +64680,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6084982421055393968, guid: 1e9076b84ef01cd458874c6d0b196a54, type: 3}
       propertyPath: m_Name
-      value: InventorySlot (9)
+      value: InventorySlot (10)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -64780,7 +64782,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6084982421055393968, guid: 1e9076b84ef01cd458874c6d0b196a54, type: 3}
       propertyPath: m_Name
-      value: InventorySlot (16)
+      value: InventorySlot (17)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -64882,7 +64884,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6084982421055393968, guid: 1e9076b84ef01cd458874c6d0b196a54, type: 3}
       propertyPath: m_Name
-      value: InventorySlot (26)
+      value: InventorySlot (9)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
