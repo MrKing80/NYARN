@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventorySlotScript : MonoBehaviour
+public class S_InventorySlotScript : MonoBehaviour
 {
     [SerializeField] private Color selectedColor = default;
     [SerializeField] private Color notSelectedColor = default;
