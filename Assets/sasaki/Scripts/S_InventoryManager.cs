@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryManager : MonoBehaviour
+public class S_InventoryManager : MonoBehaviour
 {
     [SerializeField] private GameObject toolbar = default;
     [SerializeField] private GameObject inventory = default;

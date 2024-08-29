@@ -50,7 +50,7 @@ public class PlayerItemCatch : MonoBehaviour
     private int zero = 0;
 
     //インベントリマネージャを保持する変数
-    private InventoryManager inventoryMgr = default;
+    private S_InventoryManager inventoryMgr = default;
     ////アイテムのリスト
     //public List<GameObject> itemLists = new List<GameObject>();
 
@@ -58,7 +58,7 @@ public class PlayerItemCatch : MonoBehaviour
     {
         rig = this.GetComponent<Rigidbody2D>();
         moneyMgr = GameObject.Find("NowMoneyManager").GetComponent<MainGameMoneyManager>();
-        inventoryMgr = GameObject.Find("InventoryManager").GetComponent<InventoryManager>();
+        inventoryMgr = GameObject.Find("InventoryManager").GetComponent<S_InventoryManager>();
         //move = this.GetComponent<PlayerMove>();
     }
     void Update()
