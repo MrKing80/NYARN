@@ -7,9 +7,11 @@ public class S_InventoryManager : MonoBehaviour
 {
     [SerializeField] private GameObject toolbar = default;
     [SerializeField] private GameObject inventory = default;
+    [SerializeField] private ItemDataBase itemData;
     private GameObject item;
     private GameObject[,] inventorySlots = new GameObject[3, 9];
     private S_InventorySlotScript inventorySlotScript = default;
+    private S_ToolbarManager toolbarManager = default;
     private int k = 0;
     private int v = 0;
     private int h = 0;
@@ -24,7 +26,6 @@ public class S_InventoryManager : MonoBehaviour
             for (int j = 0; j < inventorySlots.GetLength(1); j++)
             {
                 inventorySlots[i, j] = inventory.transform.GetChild(k).gameObject;
-                print(inventorySlots[i, j]);
                 k++;
             }
         }
@@ -33,6 +34,8 @@ public class S_InventoryManager : MonoBehaviour
     void Start()
     {
         inventory.SetActive(false);
+
+        toolbarManager = toolbar.GetComponent<S_ToolbarManager>();
     }
 
     // Update is called once per frame
@@ -162,5 +165,7 @@ public class S_InventoryManager : MonoBehaviour
     public void GetItemInfo(GameObject getItem)
     {
         item = getItem;
+        int itemId = item.GetComponent<ItemCreate>().itemID;
+        toolbarManager.GetItemImage(itemData.GetItemLists()[itemId].ItemSprite);
     }
 }
