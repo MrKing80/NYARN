@@ -34,7 +34,8 @@ public class EnemyVisionScript : MonoBehaviour
     [Header("立ち止まる時間")]
     [SerializeField] private float _stopTime = 5f;
     [SerializeField] private  float _initialValue = 5f;//汎用の初期値（テスト用）
-    public Vector2 GetVisonVec//VisionVecのプロパティ
+    private float _currentDistance;
+    public Vector2 GetVisionVec//VisionVecのプロパティ
     {
         get { return VisionVec; }
         set { VisionVec = value; }
@@ -49,6 +50,7 @@ public class EnemyVisionScript : MonoBehaviour
         get { return isPatrol; }
         set { isPatrol = value; }
     }
+    
     private float _myRotation;//視線の角度 
     public float GetMyRotation//_myRotationのプロパティ
     {
@@ -88,22 +90,23 @@ public class EnemyVisionScript : MonoBehaviour
     {               
         VisionTrans = this.GetComponent<Transform>();
         GetTracking = GetComponent<EnemyTracking>();
+        //_currentDistance = _rayDistance;
         _myRotation = VisionTrans.rotation.z;//角度を取得
         if (isPatrol)//警備中だったらEnemyMoveスクリプトで移動させる
         {
             switch (_direction)//最初に移動する方向
             {
                 case MoveDirection.Up:
-                    _myRotation += 90;
+                    _myRotation = 90;
                     break;
                 case MoveDirection.Down:
-                    _myRotation += 270;
+                    _myRotation = 270;
                     break;
                 case MoveDirection.Right:
-                    _myRotation += 0;
+                    _myRotation = 0;
                     break;
                 case MoveDirection.Left:
-                    _myRotation += 180;
+                    _myRotation = 180;
                     break;
             }
         }
@@ -115,20 +118,21 @@ public class EnemyVisionScript : MonoBehaviour
     {
         VisionConvert();
         hit1 = Physics2D.Raycast(VisionTrans.position, VisionVec, _rayDistance, TargetLayer);//正面のレイ
-        hit2 = Physics2D.Raycast(VisionTrans.position, Hit2Vec, _rayDistance, TargetLayer);
-        hit3 = Physics2D.Raycast(VisionTrans.position, Hit3Vec, _rayDistance, TargetLayer);
-        Debug.DrawRay(VisionTrans.position, GetVisonVec * _rayDistance, Color.red);
-        Debug.DrawRay(VisionTrans.position, Hit2Vec * _rayDistance, Color.blue);
-        Debug.DrawRay(VisionTrans.position, Hit3Vec * _rayDistance, Color.green);
+        //hit2 = Physics2D.Raycast(VisionTrans.position, Hit2Vec, _rayDistance, TargetLayer);
+        //hit3 = Physics2D.Raycast(VisionTrans.position, Hit3Vec, _rayDistance, TargetLayer);
+        Debug.DrawRay(VisionTrans.position, VisionVec * _rayDistance, Color.red);
+        //Debug.DrawRay(VisionTrans.position, Hit2Vec * _rayDistance, Color.blue);
+        //Debug.DrawRay(VisionTrans.position, Hit3Vec * _rayDistance, Color.green);
         ObstacleRay = Physics2D.Raycast(VisionTrans.position, VisionVec, _rayDistance, ObstacleLayer);//障害物を見分けるレイ
         PresenceRay = Physics2D.CircleCast(VisionTrans.position, _rayRadius, VisionVec, _maxDistance, TargetLayer);//死角でもプレイヤー察知できるようにするレイ
-
+        int _turnCount = default;
         if (isPatrol && ObstacleRay.collider != null && ObstacleRay.collider.gameObject != this.gameObject)//巡回時、障害物に当たったら
         {
             print("あたった");
             _myRotation += (int)GetAngle;//視線をGetAngleで指定した角度に傾かせる 　
-            if (_myRotation >= 360)//360度超えたら角度リセット
+            if (_myRotation >= 360&&isPatrol)//360度超えたら角度リセット
             {
+                print("りせっとしまぁす");
                 _myRotation -= 360;
                 _currentRotation = _myRotation;//再度myRotationの値を取得
                 print(_currentRotation);
@@ -136,25 +140,42 @@ public class EnemyVisionScript : MonoBehaviour
             print(_myRotation);
         }
 
-        if (PresenceRay)//索敵範囲にプレイヤーが衝突したら
+        if (PresenceRay&&!GetTracking.existIsTracking)//索敵範囲にプレイヤーが衝突したら
         {
             print("なんや?");
             print(PresenceRay.collider.gameObject.name);//テスト用に名前を取得する
             isPatrol = false;//巡回をやめる
             isStop = true;//立ち止まる
-            _stopTime = _initialValue;
-            _turnAroundTime = _turnAroundTimeValue;
-            _presenceAngle = Mathf.Atan2(PresenceRay.point.y, PresenceRay.point.x) * Mathf.Rad2Deg;//衝突したオブジェクトの座標を取得
+            print(_myRotation);
+                          //if (_turnCount == 1)
+                          //{
+
+            //    _turnCount++;
+
+            //}
+            if (isStop == false)
+            {
+                _stopTime = _initialValue;
+                _turnAroundTime = _turnAroundTimeValue;
+            }
+           
+
+            _presenceAngle = Mathf.Atan2(PresenceRay.collider.transform.position.y, PresenceRay.collider.transform.position.x) * Mathf.Rad2Deg;//衝突したオブジェクトの座標を取得
             
+        }
+        else
+        {
+            _turnCount = default;
         }
 
         if (isStop)//止まったら
         {
+            print(_turnCount);
             _stopTime -= Time.deltaTime;//立ち止まる時間をカウントダウン
             _turnAroundTime -= Time.deltaTime;//振り向くまでの時間をカウントダウン
             if (_turnAroundTime <= 0)//一定時間立ち止まったら
             {
-                TurnAngle();//プレイヤーがいた位置に振り向く
+                TurnAngle();//プレイヤーが視界内にいた位置に振り向く
                 print("ふりむけ");
             }
             if (_stopTime <= 0)//０秒になったら（振り向く前にプレイヤーが移動したら)
@@ -175,10 +196,10 @@ public class EnemyVisionScript : MonoBehaviour
     {
         _radians = _myRotation * Mathf.Deg2Rad;//視線の角度を向きに変換
         VisionVec = new Vector2(Mathf.Cos(_radians), Mathf.Sin(_radians));//_radiansから視線の向きを取得
-        float Hit2Angle = _myRotation + _angleOffset * Mathf.Deg2Rad;
-        Hit2Vec = new Vector2(Mathf.Cos(Hit2Angle), Mathf.Sin(Hit2Angle));
-        float Hit3Angle = _myRotation - _angleOffset * Mathf.Deg2Rad;
-        Hit3Vec = new Vector2(Mathf.Cos(Hit3Angle), Mathf.Sin(Hit3Angle));
+        //float Hit2Angle = _myRotation + _angleOffset * Mathf.Deg2Rad;
+        //Hit2Vec = new Vector2(Mathf.Cos(Hit2Angle), Mathf.Sin(Hit2Angle));
+        //float Hit3Angle = _myRotation - _angleOffset * Mathf.Deg2Rad;
+        //Hit3Vec = new Vector2(Mathf.Cos(Hit3Angle), Mathf.Sin(Hit3Angle));
     }
 
     /// <summary>
@@ -195,6 +216,5 @@ public class EnemyVisionScript : MonoBehaviour
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(VisionTrans.position, _rayRadius);
     }
-
 
 }
