@@ -26,6 +26,6 @@ public class ReturnToTitleButtonScript : MonoBehaviour
 
     public void ReturnToTitle()//タイトルに戻るに同意
     {
-        SceneManager.LoadScene("TitleScene");//すぐにシーン遷移するぞ
+        SceneManager.LoadScene("SampleTitle");//すぐにシーン遷移するぞ
     }
 }

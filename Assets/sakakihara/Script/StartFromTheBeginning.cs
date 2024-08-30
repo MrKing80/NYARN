@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class StartFromTheBeginning : MonoBehaviour
 {
+    //タイトルのスタートボタンにつけるスクリプト
+
+
     public void FirstStageStarts()   //ボタン押したら
     {
         SceneManager.LoadScene("MainGameScene");//すぐにシーン遷移するぞ
