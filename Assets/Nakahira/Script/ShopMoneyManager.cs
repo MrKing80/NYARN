@@ -8,7 +8,10 @@ using UnityEngine.SceneManagement;
 public class ShopMoneyManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _moneypossession;
-    private int money = 0;
+    private int money = 1000000000;
+
+    [SerializeField] private Animator anim;
+
     // ボタンの価格
     [SerializeField] private int price = 100000;
     [SerializeField] private int moneypey = 200000;
@@ -62,6 +65,8 @@ public class ShopMoneyManager : MonoBehaviour
 
         _moneypossession.text = money.ToString("N0"); // UIを初期化
 
+        SceneManager.sceneLoaded += OnSceneLoaded;  //sceneLoadedに関数を追加
+
         maparray = new GameObject[2, 3] { { map1, map2, map3 }, { map4, map5, map6 }, };
 
 
@@ -81,6 +86,19 @@ public class ShopMoneyManager : MonoBehaviour
         {
             image.sprite = newSprite3;
         }
+
+        if (money < price || countpawer >= 3) // 価格が所持金以上ある場合ボタン押せなくする
+        {
+            pawer.interactable = false;
+        }
+        if (money < moneypey || countshoes >= 3) // 価格が所持金以上ある場合ボタン押せなくする
+        {
+            shoes.interactable = false;
+        }
+        if (money < mappey || countmap >= 3) // 価格が所持金以上ある場合ボタン押せなくする
+        {
+            map.interactable = false;
+        }
     }
 
     //力のボタン
@@ -92,6 +110,9 @@ public class ShopMoneyManager : MonoBehaviour
             _moneypossession.text = money.ToString("N0"); // UIを更新
             sum = sum + price;
             countpawer += 1;
+            SoundEffects();
+            anim.SetBool("oji", true);
+            Invoke("Anime", 0.3f);
         }
         if (money < price || countpawer >= 3) // 価格が所持金以上ある場合ボタン押せなくする
         {
@@ -108,6 +129,9 @@ public class ShopMoneyManager : MonoBehaviour
             _moneypossession.text = money.ToString("N0"); // UIを更新
             sum = sum + moneypey;
             countshoes += 1;
+            SoundEffects();
+            anim.SetBool("oji", true);
+            Invoke("Anime", 0.3f);
         }
         if (money < moneypey || countshoes >= 3) // 価格が所持金以上ある場合ボタン押せなくする
         {
@@ -122,11 +146,14 @@ public class ShopMoneyManager : MonoBehaviour
         {
             money -= mappey; // 所持金から価格を引く
                              // player = maparray[verticalmap, besidemap];
-            Debug.Log(maparray[verticalmap, besidemap]);
+            //Debug.Log(maparray[verticalmap, besidemap]);
             besidemap += 1;
             _moneypossession.text = money.ToString("N0"); // UIを更新
             sum = sum + mappey;
             countmap += 1;
+            SoundEffects();
+            anim.SetBool("oji", true);
+            Invoke("Anime", 0.3f);
         }
         if (money < mappey || countmap >= 3) // 価格が所持金以上ある場合ボタン押せなくする
         {
@@ -137,13 +164,38 @@ public class ShopMoneyManager : MonoBehaviour
 
     public void OnCllic()
     {
-        UnityEditor.EditorApplication.isPlaying = false;
-        //SceneManager.LoadScene("test");
+        //UnityEditor.EditorApplication.isPlaying = false;
+        SceneManager.LoadScene("TitleScene");
         //ボタンとか初期化
-        pawer.interactable = true;
-        shoes.interactable = true;
-        map.interactable = true;
-        besidemap = 0;
-        verticalmap += 1;
+        this.gameObject.SetActive(false);
+       // besidemap = 0;
+      //  verticalmap += 1;
+    }
+
+    public void SoundEffects()
+    {
+        GetComponent<AudioSource>().Play();
+
+    }
+    public void Anime()
+    {
+        anim.SetBool("oji", false);
+    }
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (SceneManager.GetActiveScene().name == "shop")
+        {
+            countpawer = 0;
+            countshoes = 0;
+            countmap = 0;
+            besidemap = 0;
+            pawer.interactable = true;
+            shoes.interactable = true;
+            map.interactable = true;
+
+            verticalmap += 1;
+            money += 20000;
+            _moneypossession.text = money.ToString(); // UIを更新
+        }
     }
 }
