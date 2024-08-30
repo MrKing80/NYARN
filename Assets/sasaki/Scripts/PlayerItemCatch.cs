@@ -51,6 +51,7 @@ public class PlayerItemCatch : MonoBehaviour
 
     //インベントリマネージャを保持する変数
     private S_InventoryManager inventoryMgr = default;
+    private S_ToolbarManager toolbarMgr = default;
     ////アイテムのリスト
     //public List<GameObject> itemLists = new List<GameObject>();
 
@@ -59,6 +60,7 @@ public class PlayerItemCatch : MonoBehaviour
         rig = this.GetComponent<Rigidbody2D>();
         moneyMgr = GameObject.Find("NowMoneyManager").GetComponent<MainGameMoneyManager>();
         inventoryMgr = GameObject.Find("InventoryManager").GetComponent<S_InventoryManager>();
+        toolbarMgr = GameObject.Find("Toolbar").GetComponent<S_ToolbarManager>();
         //move = this.GetComponent<PlayerMove>();
     }
     void Update()
@@ -68,6 +70,8 @@ public class PlayerItemCatch : MonoBehaviour
         {
             return;
         }
+
+        isItemTouch = !toolbarMgr.SetIsFullFlg();
 
         //アイテム取得
         if (isItemTouch && (Input.GetKeyDown("joystick button 0") || Input.GetKeyDown(KeyCode.Mouse0)))
@@ -92,7 +96,7 @@ public class PlayerItemCatch : MonoBehaviour
                 rig.drag = carryingWeight;  //重さ変更
             }
 
-
+            inventoryMgr.GetItemInfo(item);
 
             print(itemData.GetItemLists()[catchItemID].ItemID + " : " + itemData.GetItemLists()[catchItemID].Name
                    + " : " + itemData.GetItemLists()[catchItemID].Price + " : " + itemData.GetItemLists()[catchItemID].Weight

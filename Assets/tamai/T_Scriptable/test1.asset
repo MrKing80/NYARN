@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: test1
   m_EditorClassIdentifier: 
   type: 0
-  itemSprite: {fileID: 0}
+  itemSprite: {fileID: 7664352648383826497, guid: eaf811b04a2a6ab4a9298db74160d203, type: 3}
   ID: 1
   artName: test1
   gameObject: {fileID: 6258163728067096621, guid: 2f7e2c939f7d7874388140acfb0fed53, type: 3}
