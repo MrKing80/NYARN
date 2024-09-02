@@ -6,10 +6,10 @@ public class ParticleCheck : MonoBehaviour
 {
     [SerializeField] private bool isItemObj = true;
 
-    private void FixedUpdate()
+    private void Update()
     {
         // 子オブジェクトのコライダー取得
-        isItemObj = this.GetComponentInChildren<CircleCollider2D>().enabled;
+        isItemObj = this.GetComponentInParent<CircleCollider2D>().enabled;
 
         // trueの時はリターン、falseの時は見えなくする
         if (isItemObj) return;

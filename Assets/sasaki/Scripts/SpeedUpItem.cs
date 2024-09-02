@@ -13,7 +13,7 @@ public class SpeedUpItem : MonoBehaviour
     private GameObject player = default;
 
     //バフの効果時間
-    private float buffTime = 3f;
+    [SerializeField] private float buffTime = 3f;
 
     //一時的にスピードを格納するところ
     private float tmpSpeed = 0;
@@ -50,12 +50,12 @@ public class SpeedUpItem : MonoBehaviour
             tmpSpeed = move.SpeedProperty * magnification;  //スピードアップ
             
             move.SpeedProperty = tmpSpeed;      //スピード変更
-            
+
+            isGet = true;
+
             this.GetComponent<SpriteRenderer>().enabled = false;    
                                                                         //非表示            
             this.GetComponent<CircleCollider2D>().enabled = false;
-            
-            isGet = true;
         }
 
         if (isGet)
