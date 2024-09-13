@@ -165,7 +165,7 @@ public class ShopMoneyManager : MonoBehaviour
     public void OnCllic()
     {
         //UnityEditor.EditorApplication.isPlaying = false;
-        SceneManager.LoadScene("TitleScene");
+        SceneManager.LoadScene("SampleTitle");
         //ƒ{ƒ^ƒ“‚Æ‚©‰Šú‰»
         this.gameObject.SetActive(false);
        // besidemap = 0;

@@ -8193,7 +8193,7 @@ MonoBehaviour:
   player: {fileID: 498992681}
   bigMapObject: {fileID: 1741244929}
   minMapObject: {fileID: 203297463}
-  mapObject: {fileID: 0}
+  mapObject: {fileID: 1482619934}
 --- !u!1 &203297463
 GameObject:
   m_ObjectHideFlags: 0
@@ -22467,7 +22467,7 @@ Tilemap:
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
-      m_AllTileFlags: 2147483649
+      m_AllTileFlags: 1073741825
   - first: {x: 1, y: 0, z: 0}
     second:
       serializedVersion: 2
@@ -44694,7 +44694,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 819373098}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e563c3385de94d44e9f8efcd1f9f7e27, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b13ced3a735ea44ba4b6e88ed1f5d47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   goalMoneyTextObj: {fileID: 999813644}
@@ -61769,7 +61769,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1741244930
 RectTransform:
   m_ObjectHideFlags: 0
