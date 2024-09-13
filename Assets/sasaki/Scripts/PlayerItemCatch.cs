@@ -53,14 +53,14 @@ public class PlayerItemCatch : MonoBehaviour
     private S_InventoryManager inventoryMgr = default;
     private S_ToolbarManager toolbarMgr = default;
     ////アイテムのリスト
-    //public List<GameObject> itemLists = new List<GameObject>();
+    public List<GameObject> itemLists = new List<GameObject>();
 
     private void Start()
     {
         rig = this.GetComponent<Rigidbody2D>();
         moneyMgr = GameObject.Find("NowMoneyManager").GetComponent<MainGameMoneyManager>();
-        inventoryMgr = GameObject.Find("InventoryManager").GetComponent<S_InventoryManager>();
-        toolbarMgr = GameObject.Find("Toolbar").GetComponent<S_ToolbarManager>();
+        //inventoryMgr = GameObject.Find("InventoryManager").GetComponent<S_InventoryManager>();
+        //toolbarMgr = GameObject.Find("Toolbar").GetComponent<S_ToolbarManager>();
         //move = this.GetComponent<PlayerMove>();
     }
     void Update()
@@ -71,16 +71,16 @@ public class PlayerItemCatch : MonoBehaviour
             return;
         }
 
-        isItemTouch = !toolbarMgr.SetIsFullFlg();
+        //isItemTouch = !toolbarMgr.SetIsFullFlg();
 
         //アイテム取得
         if (isItemTouch && (Input.GetKeyDown("joystick button 0") || Input.GetKeyDown(KeyCode.Mouse0)))
         {
-            //itemLists.Add(item);                //リスト追加
+            itemLists.Add(item);                //リスト追加
 
-            //itemLists[i].SetActive(false);      //アイテムを非表示
+            itemLists[i].SetActive(false);      //アイテムを非表示
 
-            //i++;                            //インクリメント
+            i++;                            //インクリメント
 
             catchItemID = item.GetComponent<ItemCreate>().itemID;  //拾ったアイテムのID取得
 
@@ -96,7 +96,7 @@ public class PlayerItemCatch : MonoBehaviour
                 rig.drag = carryingWeight;  //重さ変更
             }
 
-            inventoryMgr.GetItemInfo(item);
+            //inventoryMgr.GetItemInfo(item);
 
             print(itemData.GetItemLists()[catchItemID].ItemID + " : " + itemData.GetItemLists()[catchItemID].Name
                    + " : " + itemData.GetItemLists()[catchItemID].Price + " : " + itemData.GetItemLists()[catchItemID].Weight
@@ -108,12 +108,12 @@ public class PlayerItemCatch : MonoBehaviour
         //アイテム捨てる
         if (!isDoNotThrow && (Input.GetKeyDown("joystick button 1") || Input.GetKeyDown(KeyCode.Mouse1)))
         {
-            //if (itemLists.Count <= 0)
-            //{
-            //    return;
-            //}
+            if (itemLists.Count <= 0)
+            {
+                return;
+            }
 
-            //removeItem = itemLists[zero];   //捨てたアイテムの情報保持
+            removeItem = itemLists[zero];   //捨てたアイテムの情報保持
 
             catchItemID = removeItem.GetComponent<ItemCreate>().itemID; //捨てたアイテムのID取得
 
@@ -125,17 +125,17 @@ public class PlayerItemCatch : MonoBehaviour
 
             rig.drag = carryingWeight;  //重さ変更
 
-            //itemLists[zero].SetActive(true);        //アイテム表示
-            //itemLists[zero].transform.position = this.transform.position;   //自分の足元へ落とす
-            //itemLists.Remove(itemLists[zero]);          //リストから削除
-            //i--;                                //デクリメント
+            itemLists[zero].SetActive(true);        //アイテム表示
+            itemLists[zero].transform.position = this.transform.position;   //自分の足元へ落とす
+            itemLists.Remove(itemLists[zero]);          //リストから削除
+            i--;                                //デクリメント
         }
 
-        ////添え字がマイナスになるとき0にする
-        //if (i < zero)
-        //{
-        //    i = zero;
-        //}
+        //添え字がマイナスになるとき0にする
+        if (i < zero)
+        {
+            i = zero;
+        }
 
     }
 
