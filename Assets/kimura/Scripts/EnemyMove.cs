@@ -39,7 +39,6 @@ public class EnemyMove : MonoBehaviour
         InitialPosition = MyTrans.position;//自分の初期位置を取得
         GetVison = GetComponent<EnemyVisionScript>();//子オブジェクトからEnemyVisionスクリプトを取得
         SetDirection();
-        
     }
 
     // Update is called once per frame
@@ -49,7 +48,8 @@ public class EnemyMove : MonoBehaviour
         MyVector = MyTrans.position;//自分の向きを取得
         if (GetVison.existIsPatrol)//警備中だったら
         {
-            MyTrans.Translate(GetVison.GetVisonVec * Time.deltaTime);//巡回させる
+            MyTrans.Translate(GetVison.GetVisionVec * Time.deltaTime);//巡回させる
+            
             switch (GetVison.GetMyRotation)
             {
 

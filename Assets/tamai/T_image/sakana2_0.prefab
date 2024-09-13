@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8091892434397370745}
   - component: {fileID: 7467923422200086675}
   - component: {fileID: 3685697105464091293}
+  - component: {fileID: 7342492848357400337}
   m_Layer: 0
   m_Name: sakana2_0
   m_TagString: Item
@@ -27,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 8020067085286343930}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.2105, y: -0.87, z: 0}
-  m_LocalScale: {x: 0.6205, y: 0.5628, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -131,3 +132,17 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 6.38, y: 6.38}
   m_EdgeRadius: 0
+--- !u!114 &7342492848357400337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8020067085286343930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac40788852afe644c95047d8efd03ce1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData: {fileID: 11400000, guid: 01ce962ec5e697a4f99bdfae05602cec, type: 2}
+  itemID: 1
