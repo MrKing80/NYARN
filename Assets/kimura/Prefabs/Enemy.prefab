@@ -111,7 +111,7 @@ MonoBehaviour:
   _rayDistance: 5
   TargetLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   _trackingSpeed: 3
   isTracking: 0
 --- !u!114 &6051563206678261081
@@ -143,10 +143,10 @@ MonoBehaviour:
   GetAngle: 90
   ObstacleLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   TargetLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   _rayDistance: 5
   _rayRadius: 1
   _maxDistance: 10
