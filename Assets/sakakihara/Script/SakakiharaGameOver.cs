@@ -9,10 +9,14 @@ public class SakakiharaGameOver : MonoBehaviour
     //コンテニュー画面を出すためのスクリプト
     //解釈違いのため没
 
+    [Header("ゲームオーバーテキストを入れる")]
     [SerializeField] private TMP_Text gameOverUI;   //ゲームオーバーテキストを入れる
+    [Header("ゲームオーバーからコンテニュー出すまでの時間")]
     [SerializeField] private float TimeToDisplay;   //コンテニュー出すまでの時間
 
+    [Header("プレイヤーオブジェクトを入れる")]
     [SerializeField] private GameObject playerObj;  //プレイヤーオブジェクトを入れる
+    [Header("ゲーム開始時のプレイヤー位置を入れる")]
     [SerializeField] private GameObject spawnPosition;  //開始地点を入れる
 
     private bool isTr = false;  //コンテニュー画面が出ているのか確認

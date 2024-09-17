@@ -410,8 +410,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 0, b: 0, a: 1}
-    m_PressedColor: {r: 0, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0, g: 1, b: 1, a: 1}
+    m_PressedColor: {r: 1, g: 0, b: 0, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -494,12 +494,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9945d378e950874ca16315a3ef63f85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scriptMemo: "\u30B3\u30F3\u30C6\u30CB\u30E5\u30FC\u753B\u9762\u3067\u306E\u30BF\u30A4\u30C8\u30EB\u623B\u308B\u304B\u3069\u3046\u304B"
   ReviveButtons: {fileID: 865668004}
   TitleButtons: {fileID: 2033047630}
-  layerMemo: "GoBackToTheTitle()//\u5FA9\u6D3B\u3057\u306A\u3044\u3092\u9078\u629E
+  buttonsMemo: "GoBackToTheTitle()//\u5FA9\u6D3B\u3057\u306A\u3044\u3092\u9078\u629E
     \n IllStopAfterAll()//\u3084\u3063\u3071\u30BF\u30A4\u30C8\u30EB\u884C\u304F\u306E\u3084\u3081\u308B
     \n ReturnToTitle()//\u30BF\u30A4\u30C8\u30EB\u306B\u623B\u308B\u306B\u540C\u610F
-    \n 0 \n"
+    \n  \n"
 --- !u!1 &614928485
 GameObject:
   m_ObjectHideFlags: 0
@@ -748,8 +749,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 0, b: 0, a: 1}
-    m_PressedColor: {r: 0, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0, g: 1, b: 1, a: 1}
+    m_PressedColor: {r: 1, g: 0.010316203, b: 0, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -832,12 +833,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9945d378e950874ca16315a3ef63f85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scriptMemo: "\u30B3\u30F3\u30C6\u30CB\u30E5\u30FC\u753B\u9762\u3067\u306E\u30BF\u30A4\u30C8\u30EB\u623B\u308B\u304B\u3069\u3046\u304B"
   ReviveButtons: {fileID: 865668004}
   TitleButtons: {fileID: 2033047630}
-  layerMemo: "GoBackToTheTitle()//\u5FA9\u6D3B\u3057\u306A\u3044\u3092\u9078\u629E
+  buttonsMemo: "GoBackToTheTitle()//\u5FA9\u6D3B\u3057\u306A\u3044\u3092\u9078\u629E
     \n IllStopAfterAll()//\u3084\u3063\u3071\u30BF\u30A4\u30C8\u30EB\u884C\u304F\u306E\u3084\u3081\u308B
     \n ReturnToTitle()//\u30BF\u30A4\u30C8\u30EB\u306B\u623B\u308B\u306B\u540C\u610F
-    \n 0 \n"
+    \n  \n"
 --- !u!1 &1035928896
 GameObject:
   m_ObjectHideFlags: 0
@@ -1118,6 +1120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce6da20cad71dc4281e26b5f27e7d18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scriptMemo: "\u30B3\u30F3\u30C6\u30CB\u30E5\u30FC\u753B\u9762\u3092\u6D88\u3059\u305F\u3081\u306E\u30B9\u30AF\u30EA\u30D7\u30C8"
 --- !u!1 &1408630552
 GameObject:
   m_ObjectHideFlags: 0
@@ -1635,12 +1638,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9945d378e950874ca16315a3ef63f85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scriptMemo: "\u30B3\u30F3\u30C6\u30CB\u30E5\u30FC\u753B\u9762\u3067\u306E\u30BF\u30A4\u30C8\u30EB\u623B\u308B\u304B\u3069\u3046\u304B"
   ReviveButtons: {fileID: 865668004}
   TitleButtons: {fileID: 2033047630}
-  layerMemo: "GoBackToTheTitle()//\u5FA9\u6D3B\u3057\u306A\u3044\u3092\u9078\u629E
+  buttonsMemo: "GoBackToTheTitle()//\u5FA9\u6D3B\u3057\u306A\u3044\u3092\u9078\u629E
     \n IllStopAfterAll()//\u3084\u3063\u3071\u30BF\u30A4\u30C8\u30EB\u884C\u304F\u306E\u3084\u3081\u308B
     \n ReturnToTitle()//\u30BF\u30A4\u30C8\u30EB\u306B\u623B\u308B\u306B\u540C\u610F
-    \n 0 \n"
+    \n  \n"
 --- !u!1 &1697667806
 GameObject:
   m_ObjectHideFlags: 0
