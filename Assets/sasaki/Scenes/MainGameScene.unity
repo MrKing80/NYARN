@@ -7970,7 +7970,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 1073741856
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 2dd6173ca43fbd146bf7e9141bc917f8, type: 2}
   m_TargetDisplay: 0
@@ -54790,7 +54790,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1378945100}
   - component: {fileID: 1378945099}
-  m_Layer: 7
+  m_Layer: 30
   m_Name: MiniMapBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55391,7 +55391,7 @@ GameObject:
   - component: {fileID: 1565934551}
   - component: {fileID: 1565934550}
   - component: {fileID: 1565934549}
-  m_Layer: 7
+  m_Layer: 30
   m_Name: ForMinimap
   m_TagString: Wall
   m_Icon: {fileID: 0}

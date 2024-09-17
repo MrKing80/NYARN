@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6095495068394732761}
   - component: {fileID: 2357930472715949965}
   - component: {fileID: 6416963095277969750}
-  m_Layer: 7
+  m_Layer: 30
   m_Name: MinMapPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
