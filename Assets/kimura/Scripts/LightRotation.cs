@@ -10,12 +10,13 @@ public class LightRotation : MonoBehaviour
     void Start()
     {
         ParentTrans = transform.parent;
-        GetVision = ParentTrans.GetComponent<EnemyVisionScript>();
+        GetVision = GetComponentInParent<EnemyVisionScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        print("oooooo");
         this.transform.rotation = Quaternion.Euler(0, 0, GetVision.GetMyRotation);
     }
 }
