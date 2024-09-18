@@ -14,10 +14,10 @@ public class MainGameMoneyManager : MonoBehaviour
     private int nowHaveMoney = 0;
      
     //現在のステージ
-    private int stageNum = 1;
+    private int stageNum = 0;
 
     //各ステージの目標金額を格納した配列
-    private string[] goalMoneyArrey = new string[3] { "50,000,000", "500,000,000", "50,000,000,000" };
+    private string[] goalMoneyArrey = new string[3] { "140,000,000", "500,000,000", "50,000,000,000" };
 
     private static MainGameMoneyManager instance = default;
 
