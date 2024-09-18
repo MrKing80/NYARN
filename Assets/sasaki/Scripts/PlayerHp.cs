@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class PlayerHP : MonoBehaviour
@@ -56,4 +57,10 @@ public class PlayerHP : MonoBehaviour
         yield return new WaitForSeconds(flgChangeTime);
         isInvincible = false;
     }
+
+    //private IEnumerator GoToContinue()
+    //{
+    //    yield return new WaitForSeconds(1.0f);
+    //    SceneManager.LoadScene("ContinuationScenes");
+    //}
 }
