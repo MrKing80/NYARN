@@ -44,7 +44,7 @@ public class EnemyVisionScript : MonoBehaviour
     [Header("停止するか制御する")]
     [SerializeField] private bool isStop = false;//停止させるためのフラグ
     [Header("巡回させるか制御する")]
-    private bool isPatrol = true;//パトロール中かどうか制御する
+    [SerializeField] private bool isPatrol = true;//パトロール中かどうか制御する
     public bool existIsPatrol//isPatrolのプロパティ
     {
         get { return isPatrol; }
