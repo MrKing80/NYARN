@@ -6,7 +6,7 @@ using TMPro;
 public class PlayerHP : MonoBehaviour
 {
     [SerializeField, Header("HPを入れるところだよ～")] private int playerHp;
-    private int maxHP;    //復帰した時のHPを入れる
+    private int maxHP = 3;    //復帰した時のHPを入れる
 
     [SerializeField, Header("ゲームオーバーテキスト入れるところだよ～")] private TMP_Text gameOverUi;
 
@@ -14,7 +14,7 @@ public class PlayerHP : MonoBehaviour
     private bool isInvincible = false;
 
     //切り替え時間
-    private float flgChangeTime = 0.5f;
+    private float flgChangeTime = 1.5f;
 
     //カウント時間
     private float countTime = 0f;
@@ -23,24 +23,11 @@ public class PlayerHP : MonoBehaviour
     {
         gameOverUi.enabled = false;
 
-        maxHP = +playerHp;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //無敵状態の場合
-        if (isInvincible)
-        {
-            countTime += Time.deltaTime;
-
-            if (countTime >= flgChangeTime)
-            {
-                countTime = 0;
-                isInvincible = false;
-            }
-        }
-
         if (playerHp <= 0)
         {
             gameOverUi.enabled = true;
@@ -52,21 +39,21 @@ public class PlayerHP : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         //敵に触れたとき
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") && !isInvincible)
         {
-            if (isInvincible)
-            {
-                return;
-            }
-            else if (!isInvincible)
-            {
-                playerHp--;
-                print("HIT");
-                isInvincible = true;
-            }
+            playerHp--;
+            print("HIT!");
+            isInvincible = true;
+            StartCoroutine(NoHpDecreasesTime());
         }
+    }
+
+    private IEnumerator NoHpDecreasesTime()
+    {
+        yield return new WaitForSeconds(flgChangeTime);
+        isInvincible = false;
     }
 }
