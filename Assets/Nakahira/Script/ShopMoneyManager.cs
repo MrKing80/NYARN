@@ -13,9 +13,9 @@ public class ShopMoneyManager : MonoBehaviour
     [SerializeField] private Animator anim;
 
     // ボタンの価格
-    [SerializeField] private int price = 100000;
-    [SerializeField] private int moneypey = 200000;
-    [SerializeField] private int mappey = 500000;
+    [SerializeField] private int price = 10000000;
+    [SerializeField] private int moneypey = 20000000;
+    [SerializeField] private int mappey = 50000000;
     //ボタンを取得
     [SerializeField] private Button shoes;
     [SerializeField] private Button pawer;
@@ -28,9 +28,9 @@ public class ShopMoneyManager : MonoBehaviour
     [SerializeField] private Sprite newSprite2;
     [SerializeField] private Sprite newSprite3;
     [SerializeField] private Sprite newSprite4;
-    [SerializeField] private int common_people = 700000;
-    [SerializeField] private int wealthy = 1500000;
-    [SerializeField] private int millionaire = 2000000;
+    [SerializeField] private int common_people = 7000000;
+    [SerializeField] private int wealthy = 15000000;
+    [SerializeField] private int millionaire = 20000000;
     //それぞれ押した回数
     private int countshoes = 0;
     private int countpawer = 0;
@@ -194,7 +194,7 @@ public class ShopMoneyManager : MonoBehaviour
             map.interactable = true;
 
             verticalmap += 1;
-            money += 20000;
+            //money += 20000;
             _moneypossession.text = money.ToString(); // UIを更新
         }
     }
