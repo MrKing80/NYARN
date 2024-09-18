@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class ShutdownScript : MonoBehaviour
 {
+    [Header("ゲームやめるを押してからゲーム終了するまでの時間")]
     [SerializeField] private float shutdownTime;    //ゲーム終了までの時間
 
+    [Header("タイトルの文字・スタートボタンとかのセットオブジェクト")]
     [SerializeField] private GameObject title;//タイトルアイテム
+    [Header("ゲームやめる？セットのオブジェクト")]
     [SerializeField] private GameObject confirmationScreen;//終了確認画面
+    
+    [Header("ボタンメモ")]
     [SerializeField, Multiline(5)]//説明欄（４行）
     private string buttonMemo
         = ("ShouldIStopPlayingGames()   //ゲームやめるボタン押したら \n ShutdownYes()   //はい、やめます \n ShutdownNo()    //いいえ、やめません ");
