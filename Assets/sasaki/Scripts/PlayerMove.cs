@@ -13,6 +13,9 @@ public class PlayerMove : MonoBehaviour
 
     private Animator playerAnimator = default;
 
+    // ★玉井追加 エフェクト用
+    [SerializeField] private Animator dashSmork = default;
+
     private float inputX = 0f;      //横方向のインプットされた値を保持する変数
     private float inputY = 0f;      //縦方向のインプットされた値を保持する変数
 
@@ -49,6 +52,9 @@ public class PlayerMove : MonoBehaviour
         rig = this.GetComponent<Rigidbody2D>();
         playerAnimator = this.GetComponent<Animator>();
         //itemCatch = this.GetComponent<PlayerItemCatch>();
+
+        // ★玉井追加 子オブジェクトのAnimator取得
+        dashSmork = GameObject.FindGameObjectWithTag("DashEffect").GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -61,6 +67,12 @@ public class PlayerMove : MonoBehaviour
         }
 
         speed = SpeedProperty;
+
+        // ★玉井追加 後日修正予定地　
+        if (speed < SpeedProperty)
+        {
+            dashSmork.SetTrigger("Dash");
+        }
 
         inputX = Input.GetAxisRaw("Horizontal") * speed;    //プレイヤーの横方向の移動速度を格納
         inputY = Input.GetAxisRaw("Vertical") * speed;      //プレイヤーの縦方向の移動速度を格納

@@ -194,7 +194,7 @@ public class ShopMoneyManager : MonoBehaviour
             map.interactable = true;
 
             verticalmap += 1;
-            money += 20000;
+//            money += 20000;
             _moneypossession.text = money.ToString(); // UI‚ğXV
         }
     }
