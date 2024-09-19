@@ -10,7 +10,7 @@ public class StartFromTheBeginning : MonoBehaviour
 
     private void Awake()
     {
-        SceneManager.LoadSceneAsync("VolumeChange", LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync("Volume_AND_Tutorial", LoadSceneMode.Additive);
     }
 
     public void FirstStageStarts()   //ƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚ç
