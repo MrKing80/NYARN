@@ -45,6 +45,8 @@ public class PlayerHP : MonoBehaviour
 
             if(intarval <= countTime)
             {
+                Time.timeScale = 0;
+
                 gameOverUi.enabled = false;
                 countTime = 0f;
                 continueUi.SetActive(true);
