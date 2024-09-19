@@ -6,9 +6,16 @@ public class ParticleCheck : MonoBehaviour
 
     private void Update()
     {
-        // 子オブジェクトのコライダー取得
-        isItemObj = this.GetComponentInParent<CircleCollider2D>().enabled;
+        if (gameObject.transform.parent.tag == "Item")
+        {   
+            // 子オブジェクトのコライダー取得
+            isItemObj = this.GetComponentInParent<BoxCollider2D>().enabled;
+        }
+        else
+        {
+            isItemObj = this.GetComponentInParent<CircleCollider2D>().enabled;
 
+        }
         // trueの時はリターン、falseの時は見えなくする
         if (isItemObj) return;
         this.gameObject.SetActive(false);

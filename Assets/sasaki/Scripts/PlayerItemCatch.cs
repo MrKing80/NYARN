@@ -62,6 +62,9 @@ public class PlayerItemCatch : MonoBehaviour
         //inventoryMgr = GameObject.Find("InventoryManager").GetComponent<S_InventoryManager>();
         //toolbarMgr = GameObject.Find("Toolbar").GetComponent<S_ToolbarManager>();
         //move = this.GetComponent<PlayerMove>();
+
+        carryMoney = 0;
+        moneyMgr.NowHaveMoneyProperty = carryMoney;     //UIのほうへ受け渡す
     }
     void Update()
     {

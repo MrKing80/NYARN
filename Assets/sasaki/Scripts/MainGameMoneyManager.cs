@@ -46,6 +46,8 @@ public class MainGameMoneyManager : MonoBehaviour
     void Start()
     {
         goalMoneyTextObj.SetText("目標金額:" + goalMoneyArrey[stageNum]);   //目標金額を表示
+
+        nowMoneyTextObj.SetText("0");   //現在の所持金額を表示
     }
 
     // Update is called once per frame
