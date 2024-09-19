@@ -15,8 +15,6 @@ TagManager:
   - Obstacle
   - particle
   - OutSideTile
-  - money
-  - DashEffect
   layers:
   - Default
   - TransparentFX
