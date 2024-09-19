@@ -43,6 +43,10 @@ public class EnemyVisionScript : MonoBehaviour
     private Transform VisionTrans;//自分の位置
     [Header("停止するか制御する")]
     [SerializeField] private bool isStop = false;//停止させるためのフラグ
+    public bool existsIsStop
+    {
+        get { return isStop; }
+    }
     [Header("巡回させるか制御する")]
     [SerializeField] private bool isPatrol = true;//パトロール中かどうか制御する
     public bool existIsPatrol//isPatrolのプロパティ

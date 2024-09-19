@@ -120,7 +120,7 @@ public class EnemyTracking : MonoBehaviour
             {
                 if (!GetAgent.hasPath || GetAgent.velocity.sqrMagnitude == 0f)
                 {
-                    OnDestinationReached();
+                    OnDestinationReached();//Œx”õ‚ğÄŠJ‚³‚¹‚é
                 }
                 
             }

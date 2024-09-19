@@ -54,7 +54,7 @@ public class EnemyMove : MonoBehaviour
         _myVector = MyTrans.position;//自分の向きを取得
         if (GetVison.existIsPatrol)
         {
-            MyTrans.Translate(movement * Time.deltaTime);//巡回させる
+            MyTrans.Translate(movement * _moveSpeed * Time.deltaTime);//巡回させる
         }
         // 移動があった場合、方向に応じてアニメーションを再生
         if (movement.magnitude > 0.1f)
@@ -68,14 +68,14 @@ public class EnemyMove : MonoBehaviour
                     EnemyAnimator.Play("rightwalk");
                     lastDirection = Vector2.right;
                     //EnemyAnimator.SetBool("rightwalk", true);
-                    print("みぎあるきです");
+                    //print("みぎあるきです");
                 }
                 else
                 {
                     EnemyAnimator.Play("leftwalk");
                     lastDirection = Vector2.left;
                     //EnemyAnimator.SetBool("leftwalk", true);
-                    print("ひだりあるきです");
+                    //print("ひだりあるきです");
                 }
             }
             // Y方向の移動を確認
@@ -86,18 +86,18 @@ public class EnemyMove : MonoBehaviour
                     EnemyAnimator.Play("forwardwalk");
                     lastDirection = Vector2.up;
                     //EnemyAnimator.SetBool("forwardwalk", true);
-                    print("うえあるきです");
+                    //print("うえあるきです");
                 }
                 else
                 {
                     EnemyAnimator.Play("Behindwalk");
                     lastDirection = Vector2.down;
                     //EnemyAnimator.SetBool("Behindwalk", true);
-                    print("したあるきです");
+                    //print("したあるきです");
                 }
             }
         }
-        else
+        else if(movement.magnitude <= 0.1f && !GetVison.existIsPatrol)
         {
             EnemyAnimator.SetBool("isMoving", false);
             print("とまってます");
@@ -105,22 +105,22 @@ public class EnemyMove : MonoBehaviour
             if (lastDirection == Vector2.right)
             {
                 EnemyAnimator.Play("right");
-                print("みぎです");
+                //print("みぎです");
             }
             else if (lastDirection == Vector2.left)
             {
                 EnemyAnimator.Play("left");
-                print("ひだりです");
+                //print("ひだりです");
             }
             else if (lastDirection == Vector2.up)
             {
                 EnemyAnimator.Play("forward");
-                print("うえです");
+                //print("うえです");
             }
             else if (lastDirection == Vector2.down)
             {
                 EnemyAnimator.Play("Behind");
-                print("したです");
+                //print("したです");
             }
         }
 

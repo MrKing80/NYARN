@@ -1113,12 +1113,20 @@ PrefabInstance:
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 4997586431027735329, guid: 10237f9d6c9a70740ace3baf204694c8, type: 3}
+      propertyPath: isStop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4997586431027735329, guid: 10237f9d6c9a70740ace3baf204694c8, type: 3}
       propertyPath: isPatrol
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4997586431027735329, guid: 10237f9d6c9a70740ace3baf204694c8, type: 3}
       propertyPath: _rayDistance
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6051563206678261081, guid: 10237f9d6c9a70740ace3baf204694c8, type: 3}
+      propertyPath: _moveSpeed
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7242210891104123364, guid: 10237f9d6c9a70740ace3baf204694c8, type: 3}
       propertyPath: m_Enabled
