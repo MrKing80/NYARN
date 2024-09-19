@@ -14,6 +14,6 @@ public class ReviveButtonScript : MonoBehaviour
     public void Onclick()
     {
         Time.timeScale = 1;
-        SceneManager.UnloadSceneAsync("ContinuationScenes");//Yes押したらコンテニュー画面消す
+        SceneManager.LoadScene("MainGameScene");//Yes押したらコンテニュー画面消す
     }
 }

@@ -11,11 +11,15 @@ public class PlayerHP : MonoBehaviour
 
     [SerializeField, Header("ゲームオーバーテキスト入れるところだよ～")] private TMP_Text gameOverUi;
 
+    [SerializeField, Header("ゲームオーバーテキスト入れるところだよ～")] private GameObject continueUi;
+
     //無敵かどうか
     private bool isInvincible = false;
 
     //切り替え時間
     private float flgChangeTime = 1.5f;
+
+    private float intarval = 1.0f;
 
     //カウント時間
     private float countTime = 0f;
@@ -24,6 +28,7 @@ public class PlayerHP : MonoBehaviour
     {
         gameOverUi.enabled = false;
 
+        continueUi.SetActive(false);
     }
 
     // Update is called once per frame
@@ -36,6 +41,15 @@ public class PlayerHP : MonoBehaviour
 
         if (gameOverUi.enabled)
         {
+            countTime += Time.deltaTime;
+
+            if(intarval <= countTime)
+            {
+                gameOverUi.enabled = false;
+                countTime = 0f;
+                continueUi.SetActive(true);
+
+            }
             playerHp = +maxHP;
         }
     }
