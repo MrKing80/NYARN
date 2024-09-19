@@ -59,6 +59,7 @@ public class EnemyMove : MonoBehaviour
         // 移動があった場合、方向に応じてアニメーションを再生
         if (movement.magnitude > 0.1f)
         {
+            EnemyAnimator.SetBool("isMoving", true);
             // X方向の移動を確認
             if (Mathf.Abs(movement.x) > Mathf.Abs(movement.y))
             {
@@ -66,14 +67,14 @@ public class EnemyMove : MonoBehaviour
                 {
                     EnemyAnimator.Play("rightwalk");
                     lastDirection = Vector2.right;
-                    EnemyAnimator.SetBool("rightwalk", true);
+                    //EnemyAnimator.SetBool("rightwalk", true);
                     print("みぎあるきです");
                 }
                 else
                 {
                     EnemyAnimator.Play("leftwalk");
                     lastDirection = Vector2.left;
-                    EnemyAnimator.SetBool("leftwalk", true);
+                    //EnemyAnimator.SetBool("leftwalk", true);
                     print("ひだりあるきです");
                 }
             }
@@ -84,20 +85,22 @@ public class EnemyMove : MonoBehaviour
                 {
                     EnemyAnimator.Play("forwardwalk");
                     lastDirection = Vector2.up;
-                    EnemyAnimator.SetBool("forwardwalk", true);
+                    //EnemyAnimator.SetBool("forwardwalk", true);
                     print("うえあるきです");
                 }
                 else
                 {
                     EnemyAnimator.Play("Behindwalk");
                     lastDirection = Vector2.down;
-                    EnemyAnimator.SetBool("Behindwalk", true);
+                    //EnemyAnimator.SetBool("Behindwalk", true);
                     print("したあるきです");
                 }
             }
         }
         else
         {
+            EnemyAnimator.SetBool("isMoving", false);
+            print("とまってます");
             // 移動がない場合、最後の移動方向に基づいて停止アニメーションを再生
             if (lastDirection == Vector2.right)
             {
