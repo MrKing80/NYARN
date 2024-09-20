@@ -13,13 +13,14 @@ public class ShopMoneyManager : MonoBehaviour
     [SerializeField] private Animator anim;
 
     // ボタンの価格
-    [SerializeField] private int price = 100000;
-    [SerializeField] private int moneypey = 200000;
-    [SerializeField] private int mappey = 500000;
+    [SerializeField] private int price = 10000000;
+    [SerializeField] private int moneypey = 20000000;
+    [SerializeField] private int mappey = 50000000;
     //ボタンを取得
     [SerializeField] private Button shoes;
     [SerializeField] private Button pawer;
     [SerializeField] private Button map;
+    [SerializeField] private Button end;
     [SerializeField] private Image image;
     //合計金額
     private int sum = 0;
@@ -28,9 +29,9 @@ public class ShopMoneyManager : MonoBehaviour
     [SerializeField] private Sprite newSprite2;
     [SerializeField] private Sprite newSprite3;
     [SerializeField] private Sprite newSprite4;
-    [SerializeField] private int common_people = 700000;
-    [SerializeField] private int wealthy = 1500000;
-    [SerializeField] private int millionaire = 2000000;
+    [SerializeField] private int common_people = 7000000;
+    [SerializeField] private int wealthy = 15000000;
+    [SerializeField] private int millionaire = 20000000;
     //それぞれ押した回数
     private int countshoes = 0;
     private int countpawer = 0;
@@ -68,7 +69,7 @@ public class ShopMoneyManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;  //sceneLoadedに関数を追加
 
         maparray = new GameObject[2, 3] { { map1, map2, map3 }, { map4, map5, map6 }, };
-
+        end.Select();
 
     }
     private void Update()
@@ -117,6 +118,7 @@ public class ShopMoneyManager : MonoBehaviour
         if (money < price || countpawer >= 3) // 価格が所持金以上ある場合ボタン押せなくする
         {
             pawer.interactable = false;
+            end.Select();
         }
     }
 
@@ -136,6 +138,7 @@ public class ShopMoneyManager : MonoBehaviour
         if (money < moneypey || countshoes >= 3) // 価格が所持金以上ある場合ボタン押せなくする
         {
             shoes.interactable = false;
+            end.Select();
         }
 
     }
@@ -158,6 +161,7 @@ public class ShopMoneyManager : MonoBehaviour
         if (money < mappey || countmap >= 3) // 価格が所持金以上ある場合ボタン押せなくする
         {
             map.interactable = false;
+            end.Select();
         }
 
     }
@@ -194,7 +198,7 @@ public class ShopMoneyManager : MonoBehaviour
             map.interactable = true;
 
             verticalmap += 1;
-//            money += 20000;
+            //money += 20000;
             _moneypossession.text = money.ToString(); // UIを更新
         }
     }

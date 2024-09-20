@@ -14,7 +14,7 @@ public class OnClickButton : MonoBehaviour
     /// </summary>
     public void GoToTitle()
     {
-        SceneManager.LoadScene("TitleScene");
+        SceneManager.LoadScene("SampleTitle");
     }
 
     /// <summary>

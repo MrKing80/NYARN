@@ -137,7 +137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &82032556
 AudioListener:
   m_ObjectHideFlags: 0
@@ -185,7 +185,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 255
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 235108717}
   - component: {fileID: 235108719}
   - component: {fileID: 235108718}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,8 +361,8 @@ GameObject:
   - component: {fileID: 536338029}
   - component: {fileID: 536338028}
   - component: {fileID: 536338031}
-  m_Layer: 5
-  m_Name: No
+  m_Layer: 7
+  m_Name: TitleNo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -410,9 +410,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 0, b: 0, a: 1}
-    m_PressedColor: {r: 0, g: 1, b: 1, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0, g: 1, b: 1, a: 1}
+    m_PressedColor: {r: 1, g: 0, b: 0, a: 1}
+    m_SelectedColor: {r: 0, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -494,12 +494,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9945d378e950874ca16315a3ef63f85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scriptMemo: "\u30B3\u30F3\u30C6\u30CB\u30E5\u30FC\u753B\u9762\u3067\u306E\u30BF\u30A4\u30C8\u30EB\u623B\u308B\u304B\u3069\u3046\u304B"
   ReviveButtons: {fileID: 865668004}
   TitleButtons: {fileID: 2033047630}
-  layerMemo: "GoBackToTheTitle()//\u5FA9\u6D3B\u3057\u306A\u3044\u3092\u9078\u629E
+  buttonsMemo: "GoBackToTheTitle()//\u5FA9\u6D3B\u3057\u306A\u3044\u3092\u9078\u629E
     \n IllStopAfterAll()//\u3084\u3063\u3071\u30BF\u30A4\u30C8\u30EB\u884C\u304F\u306E\u3084\u3081\u308B
     \n ReturnToTitle()//\u30BF\u30A4\u30C8\u30EB\u306B\u623B\u308B\u306B\u540C\u610F
-    \n 0 \n"
+    \n  \n"
 --- !u!1 &614928485
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,7 +578,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 865668005}
-  m_Layer: 0
+  - component: {fileID: 865668006}
+  m_Layer: 7
   m_Name: ReviveButtons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -592,7 +594,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 865668004}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
@@ -602,6 +604,20 @@ Transform:
   - {fileID: 916263663}
   m_Father: {fileID: 1408630556}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &865668006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865668004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7efde22add29f04eb8b48597f2ed12a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yesButton: {fileID: 1371423668}
+  noButton: {fileID: 916263664}
 --- !u!1 &908760346
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,7 +675,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 20
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.11320752, g: 0.105882354, b: 0.105882354, a: 1}
   m_FlipX: 0
@@ -699,8 +715,8 @@ GameObject:
   - component: {fileID: 916263665}
   - component: {fileID: 916263664}
   - component: {fileID: 916263667}
-  m_Layer: 5
-  m_Name: No
+  m_Layer: 7
+  m_Name: ReviveNo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -739,18 +755,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnLeft: {fileID: 1371423668}
+    m_SelectOnRight: {fileID: 916263664}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 0, b: 0, a: 1}
-    m_PressedColor: {r: 0, g: 1, b: 1, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0, g: 1, b: 1, a: 1}
+    m_PressedColor: {r: 1, g: 0.010316203, b: 0, a: 1}
+    m_SelectedColor: {r: 0, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -832,12 +848,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9945d378e950874ca16315a3ef63f85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scriptMemo: "\u30B3\u30F3\u30C6\u30CB\u30E5\u30FC\u753B\u9762\u3067\u306E\u30BF\u30A4\u30C8\u30EB\u623B\u308B\u304B\u3069\u3046\u304B"
   ReviveButtons: {fileID: 865668004}
   TitleButtons: {fileID: 2033047630}
-  layerMemo: "GoBackToTheTitle()//\u5FA9\u6D3B\u3057\u306A\u3044\u3092\u9078\u629E
+  buttonsMemo: "GoBackToTheTitle()//\u5FA9\u6D3B\u3057\u306A\u3044\u3092\u9078\u629E
     \n IllStopAfterAll()//\u3084\u3063\u3071\u30BF\u30A4\u30C8\u30EB\u884C\u304F\u306E\u3084\u3081\u308B
     \n ReturnToTitle()//\u30BF\u30A4\u30C8\u30EB\u306B\u623B\u308B\u306B\u540C\u610F
-    \n 0 \n"
+    \n  \n"
 --- !u!1 &1035928896
 GameObject:
   m_ObjectHideFlags: 0
@@ -849,7 +866,7 @@ GameObject:
   - component: {fileID: 1035928897}
   - component: {fileID: 1035928899}
   - component: {fileID: 1035928898}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -985,8 +1002,8 @@ GameObject:
   - component: {fileID: 1371423669}
   - component: {fileID: 1371423668}
   - component: {fileID: 1371423671}
-  m_Layer: 5
-  m_Name: Yes
+  m_Layer: 7
+  m_Name: ReviveYes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1025,18 +1042,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnLeft: {fileID: 916263664}
+    m_SelectOnRight: {fileID: 1371423668}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 1, g: 0, b: 0, a: 1}
     m_PressedColor: {r: 0, g: 1, b: 1, a: 1}
-    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_SelectedColor: {r: 1, g: 0, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1118,6 +1135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce6da20cad71dc4281e26b5f27e7d18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scriptMemo: "\u30B3\u30F3\u30C6\u30CB\u30E5\u30FC\u753B\u9762\u3092\u6D88\u3059\u305F\u3081\u306E\u30B9\u30AF\u30EA\u30D7\u30C8"
 --- !u!1 &1408630552
 GameObject:
   m_ObjectHideFlags: 0
@@ -1130,7 +1148,7 @@ GameObject:
   - component: {fileID: 1408630555}
   - component: {fileID: 1408630554}
   - component: {fileID: 1408630553}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1214,6 +1232,7 @@ RectTransform:
   m_Children:
   - {fileID: 865668005}
   - {fileID: 2033047631}
+  - {fileID: 2134975069}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1232,7 +1251,7 @@ GameObject:
   - component: {fileID: 1431997525}
   - component: {fileID: 1431997527}
   - component: {fileID: 1431997526}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1366,7 +1385,7 @@ GameObject:
   - component: {fileID: 1564022538}
   - component: {fileID: 1564022540}
   - component: {fileID: 1564022539}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1502,8 +1521,8 @@ GameObject:
   - component: {fileID: 1685822321}
   - component: {fileID: 1685822320}
   - component: {fileID: 1685822323}
-  m_Layer: 5
-  m_Name: Yes
+  m_Layer: 7
+  m_Name: TitleYes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1553,7 +1572,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 1, g: 0, b: 0, a: 1}
     m_PressedColor: {r: 0, g: 1, b: 1, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 1, g: 0, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1635,12 +1654,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9945d378e950874ca16315a3ef63f85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scriptMemo: "\u30B3\u30F3\u30C6\u30CB\u30E5\u30FC\u753B\u9762\u3067\u306E\u30BF\u30A4\u30C8\u30EB\u623B\u308B\u304B\u3069\u3046\u304B"
   ReviveButtons: {fileID: 865668004}
   TitleButtons: {fileID: 2033047630}
-  layerMemo: "GoBackToTheTitle()//\u5FA9\u6D3B\u3057\u306A\u3044\u3092\u9078\u629E
+  buttonsMemo: "GoBackToTheTitle()//\u5FA9\u6D3B\u3057\u306A\u3044\u3092\u9078\u629E
     \n IllStopAfterAll()//\u3084\u3063\u3071\u30BF\u30A4\u30C8\u30EB\u884C\u304F\u306E\u3084\u3081\u308B
     \n ReturnToTitle()//\u30BF\u30A4\u30C8\u30EB\u306B\u623B\u308B\u306B\u540C\u610F
-    \n 0 \n"
+    \n  \n"
 --- !u!1 &1697667806
 GameObject:
   m_ObjectHideFlags: 0
@@ -1652,7 +1672,7 @@ GameObject:
   - component: {fileID: 1697667807}
   - component: {fileID: 1697667809}
   - component: {fileID: 1697667808}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1786,7 +1806,7 @@ GameObject:
   - component: {fileID: 1869497513}
   - component: {fileID: 1869497515}
   - component: {fileID: 1869497514}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1918,7 +1938,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2033047631}
-  m_Layer: 0
+  - component: {fileID: 2033047632}
+  m_Layer: 7
   m_Name: TitleButtons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1933,7 +1954,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2033047630}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
@@ -1941,6 +1962,51 @@ Transform:
   - {fileID: 235108717}
   - {fileID: 1685822318}
   - {fileID: 536338027}
+  m_Father: {fileID: 1408630556}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2033047632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033047630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7efde22add29f04eb8b48597f2ed12a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yesButton: {fileID: 1685822320}
+  noButton: {fileID: 536338028}
+--- !u!1 &2134975068
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2134975069}
+  m_Layer: 7
+  m_Name: ButtonSummary
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2134975069
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2134975068}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
   m_Father: {fileID: 1408630556}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
