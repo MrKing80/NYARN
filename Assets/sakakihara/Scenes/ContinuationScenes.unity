@@ -269,9 +269,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Pretend it never happened
-
-    Return to title?'
+  m_text: "\u30EA\u30B9\u30BF\u30FC\u30C8\u305B\u305A\u306B\u30BF\u30A4\u30C8\u30EB\u3078\u623B\u308A\u307E\u3059\u304B\uFF1F"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f03d668427ab6eb468ba0cbb9ce37ede, type: 2}
   m_sharedMaterial: {fileID: 2918923297687789610, guid: 358919ef0c41b024dac6c85d526a0d2f, type: 2}
@@ -1433,7 +1431,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Should I restart with one less item?
+  m_text: "\u30EA\u30B9\u30BF\u30FC\u30C8\u3057\u307E\u3059\u304B\uFF1F"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f03d668427ab6eb468ba0cbb9ce37ede, type: 2}
   m_sharedMaterial: {fileID: -8680568183509943837, guid: f03d668427ab6eb468ba0cbb9ce37ede, type: 2}
