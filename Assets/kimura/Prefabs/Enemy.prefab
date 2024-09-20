@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2021789544146920626}
   - component: {fileID: 1936335496319126281}
   - component: {fileID: 1929715739471741347}
-  - component: {fileID: 6051563206678261081}
+  - component: {fileID: 743452103235128465}
   - component: {fileID: 4997586431027735329}
   - component: {fileID: -4141011169930768288}
   - component: {fileID: 9038658439453638358}
@@ -115,7 +115,7 @@ MonoBehaviour:
     m_Bits: 8
   _trackingSpeed: 3
   isTracking: 0
---- !u!114 &6051563206678261081
+--- !u!114 &743452103235128465
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 404f05b50751568448fbc133b8685396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   _moveSpeed: 3
 --- !u!114 &4997586431027735329
 MonoBehaviour:

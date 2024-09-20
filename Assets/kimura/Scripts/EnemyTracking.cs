@@ -114,7 +114,7 @@ public class EnemyTracking : MonoBehaviour
     {
         isTracking = false;
         _alertTime -= Time.deltaTime;
-        
+
         if (_alertTime <= 0)//Š®‘S‚ÉŒ©Ž¸‚Á‚½‚ç
         {
            

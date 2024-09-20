@@ -5,13 +5,10 @@ using UnityEngine;
 
 public class EnemyMove : MonoBehaviour
 {
-    // Start is called before the first frame update
-    //EnemyTracking GetTracking;
-
-    EnemyVisionScript GetVison;
-    EnemyTracking GetTracking;
-    NavMeshAgent2D Agent2D;
-    Animator EnemyAnimator;
+    private EnemyVisionScript GetVison;
+    private EnemyTracking GetTracking;
+    private NavMeshAgent2D Agent2D;
+    private Animator EnemyAnimator;
     private Transform MyTrans;
     public Transform GetMyTrans//MyTransのプロパティ
     {
@@ -38,7 +35,7 @@ public class EnemyMove : MonoBehaviour
         //GetTracking = this.GetComponent<EnemyTracking>();
         MyTrans = this.GetComponent<Transform>();//自分のTransformを取得
         EnemyAnimator = this.GetComponent<Animator>();
-        Agent2D=this.GetComponent<NavMeshAgent2D>();
+        Agent2D = this.GetComponent<NavMeshAgent2D>();
         _initialPosition = MyTrans.position;//自分の初期位置を取得
         GetVison = GetComponent<EnemyVisionScript>();//子オブジェクトからEnemyVisionスクリプトを取得
         GetTracking = GetComponent<EnemyTracking>();
