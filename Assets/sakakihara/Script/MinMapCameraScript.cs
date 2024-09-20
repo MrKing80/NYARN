@@ -45,7 +45,7 @@ public class MinMapCameraScript : MonoBehaviour
             //CameraRotation();//マップ回転用
         }
 
-        if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.Tab))//キー押したら
+        if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown("joystick button 6"))//キー押したら
         {
             if (!isBigMapFrag)
             {
@@ -57,7 +57,7 @@ public class MinMapCameraScript : MonoBehaviour
                 NotBigMap();
             }
         }
-        if (Input.GetKey(KeyCode.C) || Input.GetKey(KeyCode.Tab))
+        if (Input.GetKey(KeyCode.C) || Input.GetKey(KeyCode.Tab) || Input.GetKeyDown("joystick button 6"))
         {
             if (!isBigMap)
             {
