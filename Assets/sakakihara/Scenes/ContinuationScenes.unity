@@ -137,7 +137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &82032556
 AudioListener:
   m_ObjectHideFlags: 0
@@ -185,7 +185,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 255
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 235108717}
   - component: {fileID: 235108719}
   - component: {fileID: 235108718}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,7 +361,7 @@ GameObject:
   - component: {fileID: 536338029}
   - component: {fileID: 536338028}
   - component: {fileID: 536338031}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: TitleNo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -579,7 +579,7 @@ GameObject:
   m_Component:
   - component: {fileID: 865668005}
   - component: {fileID: 865668006}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ReviveButtons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -675,7 +675,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 20
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.11320752, g: 0.105882354, b: 0.105882354, a: 1}
   m_FlipX: 0
@@ -715,7 +715,7 @@ GameObject:
   - component: {fileID: 916263665}
   - component: {fileID: 916263664}
   - component: {fileID: 916263667}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: ReviveNo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -866,7 +866,7 @@ GameObject:
   - component: {fileID: 1035928897}
   - component: {fileID: 1035928899}
   - component: {fileID: 1035928898}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1002,7 +1002,7 @@ GameObject:
   - component: {fileID: 1371423669}
   - component: {fileID: 1371423668}
   - component: {fileID: 1371423671}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: ReviveYes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1148,7 +1148,7 @@ GameObject:
   - component: {fileID: 1408630555}
   - component: {fileID: 1408630554}
   - component: {fileID: 1408630553}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1251,7 +1251,7 @@ GameObject:
   - component: {fileID: 1431997525}
   - component: {fileID: 1431997527}
   - component: {fileID: 1431997526}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1385,7 +1385,7 @@ GameObject:
   - component: {fileID: 1564022538}
   - component: {fileID: 1564022540}
   - component: {fileID: 1564022539}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1521,7 +1521,7 @@ GameObject:
   - component: {fileID: 1685822321}
   - component: {fileID: 1685822320}
   - component: {fileID: 1685822323}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: TitleYes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1672,7 +1672,7 @@ GameObject:
   - component: {fileID: 1697667807}
   - component: {fileID: 1697667809}
   - component: {fileID: 1697667808}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1806,7 +1806,7 @@ GameObject:
   - component: {fileID: 1869497513}
   - component: {fileID: 1869497515}
   - component: {fileID: 1869497514}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1939,7 +1939,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2033047631}
   - component: {fileID: 2033047632}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TitleButtons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1987,7 +1987,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2134975069}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ButtonSummary
   m_TagString: Untagged
   m_Icon: {fileID: 0}

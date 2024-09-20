@@ -20,6 +20,7 @@ public class ShopMoneyManager : MonoBehaviour
     [SerializeField] private Button shoes;
     [SerializeField] private Button pawer;
     [SerializeField] private Button map;
+    [SerializeField] private Button end;
     [SerializeField] private Image image;
     //合計金額
     private int sum = 0;
@@ -68,7 +69,7 @@ public class ShopMoneyManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;  //sceneLoadedに関数を追加
 
         maparray = new GameObject[2, 3] { { map1, map2, map3 }, { map4, map5, map6 }, };
-
+        end.Select();
 
     }
     private void Update()
@@ -117,6 +118,7 @@ public class ShopMoneyManager : MonoBehaviour
         if (money < price || countpawer >= 3) // 価格が所持金以上ある場合ボタン押せなくする
         {
             pawer.interactable = false;
+            end.Select();
         }
     }
 
@@ -136,6 +138,7 @@ public class ShopMoneyManager : MonoBehaviour
         if (money < moneypey || countshoes >= 3) // 価格が所持金以上ある場合ボタン押せなくする
         {
             shoes.interactable = false;
+            end.Select();
         }
 
     }
@@ -158,6 +161,7 @@ public class ShopMoneyManager : MonoBehaviour
         if (money < mappey || countmap >= 3) // 価格が所持金以上ある場合ボタン押せなくする
         {
             map.interactable = false;
+            end.Select();
         }
 
     }
