@@ -17,14 +17,16 @@ public class EnemyMove : MonoBehaviour
         get { return MyTrans; }
         set { MyTrans = value; }
     }
-    private Vector2 MyVector;
+    private Vector2 _myVector;
     private float _initialDistance;
+    private Vector2 lastDirection;  // 最後の移動方向を保存する変数
     [Header("自分の初期位置")]
-    private Vector2 InitialPosition;//自分の初期位置  
-    public Vector2 GetInitialPos//InitialPositioのプロパティ
+    private Vector2 _initialPosition;//自分の初期位置  
+
+    public Vector2 GetInitialPos//InitialPositionのプロパティ
     {
-        get { return InitialPosition; }
-        set { InitialPosition = value; }
+        get { return _initialPosition; }
+        set { _initialPosition = value; }
     }
     [Header("自分のスピード")]
     [SerializeField] private float _moveSpeed = 4f;
@@ -36,7 +38,7 @@ public class EnemyMove : MonoBehaviour
         MyTrans = this.GetComponent<Transform>();//自分のTransformを取得
         EnemyAnimator = this.GetComponent<Animator>();
         Agent2D=this.GetComponent<NavMeshAgent2D>();
-        InitialPosition = MyTrans.position;//自分の初期位置を取得
+        _initialPosition = MyTrans.position;//自分の初期位置を取得
         GetVison = GetComponent<EnemyVisionScript>();//子オブジェクトからEnemyVisionスクリプトを取得
         SetDirection();
     }
@@ -44,53 +46,88 @@ public class EnemyMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _initialDistance = Vector2.Distance(InitialPosition, MyVector);
-        MyVector = MyTrans.position;//自分の向きを取得
-        if (GetVison.existIsPatrol)//警備中だったら
-        {
-            MyTrans.Translate(GetVison.GetVisionVec * Time.deltaTime);//巡回させる
-            
-            switch (GetVison.GetMyRotation)
-            {
-
-                case 90:
-                    EnemyAnimator.Play("Behindwalk");
-                    break;
-                case 270:
-                    EnemyAnimator.Play("forwardwalk");
-                    break;
-                case 0:
-                    EnemyAnimator.Play("rightwalk");
-                    break;
-                case 180:
-                    EnemyAnimator.Play("leftwalk");
-                    break;
-
-            }
-        }
-
-        else
-        {
-            switch (GetVison.GetMyRotation)
-            {
-
-                case 90:
-                    EnemyAnimator.Play("Behind");
-                    break;
-                case 270:
-                    EnemyAnimator.Play("forward");
-                    break;
-                case 0:
-                    EnemyAnimator.Play("right");
-                    break;
-                case 180:
-                    EnemyAnimator.Play("left");
-                    break;
-            }
-        }
-
+        
        
-      
+        //Vector2 currentPos = MyTrans.position;
+        Vector2 movement = GetVison.GetVisionVec;
+        _initialDistance = Vector2.Distance(_initialPosition, _myVector);
+        _myVector = MyTrans.position;//自分の向きを取得
+        if (GetVison.existIsPatrol)
+        {
+            MyTrans.Translate(movement * _moveSpeed * Time.deltaTime);//巡回させる
+        }
+        // 移動があった場合、方向に応じてアニメーションを再生
+        if (movement.magnitude > 0.1f)
+        {
+            EnemyAnimator.SetBool("isMoving", true);
+            // X方向の移動を確認
+            if (Mathf.Abs(movement.x) > Mathf.Abs(movement.y))
+            {
+                if (movement.x > 0)
+                {
+                    EnemyAnimator.Play("rightwalk");
+                    lastDirection = Vector2.right;
+                    //EnemyAnimator.SetBool("rightwalk", true);
+                    //print("みぎあるきです");
+                }
+                else
+                {
+                    EnemyAnimator.Play("leftwalk");
+                    lastDirection = Vector2.left;
+                    //EnemyAnimator.SetBool("leftwalk", true);
+                    //print("ひだりあるきです");
+                }
+            }
+            // Y方向の移動を確認
+            else
+            {
+                if (movement.y > 0)
+                {
+                    EnemyAnimator.Play("forwardwalk");
+                    lastDirection = Vector2.up;
+                    //EnemyAnimator.SetBool("forwardwalk", true);
+                    //print("うえあるきです");
+                }
+                else
+                {
+                    EnemyAnimator.Play("Behindwalk");
+                    lastDirection = Vector2.down;
+                    //EnemyAnimator.SetBool("Behindwalk", true);
+                    //print("したあるきです");
+                }
+            }
+        }
+        else if(movement.magnitude <= 0.1f && !GetVison.existIsPatrol)
+        {
+            EnemyAnimator.SetBool("isMoving", false);
+            print("とまってます");
+            // 移動がない場合、最後の移動方向に基づいて停止アニメーションを再生
+            if (lastDirection == Vector2.right)
+            {
+                EnemyAnimator.Play("right");
+                //print("みぎです");
+            }
+            else if (lastDirection == Vector2.left)
+            {
+                EnemyAnimator.Play("left");
+                //print("ひだりです");
+            }
+            else if (lastDirection == Vector2.up)
+            {
+                EnemyAnimator.Play("forward");
+                //print("うえです");
+            }
+            else if (lastDirection == Vector2.down)
+            {
+                EnemyAnimator.Play("Behind");
+                //print("したです");
+            }
+        }
+
+        //_myVector = currentPos;  // 現在の位置を更新
+
+
+
     }
     void SetDirection()
     {
