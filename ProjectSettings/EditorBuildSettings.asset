@@ -6,14 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/tamai/T_scene/Volume_AND_Tutorial.unity
-    guid: 36b14a5cc53227c4f83da34a0c51981f
-  - enabled: 1
     path: Assets/sakakihara/Scenes/SampleTitle.unity
     guid: 84a91c8028b1bc94ebae087a2d91f3a1
-  - enabled: 0
-    path: Assets/tamai/T_scene/Volume_AND_Tutorial.unity
-    guid: 36b14a5cc53227c4f83da34a0c51981f
   - enabled: 1
     path: Assets/sasaki/Scenes/MainGameScene.unity
     guid: e6689163bf7f8a845b2b294460623af3

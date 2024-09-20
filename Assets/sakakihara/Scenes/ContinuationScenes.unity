@@ -273,7 +273,7 @@ MonoBehaviour:
 
     Return to title?'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 358919ef0c41b024dac6c85d526a0d2f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f03d668427ab6eb468ba0cbb9ce37ede, type: 2}
   m_sharedMaterial: {fileID: 2918923297687789610, guid: 358919ef0c41b024dac6c85d526a0d2f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -618,6 +618,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yesButton: {fileID: 1371423668}
   noButton: {fileID: 916263664}
+  upButton: {fileID: 0}
+  downButton: {fileID: 0}
 --- !u!1 &908760346
 GameObject:
   m_ObjectHideFlags: 0
@@ -914,8 +916,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: no
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 358919ef0c41b024dac6c85d526a0d2f, type: 2}
-  m_sharedMaterial: {fileID: 2918923297687789610, guid: 358919ef0c41b024dac6c85d526a0d2f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f03d668427ab6eb468ba0cbb9ce37ede, type: 2}
+  m_sharedMaterial: {fileID: -8680568183509943837, guid: f03d668427ab6eb468ba0cbb9ce37ede, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1299,7 +1301,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: yes
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 358919ef0c41b024dac6c85d526a0d2f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f03d668427ab6eb468ba0cbb9ce37ede, type: 2}
   m_sharedMaterial: {fileID: 2918923297687789610, guid: 358919ef0c41b024dac6c85d526a0d2f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1433,8 +1435,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Should I restart with one less item?
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 358919ef0c41b024dac6c85d526a0d2f, type: 2}
-  m_sharedMaterial: {fileID: 2918923297687789610, guid: 358919ef0c41b024dac6c85d526a0d2f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f03d668427ab6eb468ba0cbb9ce37ede, type: 2}
+  m_sharedMaterial: {fileID: -8680568183509943837, guid: f03d668427ab6eb468ba0cbb9ce37ede, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1720,8 +1722,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: yes
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 358919ef0c41b024dac6c85d526a0d2f, type: 2}
-  m_sharedMaterial: {fileID: 2918923297687789610, guid: 358919ef0c41b024dac6c85d526a0d2f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f03d668427ab6eb468ba0cbb9ce37ede, type: 2}
+  m_sharedMaterial: {fileID: -8680568183509943837, guid: f03d668427ab6eb468ba0cbb9ce37ede, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1854,7 +1856,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: no
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 358919ef0c41b024dac6c85d526a0d2f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f03d668427ab6eb468ba0cbb9ce37ede, type: 2}
   m_sharedMaterial: {fileID: 2918923297687789610, guid: 358919ef0c41b024dac6c85d526a0d2f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1978,6 +1980,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yesButton: {fileID: 1685822320}
   noButton: {fileID: 536338028}
+  upButton: {fileID: 0}
+  downButton: {fileID: 0}
 --- !u!1 &2134975068
 GameObject:
   m_ObjectHideFlags: 0
