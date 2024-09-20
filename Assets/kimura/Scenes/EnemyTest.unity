@@ -97593,6 +97593,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4997586431027735329, guid: 10237f9d6c9a70740ace3baf204694c8, type: 3}
+      propertyPath: _direction
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4997586431027735329, guid: 10237f9d6c9a70740ace3baf204694c8, type: 3}
       propertyPath: _rayRadius
       value: 3
       objectReference: {fileID: 0}
@@ -111216,7 +111220,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e46cd9f45717c7c45be71755d43368e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 90415630}
 --- !u!195 &1823552315
 NavMeshAgent:
   m_ObjectHideFlags: 0

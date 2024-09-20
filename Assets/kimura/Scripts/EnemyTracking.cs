@@ -16,6 +16,7 @@ public class EnemyTracking : MonoBehaviour
     private float _arertTimeLimit = 5;
    
     [SerializeField] GameObject PlayerObj;
+    [SerializeField] GameObject LightObj;
     [Header("追跡時間")]
     [SerializeField] private float _trackingTime ;//追跡時間
     [Header("警戒時間")]
@@ -32,6 +33,7 @@ public class EnemyTracking : MonoBehaviour
     [SerializeField] private float _trackingSpeed = 5;//敵のスピード
     [Header("追跡フラグ")]
     [SerializeField] private bool isTracking = false;//追跡フラグ
+   
     NavMeshAgent GetAgent;
     public bool existIsTracking
     {
@@ -74,7 +76,7 @@ public class EnemyTracking : MonoBehaviour
 
         else if (!GetEnemyVision.GetHit1 && isTracking)//レイにヒットしていないが、追いかけてる最中だったら
         {
-            print("のがすな");
+            
             _trackingTime -= Time.deltaTime;          
         }
 
@@ -92,15 +94,17 @@ public class EnemyTracking : MonoBehaviour
 
             if (isTracking)//追跡フラグがオンだったら
         {
-            print("みいつけた！！");
+           
             GetAgent.enabled = true;
             _playerDistance = Vector2.Distance(PlayerVec, MyVector);//自分とプレイヤーの距離を計算
             PlayerVec = TargetTrans.position;//プレイヤーの位置を取得
             GetAgent.SetDestination(TargetTrans.position);//プレイヤーを追い掛け回す
             GetEnemyVision.existIsPatrol = false;//警備をやめて追跡
+            GetEnemyVision.existsIsStop = false;
                                                  //GetAgent2D.enabled = true;
-            //float _targetAngle = Mathf.Atan2(PlayerVec.y, PlayerVec.x) * Mathf.Rad2Deg;
-            //GetEnemyVision.GetMyRotation = _targetAngle;
+            Vector2 direction = TargetTrans.position - MyTrans.position;
+            float _targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            GetEnemyVision.GetMyRotation = _targetAngle;
             //GetEnemyVision.GetVisonVec = (TargetTrans.position - MyTrans.position).normalized;
         }
     }
@@ -110,10 +114,10 @@ public class EnemyTracking : MonoBehaviour
     {
         isTracking = false;
         _alertTime -= Time.deltaTime;
-        print("どこ？");
+        
         if (_alertTime <= 0)//完全に見失ったら
         {
-            print("つかれた");
+           
             GetAgent.SetDestination(GetMove.GetInitialPos);
             _initialPosDistance = Vector2.Distance(MyVector, GetMove.GetInitialPos);
             if (!GetAgent.pathPending&&GetAgent.remainingDistance<=GetAgent.stoppingDistance)//初期位置に戻ったら
@@ -149,9 +153,9 @@ public class EnemyTracking : MonoBehaviour
         GetEnemyVision.existIsPatrol = true;//警備再開させる
         //GetAgent2D.enabled = false;
         print(GetEnemyVision.existIsPatrol);
-        print("警備再開");
+       
         GetAgent.enabled = false;
-        print("えーじぇんとおふ");
+        
 
     }
 
