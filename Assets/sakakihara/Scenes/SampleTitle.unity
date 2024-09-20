@@ -5148,7 +5148,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u79FB\u52D5\u3000PC:WASD\u3000PAD:LS\n\u30A2\u30A4\u30C6\u30E0\u7372\u5F97\u3000PC:LMB\u3000PAD:A\n\u30A2\u30A4\u30C6\u30E0\u653E\u68C4\u3000PC:RMB\u3000PAD:\uFF1F\uFF1F\uFF1F\n\u30DE\u30C3\u30D7\u3000PC:C\u3000PAD:\uFF1F\uFF1F\uFF1F"
+  m_text: "\u79FB\u52D5\u3000PC:WASD\u3000PAD:LS\n\u30A2\u30A4\u30C6\u30E0\u7372\u5F97\u3000PC:LMB\u3000PAD:A\n\u30A2\u30A4\u30C6\u30E0\u653E\u68C4\u3000PC:RMB\u3000PAD:B\n\u30DE\u30C3\u30D7\u3000PC:C\u3000PAD:SELECT"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f03d668427ab6eb468ba0cbb9ce37ede, type: 2}
   m_sharedMaterial: {fileID: -8680568183509943837, guid: f03d668427ab6eb468ba0cbb9ce37ede, type: 2}
