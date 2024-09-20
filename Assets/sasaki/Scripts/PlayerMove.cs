@@ -54,7 +54,7 @@ public class PlayerMove : MonoBehaviour
         //itemCatch = this.GetComponent<PlayerItemCatch>();
 
         // ★玉井追加 子オブジェクトのAnimator取得
-        dashSmork = GameObject.FindGameObjectWithTag("DashEffect").GetComponent<Animator>();
+        //dashSmork = GameObject.FindGameObjectWithTag("DashEffect").GetComponent<Animator>();
     }
 
     // Update is called once per frame

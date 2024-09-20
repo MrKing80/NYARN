@@ -401,6 +401,7 @@ GameObject:
   - component: {fileID: 114018418}
   - component: {fileID: 114018417}
   - component: {fileID: 114018416}
+  - component: {fileID: 114018419}
   m_Layer: 5
   m_Name: BGM
   m_TagString: Untagged
@@ -509,6 +510,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 114018419}
+        m_TargetAssemblyTypeName: ButtonOn, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &114018417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -547,6 +560,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 114018414}
   m_CullTransparentMesh: 1
+--- !u!114 &114018419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 114018414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff69c9aed22ada84e8567c75eb7ddd68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  focusButton: {fileID: 640216520}
 --- !u!1 &217960232
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,6 +582,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 217960233}
+  - component: {fileID: 217960234}
   m_Layer: 5
   m_Name: back
   m_TagString: Untagged
@@ -588,6 +615,19 @@ RectTransform:
   m_AnchoredPosition: {x: -650, y: -400}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &217960234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217960232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff69c9aed22ada84e8567c75eb7ddd68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  focusButton: {fileID: 1794675436}
 --- !u!1 &260880617
 GameObject:
   m_ObjectHideFlags: 0
@@ -1625,6 +1665,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1185179626}
+        m_TargetAssemblyTypeName: ButtonOn, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &640216521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2568,6 +2620,7 @@ GameObject:
   - component: {fileID: 1020727962}
   - component: {fileID: 1020727961}
   - component: {fileID: 1020727960}
+  - component: {fileID: 1020727965}
   - component: {fileID: 1020727964}
   m_Layer: 5
   m_Name: tyuutoriaru
@@ -2679,6 +2732,19 @@ MonoBehaviour:
   noButton: {fileID: 1794675436}
   upButton: {fileID: 1420451225}
   downButton: {fileID: 0}
+--- !u!114 &1020727965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020727959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff69c9aed22ada84e8567c75eb7ddd68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  focusButton: {fileID: 1988546038}
 --- !u!1 &1028570589
 GameObject:
   m_ObjectHideFlags: 0
@@ -2691,6 +2757,7 @@ GameObject:
   - component: {fileID: 1028570593}
   - component: {fileID: 1028570592}
   - component: {fileID: 1028570591}
+  - component: {fileID: 1028570594}
   m_Layer: 5
   m_Name: Button (1)
   m_TagString: Untagged
@@ -2798,6 +2865,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1028570594}
+        m_TargetAssemblyTypeName: ButtonOn, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1028570592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2836,6 +2915,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1028570589}
   m_CullTransparentMesh: 1
+--- !u!114 &1028570594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1028570589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff69c9aed22ada84e8567c75eb7ddd68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  focusButton: {fileID: 1794675436}
 --- !u!1 &1079040905
 GameObject:
   m_ObjectHideFlags: 0
@@ -3057,6 +3149,7 @@ GameObject:
   - component: {fileID: 1185179623}
   - component: {fileID: 1185179622}
   - component: {fileID: 1185179621}
+  - component: {fileID: 1185179626}
   - component: {fileID: 1185179625}
   m_Layer: 5
   m_Name: BGMCanvas
@@ -3169,6 +3262,19 @@ MonoBehaviour:
   bGMSlider: {fileID: 1239413388}
   upButton: {fileID: 640216520}
   downButton: {fileID: 320753699}
+--- !u!114 &1185179626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185179620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff69c9aed22ada84e8567c75eb7ddd68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  focusButton: {fileID: 1988546038}
 --- !u!1 &1203499767
 GameObject:
   m_ObjectHideFlags: 0
@@ -3934,6 +4040,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1397529328}
+  - component: {fileID: 1397529329}
   m_Layer: 5
   m_Name: next
   m_TagString: Untagged
@@ -3965,6 +4072,19 @@ RectTransform:
   m_AnchoredPosition: {x: 650, y: -400}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1397529329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1397529327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff69c9aed22ada84e8567c75eb7ddd68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  focusButton: {fileID: 1508082703}
 --- !u!1 &1420451223
 GameObject:
   m_ObjectHideFlags: 0
@@ -4076,6 +4196,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1020727965}
+        m_TargetAssemblyTypeName: ButtonOn, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4355,6 +4487,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 217960234}
+        m_TargetAssemblyTypeName: ButtonOn, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5600,6 +5744,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1397529329}
+        m_TargetAssemblyTypeName: ButtonOn, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1794675437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5648,6 +5804,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1825385895}
   - component: {fileID: 1825385896}
+  - component: {fileID: 1825385897}
   m_Layer: 0
   m_Name: ConfirmationScreen
   m_TagString: Untagged
@@ -5691,6 +5848,19 @@ MonoBehaviour:
   noButton: {fileID: 1589806808}
   upButton: {fileID: 0}
   downButton: {fileID: 0}
+--- !u!114 &1825385897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825385894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff69c9aed22ada84e8567c75eb7ddd68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  focusButton: {fileID: 1978063027}
 --- !u!1 &1978063025
 GameObject:
   m_ObjectHideFlags: 0
@@ -5792,6 +5962,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1185179626}
+        m_TargetAssemblyTypeName: ButtonOn, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6689,6 +6871,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1825385897}
+        m_TargetAssemblyTypeName: ButtonOn, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
