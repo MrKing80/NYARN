@@ -6,8 +6,8 @@ using TMPro;
 
 public class PlayerHP : MonoBehaviour
 {
-    [SerializeField, Header("HPを入れるところだよ～")] private int playerHp;
-    private int maxHP = 3;    //復帰した時のHPを入れる
+    [SerializeField, Header("HPを入れるところだよ～")] public int playerHp;
+    public int maxHP = 3;    //復帰した時のHPを入れる
 
     [SerializeField, Header("ゲームオーバーテキスト入れるところだよ～")] private TMP_Text gameOverUi;
 
