@@ -46,6 +46,7 @@ public class EnemyVisionScript : MonoBehaviour
     public bool existsIsStop
     {
         get { return isStop; }
+        set { isStop = value; }
     }
     [Header("巡回させるか制御する")]
     [SerializeField] private bool isPatrol = true;//パトロール中かどうか制御する
@@ -129,28 +130,48 @@ public class EnemyVisionScript : MonoBehaviour
         //Debug.DrawRay(VisionTrans.position, Hit3Vec * _rayDistance, Color.green);
         ObstacleRay = Physics2D.Raycast(VisionTrans.position, VisionVec, _rayDistance, ObstacleLayer);//障害物を見分けるレイ
         PresenceRay = Physics2D.CircleCast(VisionTrans.position, _rayRadius, VisionVec, _maxDistance, TargetLayer);//死角でもプレイヤー察知できるようにするレイ
-        int _turnCount = default;
+        //int _turnCount = default;
+        if (_myRotation >= 360 && isPatrol)//360度超えたら角度リセット
+        {
+            
+            _myRotation -= 360;
+            
+            //print(_currentRotation);
+        }
+        else if (_myRotation < 0)
+        {
+           
+            _myRotation += 360;
+            
+        }
+
         if (isPatrol && ObstacleRay.collider != null && ObstacleRay.collider.gameObject != this.gameObject)//巡回時、障害物に当たったら
         {
-            print("あたった");
+            
             _myRotation += (int)GetAngle;//視線をGetAngleで指定した角度に傾かせる 　
-            if (_myRotation >= 360&&isPatrol)//360度超えたら角度リセット
+            if (_myRotation >= 360 && isPatrol)//360度超えたら角度リセット
             {
-                print("りせっとしまぁす");
+
                 _myRotation -= 360;
                 _currentRotation = _myRotation;//再度myRotationの値を取得
-                print(_currentRotation);
+                                               //print(_currentRotation);
             }
-            print(_myRotation);
+            else if (_myRotation < 0)
+            {
+
+                _myRotation += 360;
+                _currentRotation = _myRotation;
+            }
+            //print(_myRotation);
         }
 
         if (PresenceRay&&!GetTracking.existIsTracking)//索敵範囲にプレイヤーが衝突したら
         {
-            print("なんや?");
-            print(PresenceRay.collider.gameObject.name);//テスト用に名前を取得する
+            
+            //print(PresenceRay.collider.gameObject.name);//テスト用に名前を取得する
             isPatrol = false;//巡回をやめる
             isStop = true;//立ち止まる
-            print(_myRotation);
+            //print(_myRotation);
                           //if (_turnCount == 1)
                           //{
 
@@ -169,18 +190,18 @@ public class EnemyVisionScript : MonoBehaviour
         }
         else
         {
-            _turnCount = default;
+            //_turnCount = default;
         }
 
         if (isStop)//止まったら
         {
-            print(_turnCount);
+            
             _stopTime -= Time.deltaTime;//立ち止まる時間をカウントダウン
             _turnAroundTime -= Time.deltaTime;//振り向くまでの時間をカウントダウン
             if (_turnAroundTime <= 0)//一定時間立ち止まったら
             {
                 TurnAngle();//プレイヤーが視界内にいた位置に振り向く
-                print("ふりむけ");
+               
             }
             if (_stopTime <= 0)//０秒になったら（振り向く前にプレイヤーが移動したら)
             {        
@@ -211,7 +232,7 @@ public class EnemyVisionScript : MonoBehaviour
     /// </summary>
     void TurnAngle()
     {
-        //_presenceAngle = Mathf.Atan2(PresenceRay.point.y, PresenceRay.point.x) * Mathf.Rad2Deg;//衝突したオブジェクトの座標を取得
+        _presenceAngle = Mathf.Atan2(PresenceRay.point.y, PresenceRay.point.x) * Mathf.Rad2Deg;//衝突したオブジェクトの座標を取得
         _myRotation = _presenceAngle;//PresenceAngleの値を取得してその値の向きに合わせる
     }
 
