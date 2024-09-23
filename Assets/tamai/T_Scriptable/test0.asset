@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: test0
   m_EditorClassIdentifier: 
   type: 0
-  itemSprite: {fileID: 0}
+  itemSprite: {fileID: 6706051023371541992, guid: 0b0d6202fa8d02446a0b68efb9e06136, type: 3}
   ID: 0
   artName: test0
   gameObject: {fileID: 61339967902623507, guid: 74eb315a41396714b9ce9829210b091e, type: 3}
   explanation: "\u30C6\u30B9\u30C8\u7528\u30A2\u30A4\u30C6\u30E00"
   price: 100000
-  weight: 5
+  weight: 1
   dead: 0

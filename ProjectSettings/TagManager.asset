@@ -5,8 +5,18 @@ TagManager:
   serializedVersion: 2
   tags:
   - Item
+  - Enemy
   - Wall
+  - Light
+  - FirstFloor
+  - Treasure
+  - SecondFloor
+  - MapCamera
   - Obstacle
+  - particle
+  - OutSideTile
+  - money
+  - DashEffect
   layers:
   - Default
   - TransparentFX
@@ -14,7 +24,8 @@ TagManager:
   - Player
   - Water
   - UI
-  - Obstacle
+  - WallObject
+  - GameOver
   - 
   - 
   - 
@@ -36,11 +47,13 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - NotBigMap
+  - MinMap
   - 
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: T_tile
+    uniqueID: 3360441383
     locked: 0

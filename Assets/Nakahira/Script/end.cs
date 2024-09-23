@@ -20,7 +20,7 @@ public class end : MonoBehaviour
     }
     public void OnCllic()
     {
-        UnityEditor.EditorApplication.isPlaying = false;
+        //UnityEditor.EditorApplication.isPlaying = false;
         //SceneManager.LoadScene("");
     }
 }
