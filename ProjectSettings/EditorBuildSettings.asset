@@ -4,6 +4,9 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/sasaki/Scenes/MainGameScene.unity
+    guid: e6689163bf7f8a845b2b294460623af3
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
