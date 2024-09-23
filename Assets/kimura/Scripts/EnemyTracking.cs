@@ -81,7 +81,7 @@ public class EnemyTracking : MonoBehaviour
         }
 
 
-        if (_trackingTime <= 0 ||_playerDistance >= 200)//プレイヤーを見失ったら  場合によってはorにする
+        if (isTracking&&_trackingTime <= 0 ||_playerDistance >= 200)//プレイヤーを見失ったら  場合によってはorにする
         {
             TargetLost();
         }

@@ -105,7 +105,7 @@ public class EnemyMove : MonoBehaviour
             }
         }
 
-        if(!GetVison.existIsPatrol)
+        if(!GetVison.existIsPatrol&&!GetTracking.existIsTracking)
         {
             //EnemyAnimator.SetBool("isMoving", false);
             
