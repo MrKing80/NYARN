@@ -18,6 +18,6 @@ public class LightRotation : MonoBehaviour
     {
         //print("oooooo");
         //print(GetVision.GetMyRotation);
-        transform.rotation = Quaternion.Euler(0, 0, GetVision.GetMyRotation);
+        transform.rotation = Quaternion.Euler(0, 0, GetVision._getMyRotation);
     }
 }

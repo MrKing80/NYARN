@@ -8,15 +8,15 @@ public class EnemyTracking : MonoBehaviour
     // Start is called before the first frame update
    
     //RaycastHit2D GetRay;//自分の視線
-    private Vector2 PlayerVec;//プレイヤーの位置を取得する
-    private Vector2 MyVector;//自分の向き
+    private Vector2 _playerVec;//プレイヤーの位置を取得する
+    private Vector2 _myVector;//自分の向き
     private Vector2 MoveDirection;
     private float _initialPosDistance;//初期位置と自分の距離
     private float _trakingTimeLimit = 10;
     private float _arertTimeLimit = 5;
    
-    [SerializeField] GameObject PlayerObj;
-    [SerializeField] GameObject LightObj;
+    [SerializeField] GameObject _playerObj;
+    [SerializeField] GameObject _lightObj;
     [Header("追跡時間")]
     [SerializeField] private float _trackingTime ;//追跡時間
     [Header("警戒時間")]
@@ -26,31 +26,31 @@ public class EnemyTracking : MonoBehaviour
     [Header("レイの距離  ")]
     [SerializeField] private float _rayDistance ;
     [Header("プレイヤーのレイヤー")]
-    [SerializeField] private LayerMask TargetLayer;
+    [SerializeField] private LayerMask _targetLayer;
     [Header("プレイヤーの位置")]
-    private Transform TargetTrans;//プレイヤーの位置
+    private Transform _targetTrans;//プレイヤーの位置
     [Header("自分の追跡速度")]
     [SerializeField] private float _trackingSpeed = 5;//敵のスピード
     [Header("追跡フラグ")]
-    [SerializeField] private bool isTracking = false;//追跡フラグ
+    [SerializeField] private bool _isTracking = false;//追跡フラグ
    
     NavMeshAgent GetAgent;
-    public bool existIsTracking
+    public bool _existIsTracking
     {
-        get { return isTracking; }
-        set { isTracking = value; }
+        get { return _isTracking; }
+        set { _isTracking = value; }
     }
-    Transform MyTrans;//自分の位置
-    EnemyMove GetMove;//自分の動きを取得する
-    EnemyVisionScript GetEnemyVision;//自分の視線を取得
-    NavMeshAgent2D GetAgent2D;
+    Transform _myTrans;//自分の位置
+    EnemyMove _getMove;//自分の動きを取得する
+    EnemyVisionScript _getEnemyVision;//自分の視線を取得
+    NavMeshAgent2D _getAgent2D;
     void Start()
     {
-        TargetTrans = GameObject.FindGameObjectWithTag("Player").transform;
-        GetMove = this.GetComponent<EnemyMove>();//自分の動きを取得
-        GetAgent2D = this.GetComponent<NavMeshAgent2D>();//自分のNavMeshAgent2Dを取得
-        MyTrans = GetMove.GetMyTrans;//自分のTransformを取得
-        GetEnemyVision = GetComponent<EnemyVisionScript>();//子オブジェクトからEnemyVisionScriptを取得
+        _targetTrans = GameObject.FindGameObjectWithTag("Player").transform;
+        _getMove = this.GetComponent<EnemyMove>();//自分の動きを取得
+        _getAgent2D = this.GetComponent<NavMeshAgent2D>();//自分のNavMeshAgent2Dを取得
+        _myTrans = _getMove._getMyTrans;//自分のTransformを取得
+        _getEnemyVision = GetComponent<EnemyVisionScript>();//子オブジェクトからEnemyVisionScriptを取得
         //GetAgent = this.GetComponent<NavMeshAgent>();
         //GetAgent.enabled = false;
         //GetAgent.updateRotation = false;
@@ -62,49 +62,49 @@ public class EnemyTracking : MonoBehaviour
     {
         //_rayAngle = Mathf.Atan2(PlayerVec.y, PlayerVec.x) * Mathf.Rad2Deg;
         //_rayAngle = MyTrans.eulerAngles.z * Mathf.Deg2Rad;
-        MyVector = GetMove.GetMyTrans.position;//自分の向きを取得
+        _myVector = _getMove._getMyTrans.position;//自分の向きを取得
         //GetRay = Physics2D.Raycast(MyTrans.position, GetEnemyVision.GetVisonVec, _rayDistance, TargetLayer);//レイキャストを実行
       
-        Debug.DrawRay(MyTrans.position, GetEnemyVision.GetVisionVec * _rayDistance, Color.red);//レイを可視化
+        Debug.DrawRay(_myTrans.position, _getEnemyVision._getVisionVec * _rayDistance, Color.red);//レイを可視化
 
-        if (GetEnemyVision.GetHit1)//プレイヤーがレイに触れたら
+        if (_getEnemyVision.GetHit1)//プレイヤーがレイに触れたら
         {
-            isTracking = true;//追跡フラグをオンにする
+            _isTracking = true;//追跡フラグをオンにする
             _trackingTime = _trakingTimeLimit;
             _alertTime = _arertTimeLimit;
         }
 
-        else if (!GetEnemyVision.GetHit1 && isTracking)//レイにヒットしていないが、追いかけてる最中だったら
+        else if (!_getEnemyVision.GetHit1 && _isTracking)//レイにヒットしていないが、追いかけてる最中だったら
         {
             
             _trackingTime -= Time.deltaTime;          
         }
 
 
-        if (isTracking&&_trackingTime <= 0 ||_playerDistance >= 200)//プレイヤーを見失ったら  場合によってはorにする
+        if (_isTracking&&_trackingTime <= 0 ||_playerDistance >= 200)//プレイヤーを見失ったら  場合によってはorにする
         {
             TargetLost();
         }
 
-        if (isTracking&&!PlayerObj.activeSelf&&_playerDistance>=5)//プレイヤーがロッカーに隠れた時のテスト
+        if (_isTracking&&!_playerObj.activeSelf&&_playerDistance>=5)//プレイヤーがロッカーに隠れた時のテスト
         {
             //print("非表示です");
             TargetLost();
         }
 
-            if (isTracking)//追跡フラグがオンだったら
+            if (_isTracking)//追跡フラグがオンだったら
         {
            
             //GetAgent.enabled = true;
-            _playerDistance = Vector2.Distance(PlayerVec, MyVector);//自分とプレイヤーの距離を計算
-            PlayerVec = TargetTrans.position;//プレイヤーの位置を取得
-            GetAgent2D.SetDestination(TargetTrans.position);//プレイヤーを追い掛け回す
-            GetEnemyVision.existIsPatrol = false;//警備をやめて追跡
-            GetEnemyVision.existsIsStop = false;
+            _playerDistance = Vector2.Distance(_playerVec, _myVector);//自分とプレイヤーの距離を計算
+            _playerVec = _targetTrans.position;//プレイヤーの位置を取得
+            _getAgent2D.SetDestination(_targetTrans.position);//プレイヤーを追い掛け回す
+            _getEnemyVision._existIsPatrol = false;//警備をやめて追跡
+            _getEnemyVision._existsIsStop = false;
                                                  //GetAgent2D.enabled = true;
-            Vector2 direction = TargetTrans.position - MyTrans.position;
+            Vector2 direction = _targetTrans.position - _myTrans.position;
             float _targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            GetEnemyVision.GetMyRotation = _targetAngle;
+            _getEnemyVision._getMyRotation = _targetAngle;
             //GetEnemyVision.GetVisonVec = (TargetTrans.position - MyTrans.position).normalized;
         }
     }
@@ -112,7 +112,7 @@ public class EnemyTracking : MonoBehaviour
    //新しいメソッド書く
    void TargetLost()
     {
-        isTracking = false;
+        _isTracking = false;
         _alertTime -= Time.deltaTime;
         
         if (_alertTime <= 0)//完全に見失ったら
@@ -136,7 +136,7 @@ public class EnemyTracking : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))//プレイヤーと追突したら追跡開始
         {
-            isTracking = true;          
+            _isTracking = true;          
         }
     }
 
@@ -150,9 +150,9 @@ public class EnemyTracking : MonoBehaviour
 
     void OnDestinationReached()
     {
-        GetEnemyVision.existIsPatrol = true;//警備再開させる
+        _getEnemyVision._existIsPatrol = true;//警備再開させる
         //GetAgent2D.enabled = false;
-        print(GetEnemyVision.existIsPatrol);
+        print(_getEnemyVision._existIsPatrol);
        
         //GetAgent.enabled = false;
         
