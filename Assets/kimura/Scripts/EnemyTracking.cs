@@ -51,10 +51,10 @@ public class EnemyTracking : MonoBehaviour
         GetAgent2D = this.GetComponent<NavMeshAgent2D>();//自分のNavMeshAgent2Dを取得
         MyTrans = GetMove.GetMyTrans;//自分のTransformを取得
         GetEnemyVision = GetComponent<EnemyVisionScript>();//子オブジェクトからEnemyVisionScriptを取得
-        GetAgent = this.GetComponent<NavMeshAgent>();
-        GetAgent.enabled = false;
-        GetAgent.updateRotation = false;
-        GetAgent.updateUpAxis = false;
+        //GetAgent = this.GetComponent<NavMeshAgent>();
+        //GetAgent.enabled = false;
+        //GetAgent.updateRotation = false;
+        //GetAgent.updateUpAxis = false;
     }
 
     // Update is called once per frame
@@ -95,10 +95,10 @@ public class EnemyTracking : MonoBehaviour
             if (isTracking)//追跡フラグがオンだったら
         {
            
-            GetAgent.enabled = true;
+            //GetAgent.enabled = true;
             _playerDistance = Vector2.Distance(PlayerVec, MyVector);//自分とプレイヤーの距離を計算
             PlayerVec = TargetTrans.position;//プレイヤーの位置を取得
-            GetAgent.SetDestination(TargetTrans.position);//プレイヤーを追い掛け回す
+            GetAgent2D.SetDestination(TargetTrans.position);//プレイヤーを追い掛け回す
             GetEnemyVision.existIsPatrol = false;//警備をやめて追跡
             GetEnemyVision.existsIsStop = false;
                                                  //GetAgent2D.enabled = true;
@@ -118,16 +118,16 @@ public class EnemyTracking : MonoBehaviour
         if (_alertTime <= 0)//完全に見失ったら
         {
            
-            GetAgent.SetDestination(GetMove.GetInitialPos);
-            _initialPosDistance = Vector2.Distance(MyVector, GetMove.GetInitialPos);
-            if (!GetAgent.pathPending&&GetAgent.remainingDistance<=GetAgent.stoppingDistance)//初期位置に戻ったら
-            {
-                if (!GetAgent.hasPath || GetAgent.velocity.sqrMagnitude == 0f)
-                {
-                    OnDestinationReached();//警備を再開させる
-                }
+            //GetAgent.SetDestination(GetMove.GetInitialPos);
+            //_initialPosDistance = Vector2.Distance(MyVector, GetMove.GetInitialPos);
+            //if (!GetAgent.pathPending&&GetAgent.remainingDistance<=GetAgent.stoppingDistance)//初期位置に戻ったら
+            //{
+            //    if (!GetAgent.hasPath || GetAgent.velocity.sqrMagnitude == 0f)
+            //    {
+            //        OnDestinationReached();//警備を再開させる
+            //    }
                 
-            }
+            //}
            
         }
     }
@@ -154,7 +154,7 @@ public class EnemyTracking : MonoBehaviour
         //GetAgent2D.enabled = false;
         print(GetEnemyVision.existIsPatrol);
        
-        GetAgent.enabled = false;
+        //GetAgent.enabled = false;
         
 
     }
