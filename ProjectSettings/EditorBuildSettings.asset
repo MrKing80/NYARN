@@ -6,16 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/sakakihara/Scenes/SampleTitle.unity
-    guid: 84a91c8028b1bc94ebae087a2d91f3a1
-  - enabled: 1
     path: Assets/sasaki/Scenes/MainGameScene.unity
     guid: e6689163bf7f8a845b2b294460623af3
-  - enabled: 1
-    path: Assets/Nakahira/Scenes/shop.unity
-    guid: 434232365ebdde944a369b7588363eaa
-  - enabled: 1
-    path: Assets/sakakihara/Scenes/ContinuationScenes.unity
-    guid: 8b9271ddc409cd9478dbc2a3150e37aa
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
