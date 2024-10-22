@@ -51,7 +51,7 @@ public class EnemyMove : MonoBehaviour
         
        
         //Vector2 currentPos = MyTrans.position;
-        Vector2 movement = _getVison.GetVisionVec;
+        Vector2 movement = _getVison._getVisionVec;
         _initialDistance = Vector2.Distance(_initialPosition, _myVector);
         _myVector = _myTrans.position;//Ž©•ª‚ÌŒü‚«‚ðŽæ“¾
         if (_getVison._existIsPatrol)

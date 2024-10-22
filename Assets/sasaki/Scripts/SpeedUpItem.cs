@@ -16,7 +16,7 @@ public class SpeedUpItem : MonoBehaviour
     [SerializeField] private float buffTime = 3f;
 
     //一時的にスピードを格納するところ
-    private float tmpSpeed = 0;
+    public float tmpSpeed = 0;
 
     //プレイヤーの初期スピードを格納するところ
     private float initialSpeed = default;
