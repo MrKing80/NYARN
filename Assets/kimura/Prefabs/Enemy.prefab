@@ -104,17 +104,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6163a5617ff19d42a4502c2ea9ac7e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerObj: {fileID: 5820091664541237100, guid: cea9b138dd0392243ba2ecc5ded07b11, type: 3}
-  LightObj: {fileID: 3131806208491937782}
+  _playerObj: {fileID: 367689123445748643, guid: 76ce6e2eeab31cf4fb4869f812a0fc2d, type: 3}
+  _lightObj: {fileID: 3131806208491937782}
   _trackingTime: 0
   _alertTime: 0
   _playerDistance: 0
   _rayDistance: 5
-  TargetLayer:
+  _targetLayer:
     serializedVersion: 2
     m_Bits: 8
   _trackingSpeed: 3
-  isTracking: 0
+  _isTracking: 0
 --- !u!114 &6051563206678261081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,11 +141,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _direction: 3
-  GetAngle: 90
-  ObstacleLayer:
+  _getAngle: 90
+  _obstacleLayer:
     serializedVersion: 2
-    m_Bits: 64
-  TargetLayer:
+    m_Bits: 320
+  _targetLayer:
     serializedVersion: 2
     m_Bits: 8
   _rayDistance: 5
@@ -153,8 +153,8 @@ MonoBehaviour:
   _maxDistance: 10
   _stopTime: 5
   _initialValue: 5
-  isStop: 0
-  isPatrol: 1
+  _isStop: 0
+  _isPatrol: 1
 --- !u!114 &-4141011169930768288
 MonoBehaviour:
   m_ObjectHideFlags: 0

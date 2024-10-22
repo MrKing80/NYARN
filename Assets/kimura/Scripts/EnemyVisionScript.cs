@@ -73,12 +73,12 @@ public class EnemyVisionScript : MonoBehaviour
     private Vector2 Hit3Vec;
     RaycastHit2D _obstacleRay;//障害物を見分ける視線
     RaycastHit2D _presenceRay;//死角でもプレイヤーを察知できるようにする球状のレイ
-    RaycastHit2D hit1;
+    RaycastHit2D _hit1;
     RaycastHit2D hit2;
     RaycastHit2D hit3;
-    public RaycastHit2D GetHit1
+    public RaycastHit2D _getHit1
     {
-        get { return hit1;}
+        get { return _hit1;}
     }
     public RaycastHit2D GetHit2
     {
@@ -122,7 +122,7 @@ public class EnemyVisionScript : MonoBehaviour
     void Update()
     {
         VisionConvert();
-        hit1 = Physics2D.Raycast(_visionTrans.position, _visionVec, _rayDistance, _targetLayer);//正面のレイ
+        _hit1 = Physics2D.Raycast(_visionTrans.position, _visionVec, _rayDistance, _targetLayer);//正面のレイ
         //hit2 = Physics2D.Raycast(VisionTrans.position, Hit2Vec, _rayDistance, TargetLayer);
         //hit3 = Physics2D.Raycast(VisionTrans.position, Hit3Vec, _rayDistance, TargetLayer);
         Debug.DrawRay(_visionTrans.position, _visionVec * _rayDistance, Color.red);

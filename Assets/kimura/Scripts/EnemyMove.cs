@@ -35,6 +35,7 @@ public class EnemyMove : MonoBehaviour
     
     void Start()
     {
+        //配列で目的地を設定してAIで巡回させればいいじゃないか？
         //GetTracking = this.GetComponent<EnemyTracking>();
         _myTrans = this.GetComponent<Transform>();//自分のTransformを取得
         _enemyAnimator = this.GetComponent<Animator>();
@@ -51,7 +52,7 @@ public class EnemyMove : MonoBehaviour
         
        
         //Vector2 currentPos = MyTrans.position;
-        Vector2 movement = _getVison.GetVisionVec;
+        Vector2 movement = _getVison._getVisionVec;
         _initialDistance = Vector2.Distance(_initialPosition, _myVector);
         _myVector = _myTrans.position;//自分の向きを取得
         if (_getVison._existIsPatrol)

@@ -67,14 +67,14 @@ public class EnemyTracking : MonoBehaviour
       
         Debug.DrawRay(_myTrans.position, _getEnemyVision._getVisionVec * _rayDistance, Color.red);//レイを可視化
 
-        if (_getEnemyVision.GetHit1)//プレイヤーがレイに触れたら
+        if (_getEnemyVision._getHit1)//プレイヤーがレイに触れたら
         {
             _isTracking = true;//追跡フラグをオンにする
             _trackingTime = _trakingTimeLimit;
             _alertTime = _arertTimeLimit;
         }
 
-        else if (!_getEnemyVision.GetHit1 && _isTracking)//レイにヒットしていないが、追いかけてる最中だったら
+        else if (!_getEnemyVision._getHit1 && _isTracking)//レイにヒットしていないが、追いかけてる最中だったら
         {
             
             _trackingTime -= Time.deltaTime;          
@@ -93,9 +93,7 @@ public class EnemyTracking : MonoBehaviour
         }
 
             if (_isTracking)//追跡フラグがオンだったら
-        {
-           
-            //GetAgent.enabled = true;
+        {           
             _playerDistance = Vector2.Distance(_playerVec, _myVector);//自分とプレイヤーの距離を計算
             _playerVec = _targetTrans.position;//プレイヤーの位置を取得
             _getAgent2D.SetDestination(_targetTrans.position);//プレイヤーを追い掛け回す
@@ -108,7 +106,9 @@ public class EnemyTracking : MonoBehaviour
             //GetEnemyVision.GetVisonVec = (TargetTrans.position - MyTrans.position).normalized;
         }
     }
-
+    /// <summary>
+    /// <para>プレイヤーを見失った時のメソッド</para>
+    /// </summary>
    //新しいメソッド書く
    void TargetLost()
     {
@@ -152,11 +152,9 @@ public class EnemyTracking : MonoBehaviour
     {
         _getEnemyVision._existIsPatrol = true;//警備再開させる
         //GetAgent2D.enabled = false;
-        print(_getEnemyVision._existIsPatrol);
+        //print(_getEnemyVision._existIsPatrol);
        
         //GetAgent.enabled = false;
-        
-
     }
 
 }
