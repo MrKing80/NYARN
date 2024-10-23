@@ -65,7 +65,7 @@ public class EnemyTracking : MonoBehaviour
         _myVector = _getMove._getMyTrans.position;//自分の向きを取得
         //GetRay = Physics2D.Raycast(MyTrans.position, GetEnemyVision.GetVisonVec, _rayDistance, TargetLayer);//レイキャストを実行
       
-        Debug.DrawRay(_myTrans.position, _getEnemyVision._getVisionVec * _rayDistance, Color.red);//レイを可視化
+        //Debug.DrawRay(_myTrans.position, _getEnemyVision._getVisionVec * _rayDistance, Color.red);//レイを可視化
 
         if (_getEnemyVision._getHit1)//プレイヤーがレイに触れたら
         {
@@ -100,7 +100,7 @@ public class EnemyTracking : MonoBehaviour
             _getEnemyVision._existIsPatrol = false;//警備をやめて追跡
             _getEnemyVision._existsIsStop = false;
                                                  //GetAgent2D.enabled = true;
-            Vector2 direction = _targetTrans.position - _myTrans.position;
+            Vector2 direction = _targetTrans.position - _myTrans.position;//プレイヤーに視線を振り向かせる
             float _targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             _getEnemyVision._getMyRotation = _targetAngle;
             //GetEnemyVision.GetVisonVec = (TargetTrans.position - MyTrans.position).normalized;
@@ -117,7 +117,7 @@ public class EnemyTracking : MonoBehaviour
         
         if (_alertTime <= 0)//完全に見失ったら
         {
-           
+            OnDestinationReached();
             //GetAgent.SetDestination(GetMove.GetInitialPos);
             //_initialPosDistance = Vector2.Distance(MyVector, GetMove.GetInitialPos);
             //if (!GetAgent.pathPending&&GetAgent.remainingDistance<=GetAgent.stoppingDistance)//初期位置に戻ったら
@@ -126,9 +126,9 @@ public class EnemyTracking : MonoBehaviour
             //    {
             //        OnDestinationReached();//警備を再開させる
             //    }
-                
+
             //}
-           
+
         }
     }
 

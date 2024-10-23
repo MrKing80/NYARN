@@ -97,24 +97,24 @@ public class EnemyVisionScript : MonoBehaviour
         GetTracking = GetComponent<EnemyTracking>();
         //_currentDistance = _rayDistance;
         _myRotation = _visionTrans.rotation.z;//角度を取得
-        if (_isPatrol)//警備中だったらEnemyMoveスクリプトで移動させる
-        {
-            switch (_direction)//最初に移動する方向
-            {
-                case MoveDirection.Up:
-                    _myRotation = 90;
-                    break;
-                case MoveDirection.Down:
-                    _myRotation = 270;
-                    break;
-                case MoveDirection.Right:
-                    _myRotation = 0;
-                    break;
-                case MoveDirection.Left:
-                    _myRotation = 180;
-                    break;
-            }
-        }
+        //if (_isPatrol)//警備中だったらEnemyMoveスクリプトで移動させる
+        //{
+        //    switch (_direction)//最初に移動する方向
+        //    {
+        //        case MoveDirection.Up:
+        //            _myRotation = 90;
+        //            break;
+        //        case MoveDirection.Down:
+        //            _myRotation = 270;
+        //            break;
+        //        case MoveDirection.Right:
+        //            _myRotation = 0;
+        //            break;
+        //        case MoveDirection.Left:
+        //            _myRotation = 180;
+        //            break;
+        //    }
+        //}
         _currentRotation = _myRotation;//myRotationの値を取得
     }
 
@@ -131,39 +131,39 @@ public class EnemyVisionScript : MonoBehaviour
         _obstacleRay = Physics2D.Raycast(_visionTrans.position, _visionVec, _rayDistance, _obstacleLayer);//障害物を見分けるレイ
         _presenceRay = Physics2D.CircleCast(_visionTrans.position, _rayRadius, _visionVec, _maxDistance, _targetLayer);//死角でもプレイヤー察知できるようにするレイ
         //int _turnCount = default;
-        if (_myRotation >= 360 && _isPatrol)//360度超えたら角度リセット
-        {
+        //if (_myRotation >= 360 && _isPatrol)//360度超えたら角度リセット
+        //{
             
-            _myRotation -= 360;
+        //    _myRotation -= 360;
             
-            //print(_currentRotation);
-        }
-        else if (_myRotation < 0)
-        {
+        //    //print(_currentRotation);
+        //}
+        //else if (_myRotation < 0)
+        //{
            
-            _myRotation += 360;
+        //    _myRotation += 360;
             
-        }
+        //}
 
-        if (_isPatrol && _obstacleRay.collider != null && _obstacleRay.collider.gameObject != this.gameObject)//巡回時、障害物に当たったら
-        {
+        //if (_isPatrol && _obstacleRay.collider != null && _obstacleRay.collider.gameObject != this.gameObject)//巡回時、障害物に当たったら
+        //{
             
-            _myRotation += (int)_getAngle;//視線をGetAngleで指定した角度に傾かせる 　
-            if (_myRotation >= 360 && _isPatrol)//360度超えたら角度リセット
-            {
+        //    _myRotation += (int)_getAngle;//視線をGetAngleで指定した角度に傾かせる 　
+        //    if (_myRotation >= 360 && _isPatrol)//360度超えたら角度リセット
+        //    {
 
-                _myRotation -= 360;
-                _currentRotation = _myRotation;//再度myRotationの値を取得
-                                               //print(_currentRotation);
-            }
-            else if (_myRotation < 0)
-            {
+        //        _myRotation -= 360;
+        //        _currentRotation = _myRotation;//再度myRotationの値を取得
+        //                                       //print(_currentRotation);
+        //    }
+        //    else if (_myRotation < 0)
+        //    {
 
-                _myRotation += 360;
-                _currentRotation = _myRotation;
-            }
-            //print(_myRotation);
-        }
+        //        _myRotation += 360;
+        //        _currentRotation = _myRotation;
+        //    }
+        //    //print(_myRotation);
+        //}
 
         if (_presenceRay&&!GetTracking._existIsTracking)//索敵範囲にプレイヤーが衝突したら
         {
