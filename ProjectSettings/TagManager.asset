@@ -17,6 +17,8 @@ TagManager:
   - OutSideTile
   - money
   - DashEffect
+  - InventorySlot
+  - InventoryItem
   layers:
   - Default
   - TransparentFX
@@ -26,7 +28,7 @@ TagManager:
   - UI
   - WallObject
   - GameOver
-  - 
+  - Obstacle
   - 
   - 
   - 

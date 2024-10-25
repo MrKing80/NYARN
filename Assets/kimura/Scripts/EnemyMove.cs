@@ -12,6 +12,8 @@ public class EnemyMove : MonoBehaviour
     EnemyTracking _getTracking;
     NavMeshAgent2D _agent2D;
     Animator _enemyAnimator;
+    [SerializeField] GameObject[] _patrolPoint;
+    Vector2 _patrolPos;
     private Transform _myTrans;
     public Transform _getMyTrans//MyTransのプロパティ
     {
@@ -19,7 +21,8 @@ public class EnemyMove : MonoBehaviour
         set { _myTrans = value; }
     }
     private Vector2 _myVector;
-    private float _initialDistance;
+    private int _patrolPointNumber = 1;
+    private float _distanceThreshold = 0.1f; // 目的地に到達したと見なす距離の閾値
     private Vector2 _lastDirection;  // 最後の移動方向を保存する変数
     [Header("自分の初期位置")]
     private Vector2 _initialPosition;//自分の初期位置  
@@ -35,6 +38,7 @@ public class EnemyMove : MonoBehaviour
     
     void Start()
     {
+        //配列で目的地を設定してAIで巡回させればいいじゃないか？
         //GetTracking = this.GetComponent<EnemyTracking>();
         _myTrans = this.GetComponent<Transform>();//自分のTransformを取得
         _enemyAnimator = this.GetComponent<Animator>();
@@ -42,21 +46,28 @@ public class EnemyMove : MonoBehaviour
         _initialPosition = _myTrans.position;//自分の初期位置を取得
         _getVison = GetComponent<EnemyVisionScript>();//子オブジェクトからEnemyVisionスクリプトを取得
         _getTracking = GetComponent<EnemyTracking>();
-        SetDirection();
+        _patrolPos = _patrolPoint[_patrolPointNumber].transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-       
+
+
         //Vector2 currentPos = MyTrans.position;
         Vector2 movement = _getVison._getVisionVec;
-        _initialDistance = Vector2.Distance(_initialPosition, _myVector);
         _myVector = _myTrans.position;//自分の向きを取得
-        if (_getVison._existIsPatrol)
+        if (_getVison._existIsPatrol)//巡回中だったら
         {
-            _myTrans.Translate(movement * _moveSpeed * Time.deltaTime);//巡回させる
+
+            Vector2 direction = _patrolPos - _myVector;
+            float _targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            _getVison._getMyRotation = _targetAngle;
+            _agent2D.SetDestination(_patrolPos);
+            if (Vector2.Distance(_myTrans.position, _patrolPos) <= _distanceThreshold)//目的地に着いたら
+            {
+                SetDirection();               
+            }
         }
         // 移動があった場合、方向に応じてアニメーションを再生
         if (movement.magnitude > 0.1f||_getTracking._existIsTracking)
@@ -135,23 +146,18 @@ public class EnemyMove : MonoBehaviour
                 //print("したです");
             }
         }
-        if (Input.GetKeyDown(KeyCode.Return)&&_getVison._existIsPatrol==true)
-        {
-            _getVison._existIsPatrol = false;
-        }
-        else if(Input.GetKeyDown(KeyCode.Return) && _getVison._existIsPatrol == false)
-        {
-            _getVison._existIsPatrol = true;
-        }
 
-        //_myVector = currentPos;  // 現在の位置を更新
-
-        
 
     }
     void SetDirection()
     {
-        
+        print(_patrolPointNumber);
+        _patrolPointNumber++;
+        if (_patrolPointNumber>=_patrolPoint.Length)//もしも要素数を超えたら
+        {
+            _patrolPointNumber = default;//０に戻す
+        }
+        _patrolPos = _patrolPoint[_patrolPointNumber].transform.position;
     }
 
 }

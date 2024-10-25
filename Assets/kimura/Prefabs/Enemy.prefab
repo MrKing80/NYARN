@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2021789544146920626}
   - component: {fileID: 1936335496319126281}
+  - component: {fileID: 6051563206678261081}
   - component: {fileID: 1929715739471741347}
-  - component: {fileID: 743452103235128465}
   - component: {fileID: 4997586431027735329}
   - component: {fileID: -4141011169930768288}
   - component: {fileID: 9038658439453638358}
@@ -92,6 +92,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6051563206678261081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4640950472039929802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 404f05b50751568448fbc133b8685396, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _patrolPoint: []
+  _moveSpeed: 3
 --- !u!114 &1929715739471741347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,31 +118,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6163a5617ff19d42a4502c2ea9ac7e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerObj: {fileID: 5820091664541237100, guid: cea9b138dd0392243ba2ecc5ded07b11, type: 3}
-  LightObj: {fileID: 3131806208491937782}
+  _playerObj: {fileID: 367689123445748643, guid: 76ce6e2eeab31cf4fb4869f812a0fc2d, type: 3}
+  _lightObj: {fileID: 3131806208491937782}
   _trackingTime: 0
   _alertTime: 0
   _playerDistance: 0
   _rayDistance: 5
-  TargetLayer:
+  _targetLayer:
     serializedVersion: 2
     m_Bits: 8
   _trackingSpeed: 3
-  isTracking: 0
---- !u!114 &743452103235128465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4640950472039929802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 404f05b50751568448fbc133b8685396, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  _moveSpeed: 3
+  _isTracking: 0
 --- !u!114 &4997586431027735329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,11 +142,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _direction: 3
-  GetAngle: 90
-  ObstacleLayer:
+  _getAngle: 90
+  _obstacleLayer:
     serializedVersion: 2
-    m_Bits: 64
-  TargetLayer:
+    m_Bits: 320
+  _targetLayer:
     serializedVersion: 2
     m_Bits: 8
   _rayDistance: 5
@@ -154,8 +154,8 @@ MonoBehaviour:
   _maxDistance: 10
   _stopTime: 5
   _initialValue: 5
-  isStop: 0
-  isPatrol: 1
+  _isStop: 0
+  _isPatrol: 1
 --- !u!114 &-4141011169930768288
 MonoBehaviour:
   m_ObjectHideFlags: 0
