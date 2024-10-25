@@ -45417,7 +45417,7 @@ GameObject:
   - component: {fileID: 903709693}
   - component: {fileID: 903709692}
   - component: {fileID: 903709695}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: FX052_01_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45435,7 +45435,7 @@ Animation:
   serializedVersion: 4
   m_Animation: {fileID: 7400000, guid: a424ce23f2a95404f9c4ef54ab94b75e, type: 2}
   m_Animations:
-  - {fileID: 7400000, guid: 1a642b2b8455cfd4ca0209455c3790e7, type: 2}
+  - {fileID: 7400000, guid: a424ce23f2a95404f9c4ef54ab94b75e, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -63425,6 +63425,10 @@ PrefabInstance:
     - target: {fileID: 6537698692343987597, guid: 76ce6e2eeab31cf4fb4869f812a0fc2d, type: 3}
       propertyPath: m_SortingOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8689413603177373109, guid: 76ce6e2eeab31cf4fb4869f812a0fc2d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8689413603177373109, guid: 76ce6e2eeab31cf4fb4869f812a0fc2d, type: 3}
       propertyPath: m_TagString

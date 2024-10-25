@@ -13,10 +13,6 @@ public class PlayerMove : MonoBehaviour
 
     private Animator playerAnimator = default;
 
-    // ★玉井追加 エフェクト用
-    [SerializeField] private GameObject dashSmork = default;
-    private SpeedUpItem upItem;
-
     private float inputX = 0f;      //横方向のインプットされた値を保持する変数
     private float inputY = 0f;      //縦方向のインプットされた値を保持する変数
 
@@ -53,10 +49,6 @@ public class PlayerMove : MonoBehaviour
         rig = this.GetComponent<Rigidbody2D>();
         playerAnimator = this.GetComponent<Animator>();
         //itemCatch = this.GetComponent<PlayerItemCatch>();
-
-        // ★玉井追加 子オブジェクトのGameObj取得
-        dashSmork = transform.GetChild(1).gameObject;
-        upItem = GetComponent<SpeedUpItem>();
     }
 
     // Update is called once per frame
@@ -76,15 +68,7 @@ public class PlayerMove : MonoBehaviour
 
         rig.velocity = new Vector2(inputX, inputY);
 
-        // ★玉井追加 後日修正予定地　
-/*        if (upItem.tmpSpeed <= SpeedProperty)
-        {
-            dashSmork.SetActive(true);
-        }
-        else
-            dashSmork.SetActive(false);*/
-
-            MoveRotation();
+        MoveRotation();
     }
 
     /// <summary>

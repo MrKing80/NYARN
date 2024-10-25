@@ -26,7 +26,12 @@ public class SpeedUpItem : MonoBehaviour
  
     //ゲットしているか
     private bool isGet = false;
-    // Start is called before the first frame update
+
+    // ★玉井追加 エフェクト用
+    [SerializeField] private GameObject dashSmork = default;
+    [SerializeField] private bool isDashSmork = default;
+
+
     void Start()
     {
         gameObject.SetActive(true);
@@ -45,11 +50,25 @@ public class SpeedUpItem : MonoBehaviour
         if (isTouch && (Input.GetKeyDown("joystick button 0") || Input.GetKeyDown(KeyCode.Mouse0)))
         {
             move = player.GetComponent<PlayerMove>();   //スクリプト取得
-         
+
+            // ★玉井追加 子オブジェクトのGameObj取得
+            dashSmork = player.transform.GetChild(1).gameObject;
+            isDashSmork = dashSmork.GetComponent<SpriteRenderer>().enabled;
+
             initialSpeed = move.SpeedProperty;          //初期スピードを保存
             tmpSpeed = move.SpeedProperty * magnification;  //スピードアップ
             
             move.SpeedProperty = tmpSpeed;      //スピード変更
+
+            // ★玉井追加 修正済　
+            if (isDashSmork == false)
+                isDashSmork = true;
+            if (initialSpeed < tmpSpeed)
+            {
+                dashSmork.SetActive(true);
+            }
+            else
+                dashSmork.SetActive(false);
 
             isGet = true;
 
