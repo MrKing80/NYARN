@@ -87,17 +87,9 @@ public class PlayerItemCatch : MonoBehaviour
 
             catchItemID = item.GetComponent<ItemCreate>().itemID;  //拾ったアイテムのID取得
 
-            carryingWeight += itemData.GetItemLists()[catchItemID].Weight;  //重量を加算
-
             carryMoney += itemData.GetItemLists()[catchItemID].Price;  //金額を加算
 
             moneyMgr.NowHaveMoneyProperty = carryMoney;     //UIのほうへ受け渡す
-
-            //Rigidbodyの重さが最大所持重量よりも下の場合
-            if (rig.drag <= MAX_CARRYING_WEIGHT)
-            {
-                rig.drag = carryingWeight;  //重さ変更
-            }
 
             //inventoryMgr.GetItemInfo(item);
 
@@ -120,13 +112,9 @@ public class PlayerItemCatch : MonoBehaviour
 
             catchItemID = removeItem.GetComponent<ItemCreate>().itemID; //捨てたアイテムのID取得
 
-            carryingWeight -= itemData.GetItemLists()[catchItemID].Weight;  //重量を減算
-
             carryMoney -= itemData.GetItemLists()[catchItemID].Price;  //金額を減算
 
             moneyMgr.NowHaveMoneyProperty = carryMoney;     //UIのほうへ受け渡す
-
-            rig.drag = carryingWeight;  //重さ変更
 
             itemLists[zero].SetActive(true);        //アイテム表示
             itemLists[zero].transform.position = this.transform.position;   //自分の足元へ落とす
