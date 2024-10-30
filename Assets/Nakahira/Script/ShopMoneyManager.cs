@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class ShopMoneyManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _moneypossession;
-    private int money = 1000000000;
+    private int money = 0;
 
     [SerializeField] private Animator anim;
 
@@ -62,7 +62,7 @@ public class ShopMoneyManager : MonoBehaviour
     {
         mainMoney = GameObject.Find("NowMoneyManager").GetComponent<MainGameMoneyManager>();
 
-        money = mainMoney.NowHaveMoneyProperty;
+        money += mainMoney.NowHaveMoneyProperty;
 
         _moneypossession.text = money.ToString("N0"); // UIÇèâä˙âª
 
@@ -166,12 +166,20 @@ public class ShopMoneyManager : MonoBehaviour
 
     }
 
-    public void OnCllic()
+    public void OnCllick()
     {
         //UnityEditor.EditorApplication.isPlaying = false;
-        SceneManager.LoadScene("SampleTitle");
+        if (500000000 <= money)
+        {
+            SceneManager.LoadScene("SampleTitle");
+        }
+        else
+        {
+            SceneManager.LoadScene("MainGameScene");
+        }
+
         //É{É^ÉìÇ∆Ç©èâä˙âª
-        this.gameObject.SetActive(false);
+        //this.gameObject.SetActive(false);
        // besidemap = 0;
       //  verticalmap += 1;
     }
