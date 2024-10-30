@@ -8,7 +8,7 @@ AnimationClip:
   m_PrefabAsset: {fileID: 0}
   m_Name: DashSmorkAnim
   serializedVersion: 7
-  m_Legacy: 1
+  m_Legacy: 0
   m_Compressed: 0
   m_UseHighQualityCurve: 1
   m_RotationCurves: []
@@ -22,13 +22,13 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: -181123214630470887, guid: 6816eee8289326041822e337fd910690, type: 3}
-    - time: 0.4
+    - time: 0.16666667
       value: {fileID: -3572903572009423379, guid: 8a9267b5687c5014da953563014c99b0, type: 3}
-    - time: 0.5
+    - time: 0.25
       value: {fileID: -8406034126292890782, guid: 6fda67451aecec64fa95c886fd912579, type: 3}
-    - time: 0.6
+    - time: 0.3
       value: {fileID: 7905073340251707110, guid: 8c9620ee55cb66a40962ecf4d165d75a, type: 3}
-    - time: 0.6666667
+    - time: 0.33333334
       value: {fileID: 284369983, guid: 8c9620ee55cb66a40962ecf4d165d75a, type: 3}
     attribute: m_Sprite
     path: 
@@ -41,14 +41,28 @@ AnimationClip:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   m_ClipBindingConstant:
-    genericBindings: []
-    pptrCurveMapping: []
+    genericBindings:
+    - serializedVersion: 2
+      path: 0
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    pptrCurveMapping:
+    - {fileID: -181123214630470887, guid: 6816eee8289326041822e337fd910690, type: 3}
+    - {fileID: -3572903572009423379, guid: 8a9267b5687c5014da953563014c99b0, type: 3}
+    - {fileID: -8406034126292890782, guid: 6fda67451aecec64fa95c886fd912579, type: 3}
+    - {fileID: 7905073340251707110, guid: 8c9620ee55cb66a40962ecf4d165d75a, type: 3}
+    - {fileID: 284369983, guid: 8c9620ee55cb66a40962ecf4d165d75a, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.68333334
+    m_StopTime: 0.35000002
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

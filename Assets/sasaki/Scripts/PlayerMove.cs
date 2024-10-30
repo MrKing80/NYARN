@@ -62,7 +62,6 @@ public class PlayerMove : MonoBehaviour
 
         speed = SpeedProperty;
 
-
         inputX = Input.GetAxisRaw("Horizontal") * speed;    //プレイヤーの横方向の移動速度を格納
         inputY = Input.GetAxisRaw("Vertical") * speed;      //プレイヤーの縦方向の移動速度を格納
 

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SpeedUpItem : MonoBehaviour
 {
-    [SerializeField,Header("スピード倍率を入れるところだよー")] private float magnification = 3.9f;
-    
+    [SerializeField, Header("スピード倍率を入れるところだよー")] private float magnification = 3.9f;
+
     //プレイヤーの移動スクリプトを格納するところ
     private PlayerMove move = default;
 
@@ -23,14 +23,15 @@ public class SpeedUpItem : MonoBehaviour
 
     //触れているか
     private bool isTouch = false;
- 
+
     //ゲットしているか
     private bool isGet = false;
 
     // ★玉井追加 エフェクト用
     [SerializeField] private GameObject dashSmork = default;
-    [SerializeField] private bool isDashSmork = default;
-
+    // 受け渡し用のパブリック変数 
+    public float BuffItem{ get => buffTime; }
+    public bool IsGet { get => isGet; }
 
     void Start()
     {
@@ -53,24 +54,17 @@ public class SpeedUpItem : MonoBehaviour
 
             // ★玉井追加 子オブジェクトのGameObj取得
             dashSmork = player.transform.GetChild(1).gameObject;
-            isDashSmork = dashSmork.GetComponent<SpriteRenderer>().enabled;
 
             initialSpeed = move.SpeedProperty;          //初期スピードを保存
             tmpSpeed = move.SpeedProperty * magnification;  //スピードアップ
             
             move.SpeedProperty = tmpSpeed;      //スピード変更
 
-            // ★玉井追加 修正済　
-            if (isDashSmork == false)
-                isDashSmork = true;
-            if (initialSpeed < tmpSpeed)
-            {
-                dashSmork.SetActive(true);
-            }
-            else
-                dashSmork.SetActive(false);
-
             isGet = true;
+
+            // ★玉井追加 修正済　
+            if (initialSpeed < tmpSpeed)
+                dashSmork.SetActive(true);
 
             this.GetComponent<SpriteRenderer>().enabled = false;    
                                                                         //非表示            
@@ -85,6 +79,7 @@ public class SpeedUpItem : MonoBehaviour
             if (buffTime <= 0)
             {
                 move.SpeedProperty = initialSpeed;  //スピードを元に戻す
+                dashSmork.SetActive(false);
                 player = null;      
                 isGet = false;      //各種変数初期化
                 buffTime = 3f;
