@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8599851193517802237}
   - component: {fileID: -3225501461241221719}
   - component: {fileID: 8956010885321181556}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Item(0)
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -171,7 +171,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1544694871364381141}
   - component: {fileID: 8324259717801682981}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,6 +218,14 @@ PrefabInstance:
     - target: {fileID: 2335742656225046467, guid: 4db6b83ec6780a942a6223104029e060, type: 3}
       propertyPath: m_Name
       value: Particle R
+      objectReference: {fileID: 0}
+    - target: {fileID: 2335742656225046467, guid: 4db6b83ec6780a942a6223104029e060, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5263118689137697841, guid: 4db6b83ec6780a942a6223104029e060, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5669431125915035250, guid: 4db6b83ec6780a942a6223104029e060, type: 3}
       propertyPath: m_Pivot.x

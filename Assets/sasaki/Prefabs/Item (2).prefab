@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -6174166274459689918}
   - component: {fileID: -2263988077287656584}
   - component: {fileID: 3841967546877834731}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Item (2)
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -171,7 +171,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1300461729183880590}
   - component: {fileID: 3286278370230452850}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,10 +186,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7462171116893676657}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 65.46161, y: -27.615591, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 420364011524189408}
   m_Father: {fileID: 5089301934460829099}
@@ -218,6 +218,14 @@ PrefabInstance:
     - target: {fileID: 2335742656225046467, guid: 4e33c3b9cfbdb09409544d062312cb40, type: 3}
       propertyPath: m_Name
       value: Particle SR
+      objectReference: {fileID: 0}
+    - target: {fileID: 2335742656225046467, guid: 4e33c3b9cfbdb09409544d062312cb40, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5263118689137697841, guid: 4e33c3b9cfbdb09409544d062312cb40, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5491053735981963451, guid: 4e33c3b9cfbdb09409544d062312cb40, type: 3}
       propertyPath: _main
@@ -331,6 +339,10 @@ PrefabInstance:
       propertyPath: _multithreadModule.enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6075256499605710518, guid: 4e33c3b9cfbdb09409544d062312cb40, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7324112854148621742, guid: 4e33c3b9cfbdb09409544d062312cb40, type: 3}
       propertyPath: _main
       value: 
@@ -342,6 +354,10 @@ PrefabInstance:
     - target: {fileID: 7324112854148621742, guid: 4e33c3b9cfbdb09409544d062312cb40, type: 3}
       propertyPath: _multithreadModule.enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7429297780645983021, guid: 4e33c3b9cfbdb09409544d062312cb40, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
